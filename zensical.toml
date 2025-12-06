@@ -19,22 +19,25 @@ site_name = "Adenyrr's docu"
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
 
-site_description = "L'autonomie opensource"
+site_description = "mkdir /dev/docs"
 
 # The site_author attribute. This is used in the HTML head element.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_author
+
 site_author = "adenyrr"
 
 # The site_url is the canonical URL for your site. When building online
 # documentation you should set this.
 # Read more: https://zensical.org/docs/setup/basics/#site_url
-#site_url = "https://docu.adenyrr.me"
+
+site_url = "https://docu.adenyrr.me"
 
 # The copyright notice appears in the page footer and can contain an HTML
 # fragment.
 #
 # Read more: https://zensical.org/docs/setup/basics/#copyright
+
 copyright = """
 Creative Commons BY - NC : adenyrr
 """
@@ -46,10 +49,25 @@ Creative Commons BY - NC : adenyrr
 # can be defined using TOML syntax.
 #
 # Read more: https://zensical.org/docs/setup/navigation/
-# nav = [
-#   { "Get started" = "index.md" },
-#   { "Markdown in 5min" = "markdown.md" },
-# ]
+
+nav = [
+  {"Home" = [
+     "index.md",
+  ]},
+  {"Réseau" = [
+     "reseau/swag.md",
+  ]},
+  {"Services" = [
+     "services/jellyfin.md",
+     "services/ollama.md",
+  ]},
+  {"Outils & scripts" = [
+     {"Cours et tutoriels" = "outils/ressources.md"},
+     {"RTFM - Commandes pratiques" = "outils/commandes.md"},
+     {"Logiciels recommandés" = "outils/softwares.md"},
+     {"Outils réguliers" = "outils/links.md"},
+  ]}
+]
 
 # With the "extra_css" option you can add your own CSS styling to customize
 # your Zensical project according to your needs. You can add any number of
@@ -97,7 +115,7 @@ variant = "modern"
 # - https://zensical.org/docs/setup/logo-and-icons/#favicon
 # - https://developer.mozilla.org/en-US/docs/Glossary/Favicon
 #
-#favicon = "assets/images/favicon.png"
+favicon = "assets/favicon.png"
 
 # Zensical supports more than 60 different languages. This means that the
 # labels and tooltips that Zensical's templates produce are translated.
@@ -132,7 +150,7 @@ features = [
     # will generate a button that allows the user to view the Markdown
     # code for the current page.
     # https://zensical.org/docs/setup/repository/#code-actions
-    #"content.action.view",
+    "content.action.view",
 
     # Code annotations allow you to add an icon with a tooltip to your
     # code blocks to provide explanations at crucial points.
@@ -167,7 +185,7 @@ features = [
     # With this feature enabled, Zensical will automatically hide parts
     # of the header when the user scrolls past a certain point.
     # https://zensical.org/docs/setup/header/#automatic-hiding
-    # "header.autohide",
+     "header.autohide",
 
     # Turn on this feature to expand all collapsible sections in the
     # navigation sidebar by default.
@@ -198,7 +216,7 @@ features = [
     # In order to provide a better user experience on slow connections when
     # using instant navigation, a progress indicator can be enabled.
     # https://zensical.org/docs/setup/navigation/#progress-indicator
-    #"navigation.instant.progress",
+    "navigation.instant.progress",
 
     # When navigation paths are activated, a breadcrumb navigation is rendered
     # above the title of each page
@@ -218,12 +236,12 @@ features = [
     # When tabs are enabled, top-level sections are rendered in a menu layer
     # below the header for viewports above 1220px, but remain as-is on mobile.
     # https://zensical.org/docs/setup/navigation/#navigation-tabs
-    #"navigation.tabs",
+    "navigation.tabs",
 
     # When sticky tabs are enabled, navigation tabs will lock below the header
     # and always remain visible when scrolling down.
     # https://zensical.org/docs/setup/navigation/#sticky-navigation-tabs
-    #"navigation.tabs.sticky",
+    "navigation.tabs.sticky",
 
     # A back-to-top button can be shown when the user, after scrolling down,
     # starts to scroll up again.
@@ -244,7 +262,7 @@ features = [
     # When anchor following for the table of contents is enabled, the sidebar
     # is automatically scrolled so that the active anchor is always visible.
     # https://zensical.org/docs/setup/navigation/#anchor-following
-    # "toc.follow",
+     "toc.follow",
 
     # When navigation integration for the table of contents is enabled, it is
     # always rendered as part of the navigation sidebar on the left.
