@@ -66,7 +66,10 @@ nav = [
      {"RTFM - Commandes pratiques" = "outils/commandes.md"},
      {"Logiciels recommandés" = "outils/softwares.md"},
      {"Outils réguliers" = "outils/links.md"},
-  ]}
+  ]},
+  {"Non-OSS" = [
+     {"Utiliser sysprep" = "non-oss/sysprep.md"},
+   ]}
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
