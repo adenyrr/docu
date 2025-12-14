@@ -334,4 +334,5 @@ code = "Jetbrains Mono"
 #icon = "fontawesome/brands/github"
 #link = "https://github.com/user/repo"
 
-
+[project.plugins.offline]
+enabled = false
