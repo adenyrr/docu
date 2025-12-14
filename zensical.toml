@@ -14,7 +14,7 @@ Creative Commons BY - NC : adenyrr
 
 nav = [
   {"/home" = [
-     {"/a-propos" = "services/jellyfin.md"},
+     {"/à-propos" = "index.md"},
   ]},
   {"/network" = [
      {"/swag-proxy" = "reseau/swag.md"},
@@ -25,7 +25,7 @@ nav = [
   ]},
   {"/assist" = [
      {"/install" = "hassio/install.md"},
-     {"/météo" = "hassio/meteo.md"}",
+     {"/météo" = "hassio/meteo.md"},
   ]},
   {"/tools" = [
      {"/more" = "outils/ressources.md"},
