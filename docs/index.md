@@ -4,11 +4,11 @@
 
 Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus possible, accessibles à tous.tes.
 
-Alors que nous sommes entrés dans l'ère de l'information, il me semble important de pouvoir reprendre la main sur ses données. Aussi, ici ne seront proposés, hormis windows et quelques drivers, que des logiciels open-source, auditables par la communauté.
+Alors que nous sommes entrés dans l'ère de l'information, il me semble important de pouvoir reprendre la main sur ses données. Aussi, ici ne seront proposés, hormis windows et quelques drivers, que des logiciels opensources, auditables par la communauté.
 
 ## Pourquoi l'opensource ?
 
-Le mouvement opensource au sein de l'informatique remonte à ses tout début. Un logiciel ou un protocole opensource se comporte comme une voiture : vous pouvez l'ouvrir, soulever le capot et l'étudier, la modifier ou la réparer au besoin. Tel une voiture, l'opensource permet de lire, d'étudier, de modifier ou de réparer le logiciel placé sous licence dite libre. Ainsi, la plupart des langages de programmation, des protocoles qui font Internet ou des logiciels qui font tourner les serveurs, sont en immense majorité  opensources.
+Les principes fondateurs d'un système opensource sont l'accessibilité du code ou de la méthode, le développement collaboratif et la revue par les pairs.
 
 Parce qu'on peut adapter et vérifier les solutions opensources, elles sont souvent garantes de sécurité, de pérennité et de robustesse face à des solutions dites proriétaires qui sont entièrement opaques, même pour les experts de ces solutions.
 
