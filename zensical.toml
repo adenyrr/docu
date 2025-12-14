@@ -90,7 +90,7 @@ nav = [
 # Read more: https://zensical.org/docs/customization/#additional-javascript
 #extra_javascript = ["assets/javascript/extra.js"]
 
-#site_dir = "public"
+site_dir = "public"
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
