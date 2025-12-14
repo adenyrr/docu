@@ -13,24 +13,28 @@ Creative Commons BY - NC : adenyrr
 """
 
 nav = [
-  {"Home" = [
-     "index.md",
+  {"/home" = [
+     {"/a-propos" = "services/jellyfin.md"},
   ]},
-  {"Réseau" = [
-     "reseau/swag.md",
+  {"/network" = [
+     {"/swag-proxy" = "reseau/swag.md"},
   ]},
-  {"Services" = [
-     "services/jellyfin.md",
-     "services/ollama.md",
+  {"/apps" = [
+     {"/jellyfin" = "services/jellyfin.md"},
+     {"/ollama" = "services/ollama.md"},
   ]},
-  {"Outils & scripts" = [
-     {"Cours et tutoriels" = "outils/ressources.md"},
-     {"RTFM - Commandes pratiques" = "outils/commandes.md"},
-     {"Logiciels recommandés" = "outils/softwares.md"},
-     {"Outils réguliers" = "outils/links.md"},
+  {"/assist" = [
+     {"/install" = "hassio/install.md"},
+     {"/météo" = "hassio/meteo.md"}",
   ]},
-  {"Non-OSS" = [
-     {"Utiliser sysprep" = "non-oss/sysprep.md"},
+  {"/tools" = [
+     {"/more" = "outils/ressources.md"},
+     {"/cmd" = "outils/commandes.md"},
+     {"/discover" = "outils/softwares.md"},
+     {"/links" = "outils/links.md"},
+  ]},
+  {"/non-free" = [
+     {"Sysprep Windows" = "non-oss/sysprep.md"},
    ]}
 ]
 
