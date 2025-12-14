@@ -25,7 +25,7 @@ Cette documentation, mes sites et la plupart de mes projets sont rédigés et b�
 Cette documentation est hébergée par [Gitlab Pages](https://vscodium.com/), via un runner CI/CD depuis le [repository](https://gitlab.com/adenyrr/docs).
 
 Par défaut, le thème utilisé est celui de l'utilisateur.trice. 
-Les polices d'écriture utilisées sont *[Inclusive Sans](https://fonts.google.com/specimen/Inclusive+Sans/license)* pour les textes et *[Jetbrains MONO](https://fonts.google.com/specimen/JetBrains+Mono)* pour le code afin de rendre la lecture accessible aux plus grand nombre.
+Les polices d'écriture utilisées sont *[Inclusive Sans](https://fonts.google.com/specimen/Inclusive+Sans/license)* pour les textes et *[Jetbrains MONO](https://fonts.google.com/specimen/JetBrains+Mono)* pour le code afin de rendre la lecture accessible au plus grand nombre.
 Pour la même raison, l'écriture inclusive à simple point sera préférée.
 
 Enfin, le site est propulsé par [Zensical](https://zensical.org/) qui remplace [mk-docs material](https://squidfunk.github.io/mkdocs-material/).
