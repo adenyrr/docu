@@ -254,9 +254,10 @@ code = "Jetbrains Mono"
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.
 # ----------------------------------------------------------------------------
-#[[project.extra.social]]
-#icon = "fontawesome/brands/github"
-#link = "https://github.com/user/repo"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/adenyrr/docu"
 
 [project.plugins.offline]
 enabled = true
