@@ -282,12 +282,17 @@ features = [
 # Read more:
 # - https://zensical.org/docs/setup/colors/
 # ----------------------------------------------------------------------------
+
+# Palette toggle for light mode
 [[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
 
+# Palette toggle for dark mode
 [[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to light mode"
@@ -298,9 +303,10 @@ toggle.name = "Switch to light mode"
 # of suitably licensed fonts. There are options for a normal text font and for
 # a monospaced font used in code blocks.
 # ----------------------------------------------------------------------------
-#[project.theme.font]
-#text = "Inter"
-#code = "Jetbrains Mono"
+
+[project.theme.font]
+text = "Jetbrains"
+code = "Jetbrains Mono"
 
 # ----------------------------------------------------------------------------
 # You can configure your own logo to be shown in the header using the "logo"
