@@ -72,6 +72,7 @@ variant = "modern"
 #custom_dir = "overrides"
 
 favicon = "assets/favicon.jpg"
+logo = "assets/favicon.jpg"
 
 language = "fr"
 
