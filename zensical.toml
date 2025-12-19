@@ -23,11 +23,11 @@ nav = [
      {"/jellyfin" = [
       {"/install" = "services/jellyfin/install.md"},
       {"/theme" = "services/jellyfin/theme.md"},
-     ]}
+     ]},
      {"/ollama" = [
       {"/install" = "services/ollama/install.md"},
       {"/config" = "services/ollama/config.md"},
-     ]}
+     ]},
   ]},
   {"/assist" = [
      {"/install" = "hassio/install.md"},
