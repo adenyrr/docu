@@ -156,15 +156,7 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
 
-[project.markdown_extensions.toc]
-permalink = true
-title = "On this page"
-permalink_title = "Anchor link to this section for reference"
 
-[project.markdown_extensions.pymdownx.superfences]
-custom_fences = [
-    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
-]
 
 [project.plugins]
 
