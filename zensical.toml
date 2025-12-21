@@ -84,7 +84,6 @@ features = [
     "navigation.tracking",
     "search.highlight",
     "toc.follow",
-    "navigation.indexes"
 
 ]
 
