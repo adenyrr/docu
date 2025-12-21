@@ -113,11 +113,19 @@ code = "Jetbrains Mono"
 [project.theme.icon]
 repo = "fontawesome/brands/github"
 
+[project.extra]
+
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/adenyrr"
+
+
+[[project.extra.social]]
 icon = "fontawesome/brands/gitlab"
 link = "https://gitlab.com/adenyrr"
+
+
+[[project.extra.social]]
 icon = "fontawesome/brands/discord"
 link = "https://https://discord.com/invite/6PrX5KM4MH"
 
