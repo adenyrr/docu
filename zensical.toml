@@ -111,8 +111,6 @@ code = "Jetbrains Mono"
 [project.theme.icon]
 repo = "fontawesome/brands/github"
 
-[project.extra]
-
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/adenyrr"
@@ -127,48 +125,7 @@ link = "https://gitlab.com/adenyrr"
 icon = "fontawesome/brands/discord"
 link = "https://https://discord.com/invite/6PrX5KM4MH"
 
-[project.markdown_extensions]
-abbr = {}
-admonition = {}
-attr_list = {}
-footnotes = {}
-md_in_html = {}
-"mkdocs-click" = {}
-
-[project.markdown_extensions.pymdownx]
-critic = {}
-details = {}
-keys = {}
-snippets = {}
-inlinehilite = {}
-
-[project.markdown_extensions.pymdownx.arithmatex]
-generic = true
-
-[project.markdown_extensions.pymdownx.highlight]
-anchor_linenums = true
-line_spans = "__span"
-pygments_lang_class = true
-
-[project.markdown_extensions.pymdownx.tabbed]
-alternate_style = true
-
-[project.markdown_extensions.toc]
-permalink = true
-title = "On this page"
-permalink_title = "Anchor link to this section for reference"
-
-[project.markdown_extensions.pymdownx.superfences]
-custom_fences = [
-    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
-]
-
-
-[project.plugins]
-
 [project.plugins.offline]
 enabled = true
-
-[project.plugins.search]
 
 
