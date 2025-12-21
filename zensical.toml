@@ -130,32 +130,6 @@ icon = "fontawesome/brands/discord"
 link = "https://https://discord.com/invite/6PrX5KM4MH"
 
 
-[project.markdown_extensions]
-abbr = {}
-admonition = {}
-attr_list = {}
-footnotes = {}
-md_in_html = {}
-"mkdocs-click" = {}
-
-[project.markdown_extensions.pymdownx]
-critic = {}
-details = {}
-keys = {}
-snippets = {}
-inlinehilite = {}
-
-[project.markdown_extensions.pymdownx.arithmatex]
-generic = true
-
-[project.markdown_extensions.pymdownx.highlight]
-anchor_linenums = true
-line_spans = "__span"
-pygments_lang_class = true
-
-[project.markdown_extensions.pymdownx.tabbed]
-alternate_style = true
-
 
 
 [project.plugins]
