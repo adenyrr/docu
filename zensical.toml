@@ -1,16 +1,19 @@
+# Base
 [project]
 
 site_name = "Adenyrr's docu"
-
 site_description = "mkdir /dev/docs"
-
 site_author = "adenyrr"
-
 site_url = "https://docu.adenyrr.me"
+copyright = 'Creative Commons BY - NC : adenyrr'
+site_dir = "public"
 
-copyright = """
-Creative Commons BY - NC : adenyrr
-"""
+# Repo
+
+repo_name = "adenyrr/docu
+repo_url = "https://github.com/adenyrr/docu"
+
+# Navigation 
 
 nav = [
   {"/home" = [
@@ -44,25 +47,10 @@ nav = [
    ]}
 ]
 
-# With the "extra_css" option you can add your own CSS styling to customize
-# your Zensical project according to your needs. You can add any number of
-# CSS files.
-#
-# The path provided should be relative to the "docs_dir".
-#
-# Read more: https://zensical.org/docs/customization/#additional-css
-#
 #extra_css = ["assets/stylesheets/extra.css"]
-
-# With the `extra_javascript` option you can add your own JavaScript to your
-# project to customize the behavior according to your needs.
-#
-# The path provided should be relative to the "docs_dir".
-#
-# Read more: https://zensical.org/docs/customization/#additional-javascript
 #extra_javascript = ["assets/javascript/extra.js"]
 
-site_dir = "public"
+
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
