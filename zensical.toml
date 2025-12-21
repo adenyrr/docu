@@ -290,7 +290,6 @@ pygments_lang_class = true
 alternate_style = true
 
 [project.markdown_extensions.toc]
-permalink = true
 title = "Sur cette page"
 permalink_title = "Permalien"
 permalink = "⚓︎"
