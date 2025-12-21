@@ -153,10 +153,6 @@ anchor_linenums = true
 line_spans = "__span"
 pygments_lang_class = true
 
-[project.markdown_extensions.pymdownx.emoji]
-emoji_index = "material.extensions.emoji.twemoji"
-emoji_generator = "material.extensions.emoji.to_svg"
-
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
 
