@@ -47,26 +47,16 @@ nav = [
    ]}
 ]
 
+# Extras files
+
 #extra_css = ["assets/stylesheets/extra.css"]
 #extra_javascript = ["assets/javascript/extra.js"]
 
+# Thème 
 
-
-# ----------------------------------------------------------------------------
-# Section for configuring theme options
-# ----------------------------------------------------------------------------
 [project.theme]
 
 variant = "modern"
-
-# Zensical allows you to override specific blocks, partials, or whole
-# templates as well as to define your own templates. To do this, uncomment
-# the custom_dir setting below and set it to a directory in which you
-# keep your template overrides.
-#
-# Read more:
-# - https://zensical.org/docs/customization/#extending-the-theme
-#
 #custom_dir = "overrides"
 
 favicon = "assets/favicon.jpg"
@@ -249,20 +239,27 @@ code = "Jetbrains Mono"
 #logo = "lucide/smile"
 #repo = "lucide/smile"
 
-# ----------------------------------------------------------------------------
-# The "extra" section contains miscellaneous settings.
-# ----------------------------------------------------------------------------
+# Extra 
 
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/adenyrr/docu"
+link = "https://github.com/adenyrr"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/gitlab"
+link = "https://github.com/adenyrr"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/discord"
+link = "https://discord.com/invite/6PrX5KM4MH"
+
+# Plug-ins
 
 [project.plugins.offline]
 enabled = true
 
-
-
 # MARKDOWN EXTENSIONS (from owid/etl)
+
 [project.markdown_extensions]
 abbr = {}
 admonition = {}
