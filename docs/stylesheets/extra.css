@@ -1,0 +1,137 @@
+/* Custom background from adenyrr.me */
+
+/* Dark theme background */
+[data-md-color-scheme="slate"] {
+  background: #0a0e14 !important;
+  background-image:
+    /* Subtle grid pattern for tech feel */
+    linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px),
+    /* Main gradients - warm tones enhanced */
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(139,92,246,0.18), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 20% 40%, rgba(236,72,153,0.10), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 0% 70%, rgba(236,72,153,0.08), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(168,85,247,0.08), transparent 50%) !important;
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
+  background-attachment: fixed !important;
+}
+
+/* Light theme background */
+[data-md-color-scheme="default"] {
+  background: #f8f9fc !important;
+  background-image:
+    /* Very subtle grid pattern */
+    linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px),
+    /* Soft gradients - more visible for light theme */
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(99,102,241,0.12), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 20% 40%, rgba(139,92,246,0.08), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 0% 70%, rgba(167,139,250,0.06), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(124,58,237,0.06), transparent 50%) !important;
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
+  background-attachment: fixed !important;
+}
+
+/* Ensure body and containers don't override */
+body,
+.md-container,
+.md-main,
+.md-content {
+  background: transparent !important;
+}
+
+/* Make header semi-transparent for glassmorphism effect */
+.md-header {
+  background-color: rgba(10, 14, 20, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background-color: rgba(248, 249, 252, 0.9) !important;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* Make sidebar semi-transparent */
+.md-sidebar {
+  background: transparent !important;
+}
+
+.md-sidebar__scrollwrap {
+  background: transparent !important;
+}
+
+/* Navigation styling */
+.md-nav {
+  background: transparent !important;
+}
+
+/* Tabs bar */
+.md-tabs {
+  background: transparent !important;
+}
+
+/* Footer transparent with glassmorphism */
+.md-footer {
+  background: transparent !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+[data-md-color-scheme="default"] .md-footer {
+  background: transparent !important;
+  border-top: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.md-footer-meta {
+  background: rgba(10, 14, 20, 0.3) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+[data-md-color-scheme="default"] .md-footer-meta {
+  background: rgba(248, 249, 252, 0.6) !important;
+}
+
+.md-footer-nav {
+  background: transparent !important;
+}
+
+.md-footer__inner {
+  background: transparent !important;
+}
+
+/* Ensure html and body take full height */
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* Light theme text improvements for readability */
+[data-md-color-scheme="default"] {
+  --md-default-fg-color: #1a1a2e;
+  --md-default-fg-color--light: #374151;
+  --md-default-fg-color--lighter: #4b5563;
+}
+
+/* Content area semi-transparent background for better readability in light mode */
+[data-md-color-scheme="default"] .md-content {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-radius: 8px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* Dark theme content area for better readability */
+[data-md-color-scheme="slate"] .md-content {
+  background: rgba(10, 14, 20, 0.5) !important;
+  border-radius: 8px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(139, 92, 246, 0.08);
+}

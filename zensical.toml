@@ -49,7 +49,7 @@ nav = [
 
 # Extras files
 
-#extra_css = ["assets/stylesheets/extra.css"]
+extra_css = ["stylesheets/extra.css"]
 #extra_javascript = ["assets/javascript/extra.js"]
 
 # Thème 
