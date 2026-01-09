@@ -135,3 +135,179 @@ body {
   padding: 0.5rem;
   border: 1px solid rgba(139, 92, 246, 0.08);
 }
+
+/* ============================================
+   ANIMATIONS & TRANSITIONS
+   ============================================ */
+
+/* Smooth transitions for theme switching and hover effects */
+a,
+.md-header,
+.md-footer,
+.md-nav__link,
+.md-tabs__link,
+.md-typeset a,
+.md-button {
+  transition: all 0.3s ease;
+}
+
+/* Glow effect on links hover */
+.md-typeset a:hover,
+.md-nav__link:hover,
+.md-tabs__link:hover {
+  text-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+}
+
+[data-md-color-scheme="default"] .md-typeset a:hover,
+[data-md-color-scheme="default"] .md-nav__link:hover {
+  text-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+}
+
+/* ============================================
+   GLASSMORPHISM CODE BLOCKS
+   ============================================ */
+
+.md-typeset pre,
+.highlight {
+  background: rgba(10, 14, 20, 0.6) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-md-color-scheme="default"] .md-typeset pre,
+[data-md-color-scheme="default"] .highlight {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
+
+.md-top {
+  background: rgba(139, 92, 246, 0.2) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.md-top:hover {
+  background: rgba(139, 92, 246, 0.4) !important;
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+[data-md-color-scheme="default"] .md-top {
+  background: rgba(99, 102, 241, 0.15) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+[data-md-color-scheme="default"] .md-top:hover {
+  background: rgba(99, 102, 241, 0.3) !important;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+/* ============================================
+   CONTENT AREA WIDTH
+   ============================================ */
+
+.md-grid {
+  max-width: 1440px;
+}
+
+/* ============================================
+   NAVIGATION ENHANCEMENTS
+   ============================================ */
+
+/* Active nav item glow */
+.md-nav__link--active {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 4px;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+[data-md-color-scheme="default"] .md-nav__link--active {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+/* Tab hover effect */
+.md-tabs__link:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 4px;
+}
+
+/* ============================================
+   BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+.md-button {
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.md-button:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SEARCH BAR
+   ============================================ */
+
+.md-search__input {
+  background: rgba(10, 14, 20, 0.5) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.md-search__input:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+}
+
+[data-md-color-scheme="default"] .md-search__input {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+[data-md-color-scheme="default"] .md-search__input:focus {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+}
+
+/* ============================================
+   ADMONITIONS (NOTES, WARNINGS, ETC.)
+   ============================================ */
+
+.md-typeset .admonition,
+.md-typeset details {
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+}
+
+/* ============================================
+   PARTICLES CANVAS (for JS)
+   ============================================ */
+
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}

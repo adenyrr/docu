@@ -50,7 +50,7 @@ nav = [
 # Extras files
 
 extra_css = ["stylesheets/extra.css"]
-#extra_javascript = ["assets/javascript/extra.js"]
+extra_javascript = ["javascripts/extra.js"]
 
 # Thème 
 
