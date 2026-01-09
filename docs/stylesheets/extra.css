@@ -1,8 +1,37 @@
 /* Custom background from adenyrr.me */
 
-/* Dark theme background */
+/* ============================================
+   FIXED BACKGROUND - Desktop & Mobile Compatible
+   Using ::before pseudo-element for mobile support
+   (background-attachment: fixed doesn't work on mobile)
+   ============================================ */
+
+/* Dark theme background - Desktop */
 [data-md-color-scheme="slate"] {
   background: #0a0e14 !important;
+}
+
+/* Light theme background - Desktop */
+[data-md-color-scheme="default"] {
+  background: #f8f9fc !important;
+}
+
+/* Fixed background layer using ::before for cross-platform support */
+[data-md-color-scheme="slate"]::before,
+[data-md-color-scheme="default"]::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Dark theme gradient */
+[data-md-color-scheme="slate"]::before {
+  background: #0a0e14;
   background-image:
     /* Subtle grid pattern for tech feel */
     linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
@@ -11,14 +40,13 @@
     radial-gradient(ellipse 80% 60% at 50% -20%, rgba(139,92,246,0.18), transparent 50%),
     radial-gradient(ellipse 70% 50% at 20% 40%, rgba(236,72,153,0.10), transparent 50%),
     radial-gradient(ellipse 50% 40% at 0% 70%, rgba(236,72,153,0.08), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(168,85,247,0.08), transparent 50%) !important;
-  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
-  background-attachment: fixed !important;
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(168,85,247,0.08), transparent 50%);
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
-/* Light theme background */
-[data-md-color-scheme="default"] {
-  background: #f8f9fc !important;
+/* Light theme gradient */
+[data-md-color-scheme="default"]::before {
+  background: #f8f9fc;
   background-image:
     /* Very subtle grid pattern */
     linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
@@ -27,9 +55,8 @@
     radial-gradient(ellipse 80% 60% at 50% -20%, rgba(99,102,241,0.12), transparent 50%),
     radial-gradient(ellipse 70% 50% at 20% 40%, rgba(139,92,246,0.08), transparent 50%),
     radial-gradient(ellipse 50% 40% at 0% 70%, rgba(167,139,250,0.06), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(124,58,237,0.06), transparent 50%) !important;
-  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
-  background-attachment: fixed !important;
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(124,58,237,0.06), transparent 50%);
+  background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
 /* Ensure body and containers don't override */
