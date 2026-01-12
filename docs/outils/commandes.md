@@ -1,3 +1,9 @@
+---
+title: "Quelques commandes utiles"
+description: "Cheatsheet adminsys"
+last_modified: 2026-01-12
+---
+
 # Quelques commandes utiles : 
 
 ## Ajouter les dépots 'contrib' et 'non-free' sur debian
@@ -18,7 +24,7 @@ Beaucoup de LXC sont basées sur debian. De même, les serveurs que j'installe s
 
 !!! note "su ... do ?"
 
-    La commande sudo permet de lancer des commandes root depuis l'utilisateur actif. Elle n'est pas nécéssaire, les commandes peuvent être lancées depuis l'utilisateur root également.
+    La commande sudo permet de lancer des commandes root depuis l'utilisateur actif. Elle n'est pas nécessaire, les commandes peuvent être lancées depuis l'utilisateur root également.
     Pour ajouter l'utilisateur au groupe sudoers (et donc pouvoir utiliser sudo depuis cet utilisateur), il faut lancer la commande `usermod -aG sudo $user` en changeant $user par le nom de l'utilisateur à ajouter au groupe sudo.
 
 Cette commande installe :
@@ -45,5 +51,5 @@ Docker est omniprésent maintenant. Si on veut monter un serveur, c'est une éta
 L'installation se fait en deux étapes simples : on supprime les anciennes versions ou les autres systèmes de gestion de conteneurs, puis on installe docker. On utilisera le script fourni par [get-docker](https://get.docker.com/) par simplicité. Il vérifie quelle version de l'OS on possède, il ajoute le dépot correspondant et installe docker et ses dépendances. Rien de bien compliqué.
 
  ``` bash
- curl -fsSL https://get.docker.com install-docker.sh | sudo bash
+  curl -fsSL https://get.docker.com | sudo sh
  ```

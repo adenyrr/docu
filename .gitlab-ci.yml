@@ -1,13 +1,48 @@
-pages:
-  stage: deploy
-  image: python:latest
+stages:
+  - lint
+  - build
+  - deploy
+
+variables:
+  ZENSICAL_VERSION: "0.0.15"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+
+lint_markdown:
+  stage: lint
+  image: node:18
   script:
-    - pip install zensical
-    - zensical build --clean 
+    - npm i -g markdownlint-cli
+    - markdownlint "docs/**/*.md" --config .markdownlint.json || true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+  allow_failure: true
 
-
+build_site:
+  stage: build
+  image: python:3.11
+  script:
+    - python -m pip install --upgrade pip
+    - pip install "zensical==$ZENSICAL_VERSION"
+    - zensical build --clean
+    - if [ -f "$CI_PROJECT_DIR/sitemap.xml" ]; then cp -v "$CI_PROJECT_DIR/sitemap.xml" public/; else echo "sitemap.xml not found in repo root"; fi
+    - if [ -f "$CI_PROJECT_DIR/robots.txt" ]; then cp -v "$CI_PROJECT_DIR/robots.txt" public/; else echo "robots.txt not found in repo root"; fi
   artifacts:
     paths:
       - public
+    expire_in: 1 week
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+pages:
+  stage: deploy
+  script:
+    - echo "Pages are built in build_site job; artifacts are used for deployment."
+  needs:
+    - job: build_site
+      artifacts: true
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'

@@ -1,6 +1,7 @@
 /**
  * Animated particles background for Zensical docs
- * Creates a subtle floating particle effect
+ * Improved: respects prefers-reduced-motion, throttles mousemove, debounces resize,
+ * pauses when page hidden and adds aria-hidden for accessibility.
  */
 
 class ParticleSystem {
@@ -12,12 +13,24 @@ class ParticleSystem {
     this.mouse = { x: null, y: null, radius: 150 };
     this.animationId = null;
     this.isDark = true;
+    this.reducedMotion = false;
+    this.resizeTimer = null;
+    this.mouseThrottle = null;
+    this.running = false;
   }
 
   init() {
+    // Respect user's reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.reducedMotion = true;
+      return; // don't initialise heavy visuals
+    }
+
     // Create canvas
     this.canvas = document.createElement('canvas');
     this.canvas.id = 'particles-canvas';
+    this.canvas.setAttribute('aria-hidden', 'true');
+    this.canvas.style.pointerEvents = 'none';
     document.body.prepend(this.canvas);
     this.ctx = this.canvas.getContext('2d');
 
@@ -27,25 +40,63 @@ class ParticleSystem {
     // Check theme
     this.checkTheme();
 
+    // Scale particle count to viewport size to reduce CPU on small devices
+    const area = this.canvas.width * this.canvas.height;
+    this.particleCount = Math.max(16, Math.min(120, Math.floor(area / 120000)));
+
     // Create particles
     this.createParticles();
 
-    // Event listeners
-    window.addEventListener('resize', () => this.resize());
+    // Event listeners (debounced/throttled)
+    window.addEventListener('resize', () => {
+      clearTimeout(this.resizeTimer);
+      this.resizeTimer = setTimeout(() => this.handleResize(), 150);
+    });
+
     window.addEventListener('mousemove', (e) => {
+      // Throttle mouse updates to reduce load
+      if (this.mouseThrottle) return;
+      this.mouseThrottle = setTimeout(() => { this.mouseThrottle = null; }, 50);
       this.mouse.x = e.clientX;
       this.mouse.y = e.clientY;
     });
 
-    // Watch for theme changes
-    const observer = new MutationObserver(() => this.checkTheme());
-    observer.observe(document.documentElement, { 
-      attributes: true, 
-      attributeFilter: ['data-md-color-scheme'] 
+    // Pause animation when tab not visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.stop();
+      } else {
+        this.start();
+      }
     });
 
+    // Watch for theme changes
+    const observer = new MutationObserver(() => this.checkTheme());
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-md-color-scheme'] });
+
     // Start animation
+    this.start();
+  }
+
+  start() {
+    if (this.reducedMotion || this.running) return;
+    this.running = true;
     this.animate();
+  }
+
+  stop() {
+    if (!this.running) return;
+    this.running = false;
+    if (this.animationId) cancelAnimationFrame(this.animationId);
+    this.animationId = null;
+  }
+
+  handleResize() {
+    this.resize();
+    // re-scale particles for new size
+    const area = this.canvas.width * this.canvas.height;
+    this.particleCount = Math.max(16, Math.min(120, Math.floor(area / 120000)));
+    this.createParticles();
   }
 
   checkTheme() {
@@ -67,7 +118,7 @@ class ParticleSystem {
         size: Math.random() * 2 + 1,
         speedX: (Math.random() - 0.5) * 0.5,
         speedY: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
+        opacity: Math.random() * 0.5 + 0.15,
         hue: Math.random() * 60 + 240 // Purple to pink range
       });
     }
@@ -76,15 +127,15 @@ class ParticleSystem {
   drawParticle(p) {
     const color = this.isDark 
       ? `hsla(${p.hue}, 70%, 60%, ${p.opacity * 0.6})`
-      : `hsla(${p.hue}, 60%, 50%, ${p.opacity * 0.4})`;
-    
+      : `hsla(${p.hue}, 60%, 50%, ${p.opacity * 0.45})`;
+
     this.ctx.beginPath();
     this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
     this.ctx.fillStyle = color;
     this.ctx.fill();
 
     // Glow effect
-    this.ctx.shadowBlur = 15;
+    this.ctx.shadowBlur = 12;
     this.ctx.shadowColor = color;
   }
 
@@ -97,11 +148,11 @@ class ParticleSystem {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < maxDistance) {
-          const opacity = (1 - distance / maxDistance) * 0.15;
+          const opacity = (1 - distance / maxDistance) * 0.12;
           const color = this.isDark 
             ? `rgba(139, 92, 246, ${opacity})`
             : `rgba(99, 102, 241, ${opacity * 0.6})`;
-          
+
           this.ctx.beginPath();
           this.ctx.strokeStyle = color;
           this.ctx.lineWidth = 1;
@@ -127,8 +178,8 @@ class ParticleSystem {
 
         if (distance < this.mouse.radius) {
           const force = (this.mouse.radius - distance) / this.mouse.radius;
-          p.x += dx * force * 0.02;
-          p.y += dy * force * 0.02;
+          p.x += dx * force * 0.015;
+          p.y += dy * force * 0.015;
         }
       }
 
@@ -141,11 +192,12 @@ class ParticleSystem {
   }
 
   animate() {
+    if (!this.running) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     this.updateParticles();
     this.connectParticles();
-    
+
     for (let p of this.particles) {
       this.drawParticle(p);
     }
@@ -154,8 +206,11 @@ class ParticleSystem {
   }
 }
 
-// Initialize when DOM is ready
+// Initialize when DOM is ready (support for instant navigation)
 function initParticles() {
+  // If user prefers reduced motion, don't init
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   // Only init if not already present
   if (!document.getElementById('particles-canvas')) {
     const particles = new ParticleSystem();
@@ -163,13 +218,11 @@ function initParticles() {
   }
 }
 
-// Support for Zensical instant navigation
 if (typeof document$ !== 'undefined') {
   document$.subscribe(function() {
     initParticles();
   });
 } else {
-  // Fallback for initial load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initParticles);
   } else {

@@ -1,3 +1,9 @@
+---
+title: "Bienvenue"
+description: "Documentation sur le self-hosting et ressources utiles en français."
+last_modified: 2026-01-12
+---
+
 # Bienvenue !
 
 ## Préambule
@@ -10,7 +16,7 @@ Alors que nous sommes entrés dans l'ère de l'information, il me semble importa
 
 Les principes fondateurs d'un système opensource sont l'accessibilité du code ou de la méthode, le développement collaboratif et la revue par les pairs.
 
-Parce qu'on peut adapter et vérifier les solutions opensources, elles sont souvent garantes de sécurité, de pérennité et de robustesse face à des solutions dites proriétaires qui sont entièrement opaques, même pour les experts de ces solutions.
+Parce qu'on peut adapter et vérifier les solutions opensources, elles sont souvent garantes de sécurité, de pérennité et de robustesse face à des solutions dites propriétaires qui sont entièrement opaques, même pour les experts de ces solutions.
 
 ## Mon setup de travail
 

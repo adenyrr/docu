@@ -15,7 +15,7 @@ L'en-tête, ou *header* est la portion située en haut de l'onglet. Elle est lim
     J'utilise l'intégration de l'[IRM](https://github.com/jdejaegh/irm-kmi-ha), puisque je suis belge. Pour les autres, [AccuWeather](https://www.home-assistant.io/integrations/accuweather/) fourni les concentrations précises et le niveau de danger associé.
 
 <figure markdown="span">
-  ![Header](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/header.png)
+  ![Header](/assets/hassio/header.png)
 </figure>
 
 Chacun des pollens mesurés possède son propre badge, dont voici le code :
@@ -44,7 +44,7 @@ visibility: # On modifie la visibilité ici pour qu'il ne s'affiche que si le ca
 ### Première colonne : Météo temps réel et prévisions
 
 <figure markdown="span">
-  ![MétéoNow](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/meteonow.png)
+  ![MétéoNow](/assets/hassio/meteonow.png)
 </figure>
 
 La météo actuelle est donnée par l'intégration [IRM](https://github.com/jdejaegh/irm-kmi-ha) (disponible sur HACS). Météo-France fourni à peu près les mêmes informations. Les informations manquantes depuis l'[IRM](https://github.com/jdejaegh/irm-kmi-ha) sont récupérées par [tomorrow.io](https://www.home-assistant.io/integrations/tomorrowio/) et [AccuWeather.](https://www.home-assistant.io/integrations/accuweather/) Enfin, la carte est la [Platinium Weather Card](https://github.com/tommyjlong/platinum-weather-card), disponible sur HACS.
@@ -103,7 +103,7 @@ Les prévisions sont séparées en deux cartes: l'une pour les prochaines heures
 Les prévisions pour les prochaines heures sont fournies par [tomorrow.io](https://www.home-assistant.io/integrations/tomorrowio/), que je trouve plus proche de la réalité.
 
 <figure markdown="span">
-  ![ForecastHours](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/forecasthours.png)
+  ![ForecastHours](/assets/hassio/forecasthours.png)
 </figure>
 
 ??? tip "Trop de code tue le code"
@@ -153,7 +153,7 @@ Les prévisions pour les prochaines heures sont fournies par [tomorrow.io](https
 Les prévisions pour les prochains jours sont fournies, elles, par [AccuWeather](https://www.home-assistant.io/integrations/accuweather/), généralement plus pertinent sur le moyen terme. La carte est exactement la même, il suffit d'adapter le paramètre `forecast:type`.
 
 <figure markdown="span">
-  ![ForecastDays](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/forecastdays.png)
+  ![ForecastDays](/assets/hassio/forecastdays.png)
 </figure>
 
 ### Deuxième colonne : Environnement extérieur
@@ -161,7 +161,7 @@ Les prévisions pour les prochains jours sont fournies, elles, par [AccuWeather]
 Une jauge indique l'indice UV, maximum et actuel, mis à jour toutes les heures. Les données sont fournies par [Open-UV](https://www.home-assistant.io/integrations/openuv/), la carte étant une [Gauge Card Pro](https://github.com/benjamin-dcs/gauge-card-pro).
 
 <figure markdown="span">
-  ![UVGauge](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/indiceUV.png)
+  ![UVGauge](/assets/hassio/indiceUV.png)
 </figure>
 
 ??? tip "Trop de code tue le code"
@@ -237,7 +237,7 @@ Une jauge indique l'indice UV, maximum et actuel, mis à jour toutes les heures.
 La qualité de l'air est fournie par l'intégration [WAQI](https://www.home-assistant.io/integrations/waqi/). Les données sont mises en forme de manière un peu particulières: c'est une pile verticale, dans son titre une carte conditionnelle affiche le polluant principal, des [Bubble Card](https://github.com/Clooos/Bubble-Card) indiquent, dans une pile horizontale, la concentration de chaque polluant. Ces données sont ensuite mises en forme au sein de la pile verticale par un graphique représentant les données des dernières 24H par [Apex Charts Card](https://github.com/RomRider/apexcharts-card).
 
 <figure markdown="span">
-  ![AirQuality](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/airquality.png)
+  ![AirQuality](/assets/hassio/airquality.png)
 </figure>
 
 ??? tip "Trop de code tue le code"
@@ -323,7 +323,7 @@ La qualité de l'air est fournie par l'intégration [WAQI](https://www.home-assi
 ### Troisième et quatrième colonnes : Cartes en temps réél
 
 <figure markdown="span">
-  ![Radars](https://raw.githubusercontent.com/adenyrr/become.sh/refs/heads/main/docs/assets/hassio/radars.png)
+  ![Radars](/assets/hassio/radars.png)
 </figure>
 
 J'utilise les cartes en temps réel fournies par le site [Windy](https://embed.windy.com/config/map). Elles sont au nombre de 4 : Vents, Pluie, Températures et risques incendies, intégrées par un iframe.
