@@ -26,7 +26,11 @@ build_site:
   image: python:3.11
   script:
     - python -m pip install --upgrade pip
-    - pip install "zensical==$ZENSICAL_VERSION"
+    - pip install "zensical==$ZENSICAL_VERSION" \
+        mkdocs-git-revision-date-localized-plugin \
+        mkdocs-glightbox \
+        mkdocs-minify-plugin \
+        mkdocs-macros-plugin
     - zensical build --clean
     - if [ -f "$CI_PROJECT_DIR/sitemap.xml" ]; then cp -v "$CI_PROJECT_DIR/sitemap.xml" public/; else echo "sitemap.xml not found in repo root"; fi
     - if [ -f "$CI_PROJECT_DIR/robots.txt" ]; then cp -v "$CI_PROJECT_DIR/robots.txt" public/; else echo "robots.txt not found in repo root"; fi

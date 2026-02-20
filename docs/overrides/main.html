@@ -3,3 +3,58 @@
 {% block extrahead %}
 <script defer src="https://analytics.adenyrr.me/script.js" data-website-id="7d4b0100-7403-4d21-96a6-1563452175cc"></script>
 {% endblock %}
+
+{% block announce %}
+<div class="ktty-bar">
+  <div class="ktty-winctl">
+    <span class="ktty-dot dot-close" title="close"></span>
+    <span class="ktty-dot dot-min"   title="minimize"></span>
+    <span class="ktty-dot dot-max"   title="maximize"></span>
+    <span class="ktty-title">kitty — zsh</span>
+  </div>
+  <div class="ktty-prompt">
+    <span class="ktty-chevron">›</span>
+    <span class="ktty-path">~/docs</span>
+    <span class="ktty-dim">&nbsp;on&nbsp;</span>
+    <span class="ktty-host">linux</span><span class="ktty-dim">/remote&nbsp;</span><em class="ktty-via">via</em><span class="ktty-ssh">&nbsp;ssh</span>
+    <span class="ktty-dim">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    <span class="ktty-datetime" id="ktty-dt"></span>
+    <span class="ktty-dim">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    <span class="ktty-uptime" id="ktty-up"></span>
+    <span class="ktty-dim">&nbsp;&nbsp;·&nbsp;&nbsp;</span>
+    <span class="ktty-online" title="online">●</span>
+  </div>
+</div>
+<script>
+(function () {
+  var start = Date.now();
+  var dtEl  = document.getElementById('ktty-dt');
+  var upEl  = document.getElementById('ktty-up');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function renderDate() {
+    var d = new Date();
+    return pad(d.getDate()) + '/' + pad(d.getMonth()+1) + '/' + d.getFullYear()
+         + '&nbsp;&nbsp;' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function renderUptime() {
+    var s = Math.floor((Date.now() - start) / 1000);
+    if (s < 60)    return 'up ' + s + 's';
+    var m = Math.floor(s / 60), rs = s % 60;
+    if (m < 60)   return 'up ' + m + 'm ' + pad(rs) + 's';
+    var h = Math.floor(m / 60), rm = m % 60;
+    return 'up ' + h + 'h ' + pad(rm) + 'm';
+  }
+
+  function tick() {
+    if (dtEl) dtEl.innerHTML = renderDate();
+    if (upEl) upEl.textContent = renderUptime();
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+{% endblock %}

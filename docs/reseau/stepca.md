@@ -40,7 +40,7 @@ L'alternative la plus courante est d'utiliser, plus simplement, des certificats 
 Une LXC ou une machine virtuelle, qui ne servira QUE pour ça, très légère (512 Mo de DDR suffiront) sous debian, et quelques paquets utilitaires :
 
 ```sh
-apt-get update && apt-get install -y --no-install-recommends curl gpg ca-certificates jq openssl
+apt-get update && apt-get install -y curl gpg ca-certificates jq openssl
 ```
 
 ### Méthode recommandée : bare-metal
@@ -71,7 +71,7 @@ On commence par initialiser notre PKI
 
 ```sh
 # Créer un utilisateur dédié
-useradd -r -m -d /etc/step-ca -s /bin/bash step
+useradd --system --home /etc/step-ca --shell /bin/false step
 
 # Initialiser la CA en tant qu'utilisateur step
 su - step
@@ -117,9 +117,6 @@ badger 2026/02/15 12:07:15 INFO: Force compaction on level 0 done
 Your PKI is ready to go. To generate certificates for individual services see 'step help ca'.
 ```
 
-!!! danger "Logs"
-
-    On note la root fingerprint et le mot de passe dans un endroit SECRET et sécurisé ! (Oui, encore ...)
 
 Maintenant que notre PKI est prête, on va déployer ACME pour la génération automatique de certificats.
 

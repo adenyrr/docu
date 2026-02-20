@@ -229,3 +229,39 @@ if (typeof document$ !== 'undefined') {
     initParticles();
   }
 }
+
+/* ── Scroll reveal — IntersectionObserver ────────────────── */
+(function () {
+  var SELECTOR = [
+    '.md-typeset h2',
+    '.md-typeset h3',
+    '.md-typeset .admonition',
+    '.md-typeset details',
+    '.md-typeset table',
+    '.md-typeset blockquote',
+    '.md-typeset .highlight'
+  ].join(', ');
+
+  function attachReveal() {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll(SELECTOR).forEach(function (el, i) {
+      el.classList.add('reveal-up');
+      if (i % 3 === 1) el.classList.add('reveal-delay-1');
+      else if (i % 3 === 2) el.classList.add('reveal-delay-2');
+      observer.observe(el);
+    });
+  }
+
+  /* MkDocs instant-navigation — re-attach after each page swap */
+  document.addEventListener('DOMContentLoaded', attachReveal);
+  document.addEventListener('DOMContentSwitch', attachReveal); // Zensical/Material
+})();
+

@@ -67,8 +67,9 @@ language = "fr"
 features = [
     # Zensical includes an announcement bar. This feature allows users to
     # dismiss it then they have read the announcement.
+    # Disabled: CLI header line is always visible.
     # https://zensical.org/docs/setup/header/#announcement-bar
-    "announce.dismiss",
+    # "announce.dismiss",
 
     # If you have a repository configured and turn feature this on, Zensical
     # will generate an edit button for the page. This works for common
@@ -258,6 +259,21 @@ link = "https://discord.com/invite/6PrX5KM4MH"
 [project.plugins.offline]
 enabled = true
 
+# Display last git modification date on each page
+[project.plugins.git-revision-date-localized]
+enable_creation_date = true
+type = "iso_date"
+
+# Lightbox for images
+[project.plugins.glightbox]
+
+# HTML/CSS/JS minification (production)
+[project.plugins.minify]
+minify_html = true
+
+# Reusable variables/macros in Markdown
+[project.plugins.macros]
+
 # MARKDOWN EXTENSIONS (from owid/etl)
 
 [project.markdown_extensions]
@@ -288,6 +304,10 @@ pygments_lang_class = true
 
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
+
+# Checkboxes — [ ] / [x]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
 
 [project.markdown_extensions.toc]
 title = "Sur cette page"
