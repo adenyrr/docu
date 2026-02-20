@@ -16,34 +16,34 @@ repo_url = "https://github.com/adenyrr/docu"
 # Navigation 
 
 nav = [
-  {"/home" = [
-     {"/à-propos" = "index.md"},
+  {"~/home" = [
+     {"calamares.sh" = "index.md"},
   ]},
-  {"/network" = [
-     {"/swag-proxy" = "reseau/swag.md"},
+  {"~/network" = [
+     {"/swag-proxy.sh" = "reseau/swag.md"},
   ]},
-  {"/apps" = [
-     {"/jellyfin" = [
-      {"/install" = "services/jellyfin/install.md"},
-      {"/theme" = "services/jellyfin/theme.md"},
+  {"~/apps" = [
+     {"/media" = [
+      {"jellyfin.sh" = "services/medias/jellyfin.md"},
+      {"qbittorrent.sh" = "services/medias/qbit.md"},
      ]},
-     {"/ollama" = [
-      {"/install" = "services/ollama/install.md"},
-      {"/config" = "services/ollama/config.md"},
+     {"/llm" = [
+      {"openwebui.sh" = "services/llm/openwebui.md"},
+      {"mcpo.sh" = "services/llm/mcpo.md"},
      ]},
   ]},
-  {"/assist" = [
-     {"/install" = "hassio/install.md"},
-     {"/météo" = "hassio/meteo.md"},
+  {"~/assist" = [
+     {"installation.sh" = "hassio/install.md"},
+     {"meteo.sh" = "hassio/meteo.md"},
   ]},
-  {"/tools" = [
-     {"/more" = "outils/ressources.md"},
-     {"/cmd" = "outils/commandes.md"},
-     {"/discover" = "outils/softwares.md"},
-     {"/links" = "outils/links.md"},
+  {"~/tools" = [
+     {"ressources.sh" = "outils/ressources.md"},
+     {"bash.sh" = "outils/commandes.md"},
+     {"applauncher.sh" = "outils/softwares.md"},
+     {"external.sh" = "outils/links.md"},
   ]},
-  {"/non-free" = [
-     {"Sysprep Windows" = "non-oss/sysprep.md"},
+  {"~/non-free" = [
+     {"winsysprep.sh" = "non-oss/sysprep.md"},
    ]}
 ]
 
