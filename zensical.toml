@@ -59,8 +59,8 @@ extra_javascript = ["javascripts/extra.js"]
 variant = "modern"
 custom_dir = "docs/overrides"
 
-favicon = "assets/favicon.jpg"
-logo = "assets/favicon.jpg"
+favicon = "assets/favicon.png"
+logo = "assets/favicon.png"
 
 language = "fr"
 
