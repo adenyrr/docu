@@ -111,6 +111,12 @@ body { min-height: 100vh; }
   background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
+/* ── Announce banner wrapper (prevent orange flash on mobile) */
+.md-banner {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
 /* ── Kitty terminal title bar ─────────────────────────────── */
 .ktty-bar {
   display: flex;
