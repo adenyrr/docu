@@ -598,18 +598,44 @@ body { min-height: 100vh; }
 }
 
 /* ── Grid / layout ────────────────────────────────────────── */
-.md-grid { max-width: 1440px; }
+.md-grid { max-width: 90rem; }           /* ~1440px — baseline */
 
-/* Reduce sidebar widths so the content column gets more room */
+@media screen and (min-width: 1280px) {
+  .md-grid { max-width: 100rem; }        /* ~1600px */
+}
+
+@media screen and (min-width: 1600px) {
+  .md-grid { max-width: 120rem; }        /* ~1920px */
+}
+
+/* Sidebar narrower on large screens — more room for content */
 :root {
   --md-sidebar-width: 9rem;
 }
 
-/* Let inner content fill the full card width */
+@media screen and (min-width: 1280px) {
+  :root { --md-sidebar-width: 10rem; }
+}
+
+/* Inner content: no max-width cap, responsive horizontal padding */
 .md-content__inner {
   max-width: none !important;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media screen and (min-width: 960px) {
+  .md-content__inner {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .md-content__inner {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
 }
 
 /* ── Tables ───────────────────────────────────────────────── */
