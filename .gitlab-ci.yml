@@ -20,8 +20,7 @@ renovate:
     - renovate --platform gitlab --autodiscover
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
-  only:
-    - main
+  
 
 lint_markdown:
   stage: lint
