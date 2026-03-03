@@ -3,6 +3,10 @@
 
 Une cheat-sheet des commandes cisco les plus régulières.
 
+!!! tip "CTRL+F"
+
+        Un Control + F pour rechercher sera bien pratique ici ;) 
+
 ## Les commandes de configuration :
 
 ### Passer en mode privilégié :

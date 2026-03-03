@@ -1,0 +1,5 @@
+zensical==0.0.15
+mkdocs-git-revision-date-localized-plugin
+mkdocs-glightbox
+mkdocs-minify-plugin
+mkdocs-macros-plugin

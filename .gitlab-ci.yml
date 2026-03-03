@@ -1,15 +1,49 @@
 stages:
+  - update
   - lint
   - build
   - deploy
 
 variables:
-  ZENSICAL_VERSION: "0.0.15"
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 cache:
   paths:
     - .cache/pip
+
+# job that bumps python dependencies, pushes a branch and opens a MR
+bump_dependencies:
+  stage: update
+  image: python:3.11
+  before_script:
+    - apt-get update && apt-get install -y --no-install-recommends git curl ca-certificates
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt --upgrade
+    - pip freeze > requirements.txt
+    - |
+      if ! git diff --quiet requirements.txt; then
+        BRANCH="update/requirements/${CI_PIPELINE_ID}"
+        git config user.name "CI Bot"
+        git config user.email "ci@localhost"
+        git checkout -b "$BRANCH"
+        git add requirements.txt
+        git commit -m "chore: mise à jour des dépendances python"
+        # push branch using CI job token
+        git push "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" HEAD:"$BRANCH"
+        # try to create a Merge Request via API using JOB token (may require instance settings)
+        MR_API_URL="https://${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/merge_requests"
+        MR_TITLE="chore: bump python dependencies (${CI_PIPELINE_ID})"
+        MR_DESC="Automated dependency bump from CI pipeline ${CI_PIPELINE_ID}."
+        curl --fail --silent --show-error -X POST -H "Content-Type: application/json" -H "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          -d "{\"source_branch\":\"$BRANCH\",\"target_branch\":\"${CI_DEFAULT_BRANCH}\",\"title\":\"$MR_TITLE\",\"description\":\"$MR_DESC\"}" \
+          "$MR_API_URL" || echo "Failed to create MR via API; branch pushed: $BRANCH"
+      else
+        echo "No changes to requirements.txt"
+      fi
+  rules:
+    # run on schedule or manually via pipeline editor
+    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
 
 lint_markdown:
   stage: lint
@@ -26,11 +60,7 @@ build_site:
   image: python:3.11
   script:
     - python -m pip install --upgrade pip
-    - pip install "zensical==$ZENSICAL_VERSION" \
-        mkdocs-git-revision-date-localized-plugin \
-        mkdocs-glightbox \
-        mkdocs-minify-plugin \
-        mkdocs-macros-plugin
+    - pip install -r requirements.txt
     - zensical build --clean
     - if [ -f "$CI_PROJECT_DIR/sitemap.xml" ]; then cp -v "$CI_PROJECT_DIR/sitemap.xml" public/; else echo "sitemap.xml not found in repo root"; fi
     - if [ -f "$CI_PROJECT_DIR/robots.txt" ]; then cp -v "$CI_PROJECT_DIR/robots.txt" public/; else echo "robots.txt not found in repo root"; fi
