@@ -43,7 +43,7 @@ nav = [
      {"external.sh" = "outils/links.md"},
   ]},
   {"~/non-free" = [
-     {"winsysprep.sh" = "non-oss/sysprep.md"},
+     {"cisco-cheats.sh" = "non-oss/cisco.md"},
    ]}
 ]
 
