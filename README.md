@@ -63,7 +63,6 @@ pages.
 ```
 
 ---
-
 ## Développement local
 
 ```bash
@@ -88,6 +87,26 @@ statiques. Le pipeline GitLab s'en charge automatiquement lors des push sur
 la branche par défaut.
 > La chaîne CI (GitLab) installe Zensical 0.0.15 et les plugins listés
 > ci‑dessus avant de lancer `zensical build --clean`.
+
+---
+
+## Mises à jour automatiques des dépendances
+
+Ce dépôt utilise **Renovate** pour gérer automatiquement les mises à jour
+des dépendances listées dans `requirements.txt`.
+
+- La configuration de Renovate se trouve dans `renovate.json` à la racine.
+- Renovate nécessite un token GitLab (Personal Access Token ou Project
+  Access Token) avec l'autorisation API. Stockez ce token dans les variables
+  CI/CD sous le nom `PERSONAL_TOKEN`.
+- Le job `renovate` dans `.gitlab-ci.yml` invoque l'image officielle
+  `renovate/renovate` et lira `PERSONAL_TOKEN` via la variable `RENOVATE_TOKEN`.
+
+Pour activer les mises à jour automatiques :
+
+1. Ajouter la variable CI `PERSONAL_TOKEN` (scope `api`) via *Settings → CI/CD → Variables*.
+2. Créer un Schedule (CI/CD → Schedules) pour déclencher périodiquement le job `renovate`.
+3. Renovate ouvrira des Merge Requests pour les nouvelles versions; testez et mergez.
 ---
 
 ## Licences et contributions

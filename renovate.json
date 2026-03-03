@@ -1,0 +1,15 @@
+{
+  "extends": ["config:base"],
+  "pip_requirements": {
+    "fileMatch": ["(^|/)requirements\\.txt$"]
+  },
+  "automerge": false,
+  "schedule": ["at 03:00 on Monday"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ]
+}
