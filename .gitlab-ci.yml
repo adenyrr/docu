@@ -34,7 +34,7 @@ lint_markdown:
 
 build_site:
   stage: build
-  image: python:3.11
+  image: python:3.14
   script:
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
