@@ -24,7 +24,7 @@ renovate:
 
 lint_markdown:
   stage: lint
-  image: node:18
+  image: node:24
   script:
     - npm i -g markdownlint-cli
     - markdownlint "docs/**/*.md" --config .markdownlint.json || true
