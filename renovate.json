@@ -1,13 +1,21 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:recommended"
+  ],
   "pip_requirements": {
-    "fileMatch": ["(^|/)requirements\\.txt$"]
+    "managerFilePatterns": [
+      "/(^|/)requirements\\.txt$/"
+    ]
   },
   "automerge": false,
-  "schedule": ["at 03:00 on Monday"],
+  "schedule": [
+    "at 03:00 on Monday"
+  ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor"],
+      "matchUpdateTypes": [
+        "minor"
+      ],
       "automerge": true,
       "automergeType": "pr"
     }
