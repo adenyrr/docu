@@ -17,13 +17,18 @@ repo_url = "https://github.com/adenyrr/docu"
 
 nav = [
   {"~/home" = [
-     {"calamares.sh" = "index.md"},
+      {"home.sh" = "index.md"},
+      {"infra.sh" = "infra.md"},
+      {"calamares.sh" = "calamares.md"},
   ]},
   {"~/network" = [
-     {"/swag-proxy.sh" = "reseau/swag.md"},
+      {"segmentation.sh" = "reseau/vlan.md"},
+      {"pki.sh" = "reseau/stepca.md"},
+      {"traefik.sh" = "reseau/traefik.md"},
+      {"swag-proxy.sh" = "reseau/swag.md"},
   ]},
   {"~/apps" = [
-     {"/media" = [
+      {"/media" = [
       {"jellyfin.sh" = "services/medias/jellyfin.md"},
       {"qbittorrent.sh" = "services/medias/qbit.md"},
      ]},
@@ -190,6 +195,11 @@ features = [
     # https://zensical.org/docs/setup/search/#search-highlighting
     "search.highlight",
 
+    # Adds a share button to the search results, allowing the user to share
+    # a link to the current search query.
+    # https://zensical.org/docs/setup/search/#search-sharing
+    "search.share",
+
     # When anchor following for the table of contents is enabled, the sidebar
     # is automatically scrolled so that the active anchor is always visible.
     # https://zensical.org/docs/setup/navigation/#anchor-following
@@ -273,6 +283,16 @@ minify_html = true
 
 # Reusable variables/macros in Markdown
 [project.plugins.macros]
+
+# Built-in tags plugin — add `tags: [keyword]` in page front matter
+# then navigate to /tags/ for the auto-generated tag index
+[project.plugins.tags]
+
+# URL redirects — map old paths to new ones after renaming pages
+# Usage: add redirect_maps under this section, e.g.:
+#   [project.plugins.redirects.redirect_maps]
+#   "old/page.md" = "new/page.md"
+[project.plugins.redirects]
 
 # MARKDOWN EXTENSIONS (from owid/etl)
 

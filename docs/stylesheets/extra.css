@@ -343,6 +343,56 @@ body { min-height: 100vh; }
   font-size: 0.82rem;
 }
 
+/* ── Left sidebar (primary nav) — terminal prefixes ─────── */
+
+/* Section title → $ prompt */
+.md-nav--primary .md-nav__title {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--muted) !important;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dashed var(--card-border);
+  margin-bottom: 0.25rem;
+}
+
+.md-nav--primary .md-nav__title::before {
+  content: "$ ";
+  color: var(--link);
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+/* First-level nav items (sections / pages) — # */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link::before {
+  content: "# ";
+  color: var(--accent);
+  opacity: 0.55;
+  font-weight: 400;
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+/* Second-level nav items (pages within a section) — ## */
+.md-nav--primary .md-nav__list .md-nav__list > .md-nav__item > .md-nav__link::before {
+  content: "## ";
+  color: var(--link);
+  opacity: 0.5;
+  font-weight: 400;
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+/* Third-level nav items (pages within a nested sub-section) — ### */
+.md-nav--primary .md-nav__list .md-nav__list .md-nav__list > .md-nav__item > .md-nav__link::before {
+  content: "### ";
+  color: var(--accent2);
+  opacity: 0.45;
+  font-weight: 400;
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
 /* ── Content area — frosted glass card ───────────────────── */
 .md-content {
   border-radius: 12px;
@@ -588,11 +638,10 @@ body { min-height: 100vh; }
   backdrop-filter: blur(10px);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.78rem;
-  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .md-top:hover {
-  transform: translateY(-3px);
   box-shadow: 0 8px 24px var(--glow-hover);
   border-color: var(--accent);
 }
