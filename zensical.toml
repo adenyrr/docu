@@ -53,10 +53,11 @@ nav = [
      {"meteo.sh" = "hassio/meteo.md"},
   ]},
   {"~/tools" = [
-     {"ressources.sh" = "outils/ressources.md"},
+     {"compose_template.sh" = "outils/template.md"},
      {"bash.sh" = "outils/commandes.md"},
      {"applauncher.sh" = "outils/softwares.md"},
      {"external.sh" = "outils/links.md"},
+     {"ressources.sh" = "outils/ressources.md"},
   ]},
   {"~/non-free" = [
      {"cisco-cheats.sh" = "non-oss/cisco.md"},
