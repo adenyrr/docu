@@ -27,14 +27,25 @@ nav = [
       {"traefik.sh" = "reseau/traefik.md"},
       {"swag-proxy.sh" = "reseau/swag.md"},
   ]},
+    {"~/virtu" = [
+      {"proxmox.sh" = "virtu/pve.md"},
+      {"vm_install.sh" = "virtu/vminstall.md"},
+      {"lxc_install.sh" = "virtu/lxcinstall.md"},
+      {"cloud_init.sh" = "virtu/cloudinit.md"},
+      {"server_config.sh" = "virtu/serverconfig.md"},
+  ]},
   {"~/apps" = [
-      {"/media" = [
-      {"jellyfin.sh" = "services/medias/jellyfin.md"},
-      {"qbittorrent.sh" = "services/medias/qbit.md"},
+     {"/gitlab" = [
+      {"install.sh" = "services/gitlab/install.md"},
+      {"runner.sh" = "services/gitlab/runner.md"},
      ]},
      {"/llm" = [
       {"openwebui.sh" = "services/llm/openwebui.md"},
       {"mcpo.sh" = "services/llm/mcpo.md"},
+     ]},
+      {"/media" = [
+      {"jellyfin.sh" = "services/medias/jellyfin.md"},
+      {"qbittorrent.sh" = "services/medias/qbit.md"},
      ]},
   ]},
   {"~/assist" = [
