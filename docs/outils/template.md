@@ -1,4 +1,6 @@
-# Structure typique d'un fichier docker compose au format yaml. 
+# Structure typique d'un fichier docker compose au format yaml.
+
+## compose.yaml
 
 !!! warning "L'indentation est STRICTE"
 
@@ -61,7 +63,7 @@ volumes:
   ...
 
 ```
-## Commandes utiles :
+## Commandes utiles
 
 Générer un mot de passe aléatoire pour la variable $SECRET:
 
