@@ -1,3 +1,9 @@
+---
+title: "Installation GitLab self-hosted"
+description: "Configuration GitLab dépôt git DevOps"
+last_modified: 2026-03-26
+---
+
 ## Introduction
 ### C'est quoi ?
 

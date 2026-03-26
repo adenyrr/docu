@@ -1,3 +1,9 @@
+---
+title: "Schéma infrastructure homelab"
+description: "Architecture en diagramme de l'infrastructure complète"
+last_modified: 2026-03-26
+---
+
 ```mermaid
 graph TD
     WAN["🌐 WAN / Internet"]

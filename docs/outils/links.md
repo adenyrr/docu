@@ -1,3 +1,9 @@
+---
+title: "Outils Windows ressources"
+description: "Scripts Windows, tweaks et listes d'outils"
+last_modified: 2026-03-26
+---
+
 # Outils divers & pratiques
 
 ## Windows

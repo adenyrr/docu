@@ -1,3 +1,9 @@
+---
+title: "Créer conteneur LXC Proxmox"
+description: "Guide création configuration conteneurs LXC"
+last_modified: 2026-03-26
+---
+
 # Introduction
 
 # Créer une LXC
@@ -32,11 +38,11 @@ On choisi toujours `Unprivileged`, sauf si besoin d'un passtrought. Un conteneur
 
 `Add to HA` permet, si le stockage de la LXC est installée sur un stockage réseau, de relancer automatiquement la LXC sur une autre machine physique en cas de coupure de la première.
 
-Enfin, le système de connexion au compte root de la CT.
+Enfin, les clefs SSH, ainsi que le mot de passe root.
 
 !!! warning "Bonnes pratiques"
 
-    Même si un mot de passe long peut sembler adéquat, je ne peux qu'encourager l'utilisation d'une clef SSH personelle. Mieux, si on possède un bastion, la clef publique de ce *relay ssh* sera la meilleure pratique.
+    Même si un mot de passe long seul peut sembler adéquat, je ne peux qu'encourager l'utilisation d'une clef SSH personelle. Mieux, si on possède un bastion, la clef publique de ce *relay ssh* sera la meilleure pratique.
 
 Les pages suivantes sont assez intuitives, et les options par défaut sont, souvent, le choix le plus judicieux.
 
@@ -48,4 +54,4 @@ Enfin, on vérifie et on confirme la création de la LXC. Après quelques dizain
 
 !!! warning "Bonnes pratiques"
 
-    Debian est installé, mais tout nu. On pense à configurer ça proprement. Un guide est disponible sur la page [configuration d'une VM](vminstall.md).
+    Debian est installé, mais tout nu. On pense à configurer ça proprement. Un guide est disponible sur la page [configuration d'une VM](serverconfig.md).

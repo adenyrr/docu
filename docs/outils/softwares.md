@@ -1,3 +1,9 @@
+---
+title: "Logiciels Linux personnels"
+description: "Liste des applications et outils utilisés"
+last_modified: 2026-03-26
+---
+
 # Liste de logiciels que j'utilise :
 
 Mes ordinateurs tournent sous [OpenSuse](https://www.opensuse.org/) Tumbleweed. Sur ceux-ci, j'utilise principalement [hyprland](https://hypr.land/) avec un thème *glassmorphism*. Mon terminal est un simple [kitty](https://sw.kovidgoyal.net/kitty/) avec [zsh](https://ohmyz.sh/). Mes serveurs sont sous [Debian](https://www.debian.org/index.fr.html) Trixie.

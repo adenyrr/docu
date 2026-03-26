@@ -1,3 +1,9 @@
+---
+title: "Sécuriser serveur Debian"
+description: "Bonnes pratiques essentielles configuration serveur"
+last_modified: 2026-03-26
+---
+
 # Introduction
 
 Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en place. Voici une liste non-exhaustive de commandes ayant pour but d'augmenter la sécurité et la résilience des serveurs debian.

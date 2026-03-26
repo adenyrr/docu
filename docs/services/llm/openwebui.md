@@ -1,3 +1,9 @@
+---
+title: "Ollama Open-WebUI local"
+description: "Configuration LLM modèles langage locaux"
+last_modified: 2026-03-26
+---
+
 ## Introduction
 ### C'est quoi ?
 

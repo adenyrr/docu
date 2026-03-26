@@ -1,3 +1,9 @@
+---
+title: "Guide d'installation homelab"
+description: "Guide complet d'installation infrastructure personnalisée"
+last_modified: 2026-03-26
+---
+
 ## Introduction
 
 [Calamares](https://calamares.io/) c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure de l'installation de l'infrastructure. Chaque étape sera détaillée dans une page dédiée. Évidemment, je détaille ici *mon infra homelab*: elle est à adapter à chacun !

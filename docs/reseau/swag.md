@@ -1,3 +1,9 @@
+---
+title: "Gateway sécurisé reverse-proxy"
+description: "Reverse-proxy SWAG nginx certificats SSL"
+last_modified: 2026-03-26
+---
+
 ## Introduction
 
 ### Avant-propos

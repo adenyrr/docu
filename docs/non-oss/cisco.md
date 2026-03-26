@@ -1,3 +1,8 @@
+---
+title: "Commandes Cisco réseau"
+description: "Cheat-sheet des commandes Cisco courantes"
+last_modified: 2026-03-26
+---
 
 # Commandes Cisco
 

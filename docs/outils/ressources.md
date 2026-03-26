@@ -1,3 +1,9 @@
+---
+title: "Ressources communautés tech"
+description: "Points accès blogs forums et vidéastes tech"
+last_modified: 2026-03-26
+---
+
 ## Communautés tech
 
 ### Sites, news et forums
