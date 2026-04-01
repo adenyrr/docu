@@ -68,10 +68,10 @@ nav = [
   ]},
   {"~/non-free" = [
      {"/aws" = [
-      {"bastion.sh" = "non-oss/aws/bastion.md"},
-      {"endpoint.sh" = "non-oss/aws/endpoint.md"},
-      {"load_balancer.sh" = "non-oss/aws/load_balancer.md"},
       {"spin_instance.sh" = "non-oss/aws/spin_instance.md"},
+      {"endpoint.sh" = "non-oss/aws/endpoint.md"},
+      {"bastion.sh" = "non-oss/aws/bastion.md"},
+      {"load_balancer.sh" = "non-oss/aws/load_balancer.md"},
      ]},
      {"/win_server" = [
       {"sysprep.sh" = "non-oss/win_server/sysprep.md"},

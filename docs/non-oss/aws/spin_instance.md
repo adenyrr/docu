@@ -3,10 +3,17 @@ title: "Spiner une instance AWS EC2"
 description: "Créer et configuration une EC2 dans la console amazon"
 last_modified: 2026-04-01
 ---
+# Créer et configurer des instances EC2 sur AWS
 
-## Configurer et lancer une instance EC2 sur AWS
+## Introduction
 
-### Accéder à la console AWS
+## Définitions
+
+## Créer un VPC
+
+## Créer une EC2
+
+### Configurer l'instance
 
 On navigue dans le menu EC2 > Instances > Lancer une instance, qui nous ouvre une interface de configuration.
 
