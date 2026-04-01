@@ -50,6 +50,8 @@ nav = [
   ]},
   {"~/assist" = [
      {"installation.sh" = "hassio/install.md"},
+     {"hacs.sh" = "hassio/hacs.md"},
+     {"integrations.sh" = "hassio/integrations.md"},
      {"meteo.sh" = "hassio/meteo.md"},
   ]},
   {"~/tools" = [
@@ -58,10 +60,23 @@ nav = [
      {"applauncher.sh" = "outils/softwares.md"},
      {"external.sh" = "outils/links.md"},
      {"ressources.sh" = "outils/ressources.md"},
+     {"youtube.sh" = "outils/youtube.md"},
+  ]},
+  {"~/cheats" = [
+     {"cisco-cheats.sh" = "cheats/cisco.md"},
+     {"linux-cheats.sh" = "cheats/linux.md"},
   ]},
   {"~/non-free" = [
-     {"cisco-cheats.sh" = "non-oss/cisco.md"},
-   ]}
+     {"/aws" = [
+      {"bastion.sh" = "non-oss/aws/bastion.md"},
+      {"endpoint.sh" = "non-oss/aws/endpoint.md"},
+      {"load_balancer.sh" = "non-oss/aws/load_balancer.md"},
+      {"spin_instance.sh" = "non-oss/aws/spin_instance.md"},
+     ]},
+     {"/win_server" = [
+      {"sysprep.sh" = "non-oss/win_server/sysprep.md"},
+     ]},
+  ]},
 ]
 
 # Extras files
