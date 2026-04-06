@@ -1,0 +1,399 @@
+# Linux — Cheat Sheet : Commandes de base
+
+> Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
+
+---
+
+## Navigation et environnement
+
+```bash
+pwd                        # répertoire courant
+cd /chemin/absolu          # aller à un chemin absolu
+cd ..                      # remonter d'un niveau
+cd ~                       # aller dans le home
+cd -                       # revenir au répertoire précédent
+
+echo $HOME                 # afficher une variable d'environnement
+echo $PATH
+export MA_VAR="valeur"     # définir une variable (session courante)
+env                        # lister toutes les variables d'environnement
+printenv PATH              # afficher une variable spécifique
+
+which python3              # localiser un exécutable
+type ls                    # type de commande (builtin, alias, binaire)
+alias ll='ls -lah'         # créer un alias
+unalias ll                 # supprimer un alias
+```
+
+---
+
+## Gestion des utilisateurs et groupes
+
+### Utilisateurs
+
+```bash
+whoami                     # utilisateur courant
+id                         # uid, gid, groupes
+who                        # utilisateurs connectés
+w                          # utilisateurs connectés + activité
+
+useradd -m -s /bin/bash alice        # créer un utilisateur
+useradd -m -G sudo,docker alice      # avec groupes supplémentaires
+usermod -aG docker alice             # ajouter alice au groupe docker
+usermod -s /bin/zsh alice            # changer le shell
+userdel -r alice                     # supprimer l'utilisateur et son home
+
+passwd alice               # changer le mot de passe
+passwd -l alice            # verrouiller le compte
+passwd -u alice            # déverrouiller le compte
+
+su - alice                 # basculer vers alice (shell de login)
+sudo commande              # exécuter en tant que root
+sudo -u alice commande     # exécuter en tant qu'alice
+sudo -i                    # shell root interactif
+```
+
+### Groupes
+
+```bash
+groupadd devs              # créer un groupe
+groupdel devs              # supprimer un groupe
+groups alice               # groupes d'alice
+cat /etc/group             # liste de tous les groupes
+```
+
+### Permissions
+
+```bash
+chmod 755 fichier          # rwxr-xr-x (owner/group/other)
+chmod u+x script.sh        # ajouter l'exécution pour le owner
+chmod go-w fichier         # retirer l'écriture pour group et other
+chmod -R 644 dossier/      # récursif
+
+chown alice fichier        # changer le propriétaire
+chown alice:devs fichier   # changer propriétaire et groupe
+chown -R alice:alice dir/  # récursif
+
+# Notation octale
+# 4 = read, 2 = write, 1 = execute
+# 7 = rwx, 6 = rw-, 5 = r-x, 4 = r--
+
+umask 022                  # masque de création (résultat : 644/755)
+```
+
+| Octal | Symbolique | Signification |
+|---|---|---|
+| `7` | `rwx` | Lecture + écriture + exécution |
+| `6` | `rw-` | Lecture + écriture |
+| `5` | `r-x` | Lecture + exécution |
+| `4` | `r--` | Lecture seule |
+| `0` | `---` | Aucun droit |
+
+---
+
+## Gestion des processus
+
+```bash
+ps aux                     # tous les processus (BSD style)
+ps -ef                     # tous les processus (POSIX style)
+ps -u alice                # processus d'alice
+pgrep nginx                # PID par nom
+pgrep -u alice             # PIDs d'alice
+
+top                        # moniteur en temps réel
+htop                       # moniteur amélioré (si installé)
+
+kill 1234                  # SIGTERM (arrêt propre)
+kill -9 1234               # SIGKILL (arrêt forcé)
+killall nginx              # tuer par nom
+pkill -u alice             # tuer tous les processus d'alice
+
+nice -n 10 commande        # lancer avec priorité basse (nice 10)
+renice -n 5 -p 1234        # changer la priorité d'un processus existant
+
+# Contrôle de jobs
+commande &                 # lancer en arrière-plan
+jobs                       # lister les jobs en cours
+fg %1                      # ramener le job 1 au premier plan
+bg %1                      # envoyer en arrière-plan
+Ctrl+Z                     # suspendre le job courant
+nohup commande &           # résiste à la déconnexion
+```
+
+---
+
+## Réseau
+
+### Connectivité et diagnostic
+
+```bash
+ping -c 4 8.8.8.8                  # test de connectivité (4 pings)
+traceroute 8.8.8.8                 # chemin réseau
+tracepath 8.8.8.8                  # idem, sans root
+mtr 8.8.8.8                        # ping + traceroute en temps réel
+
+ip addr show                       # interfaces et adresses IP
+ip addr show eth0                  # interface spécifique
+ip link show                       # état des interfaces
+ip route show                      # table de routage
+ip route add 10.0.0.0/24 via 192.168.1.1   # ajouter une route
+ip route del 10.0.0.0/24                   # supprimer une route
+
+ss -tuln                           # ports ouverts (TCP/UDP)
+ss -tlnp                           # avec noms de processus
+netstat -tuln                      # équivalent (plus ancien)
+```
+
+### DNS
+
+```bash
+dig example.com                    # requête DNS
+dig example.com A                  # enregistrement A uniquement
+dig example.com MX                 # enregistrements MX
+dig @8.8.8.8 example.com          # requête vers un serveur DNS spécifique
+nslookup example.com               # résolution DNS (interactif)
+host example.com                   # résolution rapide
+```
+
+### Transfert de fichiers
+
+```bash
+curl -O https://example.com/fichier.zip      # télécharger un fichier
+curl -L -o sortie.html https://example.com   # suivre les redirections
+curl -I https://example.com                  # headers HTTP seulement
+curl -X POST -d '{"k":"v"}' -H 'Content-Type: application/json' URL
+
+wget https://example.com/fichier.zip         # télécharger
+wget -r -np https://example.com/             # téléchargement récursif
+
+scp fichier.txt alice@serveur:/home/alice/   # copie SSH
+scp -r dossier/ alice@serveur:/tmp/          # récursif
+rsync -avz src/ alice@serveur:/dest/         # synchronisation SSH
+rsync -avz --delete src/ dest/              # avec suppression des absents
+```
+
+### SSH
+
+```bash
+ssh alice@192.168.1.10             # connexion SSH
+ssh -p 2222 alice@serveur          # port non standard
+ssh -i ~/.ssh/ma_cle alice@serveur # clé privée spécifique
+ssh -L 8080:localhost:80 serveur   # tunnel local
+ssh -R 9090:localhost:3000 serveur # tunnel distant
+ssh -D 1080 serveur                # proxy SOCKS
+
+ssh-keygen -t ed25519 -C "alice@example.com"  # générer une paire de clés
+ssh-copy-id alice@serveur                      # copier la clé publique
+ssh-add ~/.ssh/ma_cle                          # ajouter au ssh-agent
+```
+
+---
+
+## Recherche et filtrage
+
+```bash
+grep "motif" fichier               # chercher dans un fichier
+grep -r "motif" dossier/           # récursif
+grep -i "motif" fichier            # insensible à la casse
+grep -n "motif" fichier            # avec numéros de ligne
+grep -v "motif" fichier            # lignes NE contenant PAS le motif
+grep -l "motif" *.log              # fichiers contenant le motif
+grep -E "regex+" fichier           # regex étendue
+grep -c "motif" fichier            # compter les occurrences
+
+find /chemin -name "*.log"                  # chercher par nom
+find /chemin -type f -name "*.sh"           # fichiers uniquement
+find /chemin -type d -name "config"         # dossiers uniquement
+find /chemin -mtime -7                      # modifiés dans les 7 derniers jours
+find /chemin -size +100M                    # fichiers > 100 Mo
+find /chemin -user alice                    # appartenant à alice
+find /chemin -perm 644                      # avec permissions exactes
+find /chemin -name "*.tmp" -delete          # supprimer les trouvés
+
+locate fichier.conf                # recherche dans la base de données (rapide)
+updatedb                           # mettre à jour la base de locate
+```
+
+---
+
+## Traitement de texte
+
+```bash
+cat fichier.txt                    # afficher un fichier
+cat -n fichier.txt                 # avec numéros de ligne
+head -n 20 fichier.txt             # 20 premières lignes
+tail -n 20 fichier.txt             # 20 dernières lignes
+tail -f /var/log/syslog            # suivre en temps réel
+
+wc -l fichier.txt                  # compter les lignes
+wc -w fichier.txt                  # compter les mots
+wc -c fichier.txt                  # compter les octets
+
+sort fichier.txt                   # trier
+sort -r fichier.txt                # trier en sens inverse
+sort -n fichier.txt                # tri numérique
+sort -k2 fichier.txt               # trier par colonne 2
+sort -u fichier.txt                # trier et dédoublonner
+
+uniq fichier.txt                   # supprimer les doublons consécutifs
+uniq -c fichier.txt                # compter les occurrences
+uniq -d fichier.txt                # n'afficher que les doublons
+
+cut -d':' -f1 /etc/passwd          # extraire le 1er champ (délimiteur :)
+cut -c1-10 fichier.txt             # extraire les caractères 1 à 10
+
+tr 'a-z' 'A-Z'                     # remplacer des caractères
+tr -d '\r'                         # supprimer les retours chariot Windows
+tr -s ' '                          # compresser les espaces multiples
+
+awk '{print $1, $3}' fichier       # afficher les colonnes 1 et 3
+awk -F':' '{print $1}' /etc/passwd # avec délimiteur
+awk '$3 > 1000' fichier            # filtrer par colonne
+awk '{sum+=$1} END {print sum}'    # sommer une colonne
+
+sed 's/ancien/nouveau/' fichier    # remplacer la 1ère occurrence
+sed 's/ancien/nouveau/g' fichier   # remplacer toutes les occurrences
+sed -i 's/foo/bar/g' fichier       # en place (modifie le fichier)
+sed -n '5,10p' fichier             # afficher les lignes 5 à 10
+sed '/motif/d' fichier             # supprimer les lignes contenant le motif
+```
+
+---
+
+## Archives et compression
+
+```bash
+# tar
+tar -cvf archive.tar dossier/      # créer une archive
+tar -xvf archive.tar               # extraire
+tar -xvf archive.tar -C /dest/     # extraire vers un dossier
+tar -tvf archive.tar               # lister le contenu
+
+# tar + compression
+tar -czvf archive.tar.gz dossier/  # gzip
+tar -xzvf archive.tar.gz
+tar -cjvf archive.tar.bz2 dossier/ # bzip2
+tar -xjvf archive.tar.bz2
+tar -cJvf archive.tar.xz dossier/  # xz
+tar -xJvf archive.tar.xz
+
+# gzip / bzip2 / xz
+gzip fichier.txt                   # compresse (crée fichier.txt.gz)
+gunzip fichier.txt.gz              # décompresse
+gzip -k fichier.txt                # compresse en gardant l'original
+zcat fichier.txt.gz                # lire sans décompresser
+
+# zip / unzip
+zip archive.zip fichier1 fichier2
+zip -r archive.zip dossier/
+unzip archive.zip
+unzip archive.zip -d /dest/
+unzip -l archive.zip               # lister le contenu
+```
+
+---
+
+## Informations système
+
+```bash
+uname -a                           # infos noyau complètes
+hostname                           # nom de la machine
+hostname -I                        # adresses IP de la machine
+uptime                             # durée de fonctionnement
+date                               # date et heure
+timedatectl                        # heure, timezone, NTP
+timedatectl set-timezone Europe/Brussels
+
+df -h                              # espace disque (human-readable)
+df -hT                             # avec types de systèmes de fichiers
+du -sh dossier/                    # taille d'un dossier
+du -sh * | sort -h                 # tailles triées
+
+free -h                            # mémoire RAM et swap
+vmstat 1 5                         # statistiques VM (5 mesures, 1s)
+iostat -x 1                        # statistiques I/O disque
+
+lscpu                              # infos CPU
+lsblk                              # périphériques blocs (disques)
+lsusb                              # périphériques USB
+lspci                              # périphériques PCI
+dmidecode -t memory                # infos RAM (root requis)
+```
+
+---
+
+## Cron et planification
+
+```bash
+crontab -e                         # éditer les crons de l'utilisateur
+crontab -l                         # lister les crons
+crontab -r                         # supprimer tous les crons
+crontab -u alice -l                # crons d'alice (root)
+
+# Format : minute heure jour_mois mois jour_semaine commande
+# ┌─ minute (0-59)
+# │ ┌─ heure (0-23)
+# │ │ ┌─ jour du mois (1-31)
+# │ │ │ ┌─ mois (1-12)
+# │ │ │ │ ┌─ jour de la semaine (0-7, 0=7=dimanche)
+# │ │ │ │ │
+  0 2 * * * /usr/bin/backup.sh     # tous les jours à 2h00
+*/5 * * * * /usr/bin/check.sh      # toutes les 5 minutes
+0 9 * * 1   /usr/bin/weekly.sh     # tous les lundis à 9h00
+0 0 1 * *   /usr/bin/monthly.sh    # le 1er de chaque mois à minuit
+```
+
+!!! tip "Tester un cron"
+    Utiliser [crontab.guru](https://crontab.guru) pour valider une expression cron.
+
+---
+
+## Divers utiles
+
+```bash
+history                            # historique des commandes
+history | grep ssh                 # filtrer l'historique
+!! 	                               # répéter la dernière commande
+!ssh                               # répéter la dernière commande ssh
+
+Ctrl+R                             # recherche inversée dans l'historique
+Ctrl+C                             # interrompre la commande en cours
+Ctrl+D                             # EOF / quitter le shell
+Ctrl+L                             # effacer l'écran (= clear)
+Ctrl+A / Ctrl+E                    # début / fin de ligne
+Ctrl+U                             # effacer jusqu'au début de ligne
+
+xargs                              # passer des arguments depuis stdin
+echo "a b c" | xargs mkdir         # créer les dossiers a, b, c
+find . -name "*.tmp" | xargs rm    # supprimer les .tmp trouvés
+
+tee fichier.log                    # afficher ET écrire dans un fichier
+commande | tee sortie.txt
+
+screen -S ma_session               # nouvelle session screen
+screen -ls                         # lister les sessions
+screen -r ma_session               # reprendre une session
+tmux new -s ma_session             # nouvelle session tmux
+tmux ls                            # lister les sessions
+tmux attach -t ma_session          # reprendre une session
+```
+
+---
+
+## Bonnes pratiques
+
+- Toujours vérifier une commande `rm`, `chmod -R` ou `chown -R` avant exécution.
+- Utiliser `sudo` avec parcimonie et préférer des comptes de service dédiés.
+- Ne jamais exécuter des scripts téléchargés sans les avoir lus.
+- Préférer `rsync` à `cp -r` pour les gros transferts (reprise en cas d'erreur).
+- Utiliser `screen` ou `tmux` pour les sessions longues sur SSH.
+- Ajouter `set -euo pipefail` en tête de tout script bash.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+# -e : quitter si une commande échoue
+# -u : erreur si variable non définie
+# -o pipefail : propagation des erreurs dans les pipes
+```

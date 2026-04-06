@@ -63,8 +63,15 @@ nav = [
      {"youtube.sh" = "outils/youtube.md"},
   ]},
   {"~/cheats" = [
-     {"cisco-cheats.sh" = "cheats/cisco.md"},
-     {"linux-cheats.sh" = "cheats/linux.md"},
+     {"linux_user.sh" = "cheats/linux_user.md"},
+     {"linux_admin_base.sh" = "cheats/linux_base.md"},
+     {"linux_files.sh" = "cheats/linux_files.md"},
+     {"linux_kernel.sh" = "cheats/linux_kernel.md"},
+     {"regex-cheats.sh" = "cheats/regex.md"},
+     {"ansible.sh" = "cheats/ansible.md"},
+     {"opentofu.sh" = "cheats/opentofu.md"},
+     {"sql_cheats.sh" = "cheats/sql.md"},
+     {"cisco_cheats.sh" = "cheats/cisco.md"},
   ]},
   {"~/non-free" = [
      {"/aws" = [

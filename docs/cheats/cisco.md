@@ -1,1082 +1,421 @@
+# Cisco IOS — Cheat Sheet : Commandes usuelles
+
+> Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
+
 ---
-title: "Commandes Cisco réseau"
-description: "Cheat-sheet des commandes Cisco courantes"
-last_modified: 2026-03-26
+
+## Modes de l'IOS
+
+```
+Router>          # Mode utilisateur (User EXEC) — lecture seule
+Router#          # Mode privilégié (Privileged EXEC) — diagnostic
+Router(config)#  # Mode configuration globale
+Router(config-if)#  # Sous-mode interface
+Router(config-router)#  # Sous-mode routage
+Router(config-line)#    # Sous-mode ligne (console, VTY)
+```
+
+```bash
+enable                    # passer en mode privilégié
+disable                   # revenir en mode utilisateur
+configure terminal        # entrer en configuration globale (conf t)
+exit                      # remonter d'un niveau
+end                       # retourner directement en mode privilégié
+Ctrl+Z                    # équivalent de end
+```
+
+!!! tip "Raccourcis IOS"
+    Les commandes peuvent être abrégées tant qu'elles sont non ambiguës : `conf t` = `configure terminal`, `sh ip int br` = `show ip interface brief`.
+
 ---
 
-# Commandes Cisco
+## Configuration de base
 
-Une cheat-sheet des commandes cisco les plus régulières.
+### Nom et sécurité
 
-!!! tip "CTRL+F"
+```bash
+hostname Router-Core             # définir le nom
+no hostname                      # supprimer le nom
 
-        Un Control + F pour rechercher sera bien pratique ici ;) 
+enable secret MonMotDePasse      # mot de passe enable chiffré (MD5)
+enable password MonMDP           # mot de passe en clair (déconseillé)
+service password-encryption      # chiffrer tous les MDP en clair (type 7)
 
-## Les commandes de configuration :
+banner motd #
+  Accès autorisé uniquement.
+#                                # bannière de connexion
 
-### Passer en mode privilégié :
+banner login #Accès réservé#     # bannière avant le login
 
+no ip domain-lookup              # désactiver la résolution DNS (évite les lenteurs)
 ```
-Router> enable
-```
-
-```
-Switch> enable
-```
-
-
-
-### Passer en mode de configuration globale : 
-
-```
-Router# configure terminal
-```
-
-```
-Switch# configure terminal
-```
-
-
-
-### Renommer les noms d’hôtes : 
-
-```
-Router(config)# hostname ‘Nouveau Nom’
-```
-
-```
-Switch(config)# hostname ‘Nouveau Nom’
-```
-
-
-
-###  Configurer l’interface FastEthernet :
-
-```
-Router(config)# interface FastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip address ‘@’ ‘masque de sous réseau’
-```
-
-```
-Router(config-if)# no shutdown
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer l’interface Serial : 
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config(if)# ip adresse ‘@’ ‘masque’
-```
-
-```
-Router(config-if)# clock rate ‘nombre’
-```
-
-```
-Router(config-if)# no shutdown
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Attribuer le mot de passe à l’accès par terminal :
-
-```
-Router(config)# line console 0
-```
-
-```
-Router(config-line)# password ‘mot de passe’
-```
-
-```
-Router(config-line)# login
-```
-
-```
-Router(config-line)# exit
-```
-
-
-
-### Attribuer le mot de passe à l’accès par telnet :
-
-```
-Router(config)# line vty 0 4
-```
-
-```
-Router(config-line)# password ‘mot de passe’
-```
-
-```
-Router(config-line)# login
-```
-
-```
-Router(config-line)# exit
-```
-
-
-
-###  Attribuer le mot de passe par mode privilégié (non crypté) :
-
-```
-Router(config)# Enable password ‘mot de passe’
-```
-
-
-
-### Attribuer le mot de passe par mode privilégié (crypté) :
-
-```
-Router(config)# Enable secret ‘mot de passe’
-```
-
-
-
-### Attribuer au routeur la bannière :
-
-```
-Router(config)# banner motd # ‘le message’ #
-```
-
-
-
-### Définir les routes statiques :
-
-```
-Router(config)# ip route ‘@ réseau distinataire’ ‘masque’ ‘@ de l’interface suivante’
-```
-
-
-
-### Configurer le routage dynamique par le protocole de routage ‘RIP’ :
-
-```
-Router(config)# router rip
-```
-
-```
-Router(config-router)# version ‘1/2’
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 1’
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 2’
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin n’
-```
-
-```
-Router(config-router)# exit
-```
-
-
-
-### Configurer le routage dynamique par le protocole de routage ‘EIGRP’ :
-
-```
-Router(config)# router eigrp 1
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 1’ ‘masque générique’
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 2’ ‘masque générique’
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin n’ ‘masque générique’
-```
-
-```
-Router(config-router)# exit
-```
-
-
-
-### Configurer le routage dynamique par le protocole de routage ‘OSPF’ :
-
-```
-Router(config)# router ospf 1
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 1’ ‘masque générique’ area 0
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin 2’ ‘masque générique’ area 0
-```
-
-```
-Router(config-router)# network ‘@ de réseau voisin n’ ‘masque générique’ area 0
-```
-
-```
-Router(config-router)# exit
-```
-
-
-  
-###  Les ACLs Standard :
-
-```
-Router(config)# access-list ‘1-99’ ‘permit/deny’ ‘préfixe/any’ ‘masque générique/any’
-```
-
-```
-Router(config)# interface ‘fastethernet/serial’ ‘numéro’
-```
-
-```
-Router(config-if)# ip access-group ‘1-99’ ‘in/out’
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Les ACLs étendues :
-
-```
-Router(config)#access-list ‘100-199’ ‘permit/deny’ ‘protocole’ ‘@IP source/any’ ‘masque générique’ ‘Opérateur’ ‘nom/numéro de port d’un opérant’ ‘@IP destinataire/any’ ‘masque générique’ established 
-```
-
-```
-Router(config)# interface ‘fastethernet/serial’ ‘numéro’
-```
-
-```
-Router(config-if)# ip access-group ‘100-199’ ‘in/out’
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Les ACLs nommées :
-
-```
-Router(config)# ip access-list ‘standard/extended’ ‘1-99/100-199’
-```
-
-```
-Router(config- std-nacl/ext-nacl)# ‘permit/deny’ ‘préfixe/any’ ‘masque générique/any’ /‘permit/deny’ ‘protocole’ ‘@IP source/any’ ‘masque générique’ ‘Opérateur’ ‘nom/numéro de port d’un opérant’ ‘@IP destinataire/any’ ‘masque générique’ established 
-```
-
-```
-Router(config)# interface ‘fastethernet/serial’ ‘numéro’
-```
-
-```
-Router(config-if)# ip access-group ‘1-99/100-199’ ‘in/out’
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Créer les VLANs dans un Switch :
-
-```
-Switch(config)# vlan ‘numéro’
-```
-
-```
-Switch(config-vlan)# name ‘nom’
-```
-
-```
-Switch(config-vlan)# exit
-```
-
-
-
-### Définir les adresses IP au VLANS :
-
-```
-Switch(config)# interface vlan ‘numéro’
-```
-
-```
-Switch(config-if)# ip address ‘@IP’ ‘masque’
-```
-
-```
-Switch(config-if)# no shutdown
-```
-
-```
-Switch(config-if)# exit
-```
-
-
-
-### Attribuer les ports au VLANs indiquants : 
-
-```
-Switch(config)# interface fastethernet ‘numéro’
-```
-
-```
-Switch(config-if)# switchport access vlan ‘numéro’
-```
-
-```
-Switch(config-if)# exit
-```
-
-
-
-### Créer l’agrégation :
-
-```
-Switch(config)# interface fastethernet ‘numéro’
-```
-
-```
-Switch(config-if)# switchport mode trunk
-```
-
-```
-Switch(config-if)# exit
-```
-
-
-
-### Créer les sous interfaces dans le routeur :
-
-```
-Router(config)# interface fastEthernet ‘numéro d’interface’.‘numéro de vlan’
-```
-
-```
-Router(config-subif)# encapsulation dot1Q ‘numéro de vlan’
-```
-
-```
-Router(config-subif)# ip address ‘@IP’ ‘masque’
-```
-
-```
-Router(config-subif)# no shutdown
-```
-
-```
-Router(config-subif)# exit
-```
-
-
-
-### Définir un switch comme un serveur VTP et créer les VLANs :
-
-```
-Switch(config)# vtp domain ‘nom de domain’
-```
-
-```
-Switch(config)# vtp mode server
-```
-
-```
-Switch(config)# vlan ‘num’
-```
-
-```
-Switch(config-vlan)# name ‘nom’
-```
-
-```
-Switch(config-vlan)# exit
-```
-
-
-
-### Définir un switch comme un client :
-
-```
-Switch(config)# vtp domain ‘nom de domain’
-```
-
-```
-Switch(config)# vtp mode client
-```
-
-
-
-### Fixer un Switch comme un pont racine :
-
-```
-Switch(config)# spanning-tree vlan 1 root primary
-```
-
-
-
-### Fixer un Switch comme un pont secondaire :
-
-```
-Switch(config)# spanning-tree vlan 1 root secondary
-```
-
-
-
-### Changer la priorité d’un Switch :
-
-```
-Switch(config)# spanning-tree vlan 1 priority ‘0-61440’
-```
-
-
-
-### Changer la priorité d’un port :
-
-```
-Switch(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Switch(config-if)# spanning-tree vlan 1 port-priority ‘0-240’
-```
-
-```
-Switch(config-if)# exit
-```
-
-
-
-### Configurer le service DHCP dans un routeur :
-
-```
-Router(config)# ip dhcp excluded-address ‘@IP à exclure’
-```
-
-```
-Router(config)# ip dhcp pool ‘nom de la plage’
-```
-
-```
-Router(dhcp-config)# network ‘@ réseau’ ‘masque’
-```
-
-```
-Router(dhcp-config)# default-router ‘@IP de la passerelle’
-```
-
-```
-Router(dhcp-config)# dns-server ‘@IP du serveur DNS’
-```
-
-```
-Router(dhcp-config)# exit
-```
-
-
-
-### Définir le routeur un agent de relais :
-
-```
-Router(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip helper-address ‘@IP du serveur DHCP’
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer NAT statique :
-
-```
-Router(config)# ip nat inside source static ‘@IP local interne’ ‘@IP globale interne’
-```
-
-```
-Router(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip nat inside
-```
-
-```
-Router(config-if)# exit
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# ip nat outside
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer NAT dynamique :
-
-```
-Router(config)# ip nat pool ‘nom de la plage’ ‘premier @IP de la plage’ ‘dernier @IP de la plage’ netmask ‘masque’
-```
-
-```
-Router(config)# access-list ‘1-99’ ‘permit/deny’ ‘@IP du réseau à transférer/any’ ‘masque’
-```
-
-```
-Router(config)# ip nat inside source list ‘1-99’ pool ‘nom de la plage’
-```
-
-```
-Router(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip nat inside
-```
-
-```
-Router(config-if)# exit
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# ip nat outside
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer la surcharge NAT (PAT) pour une adresse IP publique unique :
-
-```
-Router(config)# access-list ‘1-99’ ‘permit/deny’ ‘@IP à transférer/any’ ‘masque générique’
-```
-
-```
-Router(config)# ip nat inside source list ‘1-99’ interface serial ‘numéro’ overload
-```
-
-```
-Router(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip nat inside
-```
-
-```
-Router(config-if)# exit
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# ip nat outside
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer la surcharge NAT (PAT) pour une d’adresses IP publique : 
-
-```
-Router(config)# access-list ‘1-99’ ‘permit/deny’ ‘@IP à transférer/any’ ‘masque générique’
-```
-
-```
-Router(config)# ip nat pool ‘nom de la plage’ ‘premier @IP de la plage’ ‘dernier @IP de la plage’ netmask ‘masque’
-```
-
-```
-Router(config)# ip nat inside source list ‘1-99’ pool ‘nom de la plage’ overload
-```
-
-```
-Router(config)# interface fastEthernet ‘numéro’
-```
-
-```
-Router(config-if)# ip nat inside
-```
-
-```
-Router(config-if)# exit
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# ip nat outside
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer le protocole PPP avec l’authentification PAP :
-
-```
-Router(config)# username ‘nom de deuxième Routeur’ password ‘mot de passe’
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# encapsulation ppp
-```
-
-```
-Router(config-if)# ppp authentication pap
-```
-
-```
-Router(config-if)# ppp pap sent-username ‘nom de deuxième Routeur’ password ‘mot de passe’
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer le protocole PPP avec l’authentification CHAP :
-
-```
-Router(config)# username ‘nom de deuxième Routeur’ password ‘mot de passe’
-```
-
-```
-Router(config)# interface serial ‘numéro’
-```
-
-```
-Router(config-if)# encapsulation ppp
-```
-
-```
-Router(config-if)# ppp authentication chap
-```
-
-```
-Router(config-if)# exit
-```
-
-
-
-### Configurer les DLCI sous Frame Relay :
-
-```
-S0: 102 = R1-R2 S1: 201 = R2-R1 S3: 301 = R3-R1
-```
-
-```
-103 = R1-R3 203 = R2-R3 302 = R3-R2
-```
-
-
-
-  
-## Configuration de frame relay avec la liaison multi-link : (exemple de 3 routeurs) :
-  
-### Dans le Routeur 1 :
-
-```
-Router1(config)# interface serial ‘numéro’
-```
-
-```
-Router1(config(if)# ip adresse ‘@’ ‘masque’
-```
-
-```
-Router1(config-if)# clock rate ‘nombre’
-```
-
-```
-Router1(config-if)# no shutdown
-```
-
-```
-Router1(config-if)# encapsulation frame-relay
-```
-
-```
-Router1(config-if)# frame-relay map ip ‘@de deuxième Routeur’ 102 broadcast
-```
-
-```
-Router1(config-if)# frame-relay map ip ‘@de troisième Routeur’ 103 broadcast
-```
-
-```
-Router1(config-if)# exit
-```
-
-
-
-### Dans le Routeur 2 :
 
-```
-Router2(config)# interface serial ‘numéro’
-```
-
-```
-Router2(config(if)# ip adresse ‘@’ ‘masque’
-```
-
-```
-Router2(config-if)# clock rate ‘nombre’
-```
-
-```
-Router2(config-if)# no shutdown
-```
-
-```
-Router2(config-if)# encapsulation frame-relay
-```
-
-```
-Router2(config-if)# frame-relay map ip ‘@de deuxième Routeur’ 201 broadcast
-```
-
-```
-Router2(config-if)# frame-relay map ip ‘@de troisième Routeur’ 203 broadcast
-```
-
-```
-Router2(config-if)# exit
-```
-
-
-
-### Dans le Routeur 3 :
-
-```
-Router3(config)# interface serial ‘numéro’
-```
-
-```
-Router3(config(if)# ip adresse ‘@’ ‘masque’
-```
+### Lignes de connexion
 
-```
-Router3(config-if)# clock rate ‘nombre’
-```
-
-```
-Router3(config-if)# no shutdown
-```
-
-```
-Router3(config-if)# encapsulation frame-relay
-```
-
-```
-Router3(config-if)# frame-relay map ip ‘@de deuxième Routeur’ 301 broadcast
-```
-
-```
-Router3(config-if)# frame-relay map ip ‘@de troisième Routeur’ 302 broadcast
-```
-
-```
-Router3(config-if)# exit
-```
-
-
-
-## Configuration de frame relay avec la liaison point-to-point :
-
-### Dans le Routeur 1 :
-
-```
-Router1(config)# interface serial ‘numéro’
-```
+```bash
+# Console
+line console 0
+  password console123
+  login
+  exec-timeout 10 0             # déconnexion après 10 min d'inactivité
+  logging synchronous           # éviter l'interruption par les logs
 
-```
-Router1(config(if)# no ip adresse 
-```
-
-```
-Router1(config-if)# no shutdown
-```
-
-```
-Router1(config-if)# encapsulation frame-relay
-```
+# VTY (SSH/Telnet)
+line vty 0 15
+  password vty123
+  login local                   # utiliser les comptes locaux
+  transport input ssh            # SSH uniquement (interdire Telnet)
+  exec-timeout 5 0
 
+# Créer un compte local
+username admin privilege 15 secret MonSecret
 ```
-Router1(config-if)# exit
-```
 
-```
-Router1(config)# interface serial ‘numéro’.‘numéro DLCI’ point-to-point
-```
+### SSH
 
-```
-Router1(config-subif)# ip address ‘@IP’ ‘masque’
-```
+```bash
+ip domain-name massivedynamics.be        # requis pour SSH
+crypto key generate rsa modulus 2048     # générer les clés RSA
+ip ssh version 2                         # forcer SSH v2
+ip ssh time-out 60
+ip ssh authentication-retries 3
 
-```
-Router1(config-subif)# frame-relay interface-dlci ‘numéro DLCI’ 
+# Sur la ligne VTY
+line vty 0 15
+  transport input ssh
+  login local
 ```
 
-```
-Router1(config-subif)# exit
-```
+---
 
+## Interfaces
 
+### Configuration d'une interface
 
-### Dans le Routeur 2 :
+```bash
+interface GigabitEthernet0/0         # entrer dans l'interface (ou: int gi0/0)
+  description LAN Principal
+  ip address 192.168.1.1 255.255.255.0
+  no shutdown                        # activer l'interface
+  duplex auto
+  speed auto
 
-```
-Router2(config)# interface serial ‘numéro’. ‘numéro DLCI’ point-to-point
-```
+interface GigabitEthernet0/1
+  description Lien WAN
+  ip address 203.0.113.1 255.255.255.252
+  no shutdown
 
-```
-Router2(config-subif)# ip address ‘@IP’ ‘masque’
-```
+# Loopback (interface virtuelle stable)
+interface Loopback0
+  ip address 1.1.1.1 255.255.255.255
+  no shutdown
 
-```
-Router2(config-subif)# frame-relay interface-dlci ‘numéro DLCI’ 
-```
+# Sous-interfaces (802.1Q)
+interface GigabitEthernet0/0.10
+  encapsulation dot1Q 10
+  ip address 10.10.10.1 255.255.255.0
 
+interface GigabitEthernet0/0.20
+  encapsulation dot1Q 20
+  ip address 10.20.20.1 255.255.255.0
 ```
-Router2(config-subif)# exit
-```
-
 
+### Vérification des interfaces
 
-### Dans le Routeur 3 :
+```bash
+show interfaces                        # toutes les interfaces (détaillé)
+show interfaces GigabitEthernet0/0     # interface spécifique
+show ip interface brief                # résumé rapide (sh ip int br)
+show ip interface GigabitEthernet0/0   # infos IP d'une interface
 
+# Interprétation sh ip int br
+# GigabitEthernet0/0   192.168.1.1  YES  NVRAM  up   up
+#                                                 ^L3  ^L1
 ```
-Router3(config)# interface serial ‘numéro’. ‘numéro DLCI’ point-to-point
-```
-
-```
-Router3(config-subif)# ip address ‘@IP’ ‘masque’
-```
 
-```
-Router3(config-subif)# frame-relay interface-dlci ‘numéro DLCI’ 
-```
-
-```
-Router3(config-subif)# exit
-```
+---
 
+## Routage
 
+### Routes statiques
 
-### Enregistrer les configuration dans NVRAM :
+```bash
+ip route 192.168.2.0 255.255.255.0 192.168.1.254    # via nexthop
+ip route 192.168.2.0 255.255.255.0 GigabitEthernet0/1  # via interface
+ip route 0.0.0.0 0.0.0.0 203.0.113.254              # route par défaut
+ip route 0.0.0.0 0.0.0.0 203.0.113.254 254          # avec distance admin
+no ip route 192.168.2.0 255.255.255.0 192.168.1.254 # supprimer
 
-```
-Router# copy running-config startup-config
+show ip route                          # table de routage complète
+show ip route static                   # routes statiques uniquement
+show ip route 10.0.0.0                 # route pour un réseau spécifique
 ```
 
+### OSPF
 
+```bash
+router ospf 1                          # activer OSPF (process ID local)
+  router-id 1.1.1.1                    # ID unique (recommandé)
+  network 192.168.1.0 0.0.0.255 area 0 # annoncer le réseau
+  network 10.0.0.0 0.255.255.255 area 1
+  passive-interface GigabitEthernet0/0 # ne pas envoyer de hello sur ce lien
+  default-information originate        # propager la route par défaut
 
-## Les commandes d’affichages:
+# Sur les interfaces
+interface GigabitEthernet0/1
+  ip ospf cost 10
+  ip ospf priority 100                 # 0 = jamais DR/BDR
 
-### Afficher la configuration en cours :
-
-```
-Router# show running-config
+show ip ospf neighbor                  # voisins OSPF
+show ip ospf database                  # base LSDB
+show ip route ospf                     # routes apprises via OSPF
 ```
 
+### EIGRP
 
+```bash
+router eigrp 100                       # AS number
+  network 192.168.1.0 0.0.0.255
+  no auto-summary
+  passive-interface default
+  no passive-interface GigabitEthernet0/1
 
-### Afficher la configuration enregistrée dans NVRAM :
-
-```
-Router# show startup-config
+show ip eigrp neighbors
+show ip eigrp topology
+show ip route eigrp
 ```
 
+### BGP
 
+```bash
+router bgp 65001                       # AS number
+  bgp router-id 1.1.1.1
+  neighbor 203.0.113.2 remote-as 65002  # peering eBGP
+  neighbor 10.0.0.2 remote-as 65001    # peering iBGP
+  network 192.168.0.0 mask 255.255.0.0  # annoncer un réseau
 
-### Afficher les interfaces avec leurs informations en brief :
-
-```
-Router# show interfaces
+show bgp summary                       # résumé des peerings
+show bgp neighbors                     # détails des voisins
+show ip bgp                            # table BGP complète
 ```
 
+---
 
+## Commutation (Switches)
 
-### Afficher les ACLs :
+### VLANs
 
-```
-Router# show access-lists ‘1-199’
-```
+```bash
+vlan 10
+  name MANAGEMENT
+vlan 20
+  name SERVEURS
+vlan 30
+  name UTILISATEURS
 
+show vlan brief                        # liste des VLANs
+show vlan id 10                        # VLAN spécifique
 
+# Interface en mode accès
+interface FastEthernet0/1
+  switchport mode access
+  switchport access vlan 10
+  spanning-tree portfast               # pour les postes utilisateurs
 
-### Afficher toutes les commandes tapées :
+# Interface en mode trunk
+interface GigabitEthernet0/1
+  switchport mode trunk
+  switchport trunk encapsulation dot1q  # (si requis)
+  switchport trunk allowed vlan 10,20,30
+  switchport trunk native vlan 99
 
+show interfaces trunk                  # interfaces trunk actives
+show interfaces FastEthernet0/1 switchport  # mode d'un port
 ```
-Router# show history
-```
 
+### STP (Spanning Tree)
 
+```bash
+show spanning-tree                     # état STP global
+show spanning-tree vlan 10             # STP pour un VLAN
+show spanning-tree summary
 
-### Afficher la table de routage :
+spanning-tree mode rapid-pvst          # RSTP (recommandé)
+spanning-tree vlan 10 priority 4096    # définir le root bridge (multiple de 4096)
+spanning-tree vlan 10 root primary     # automatique (priorité 24576)
+spanning-tree vlan 10 root secondary   # backup root
 
-```
-Router# show ip route
+interface FastEthernet0/1
+  spanning-tree portfast               # désactiver STP sur les ports hosts
+  spanning-tree bpduguard enable       # protéger contre les switches non autorisés
 ```
 
+---
 
+## ACL (Access Control Lists)
 
-### Afficher la configuration DHCP :
+```bash
+# ACL standard (basée sur la source uniquement)
+access-list 10 permit 192.168.1.0 0.0.0.255
+access-list 10 deny any
 
-```
-Router# show ip dhcp binding
-```
+# ACL étendue (source, destination, protocole, port)
+access-list 100 permit tcp 192.168.1.0 0.0.0.255 any eq 80
+access-list 100 permit tcp 192.168.1.0 0.0.0.255 any eq 443
+access-list 100 deny ip any any
+access-list 100 remark Autoriser HTTP/HTTPS depuis LAN
 
+# ACL nommée (recommandée)
+ip access-list extended FILTRE-ENTRANT
+  permit tcp 192.168.1.0 0.0.0.255 any eq 22
+  permit icmp any any
+  deny ip any any log
 
+# Appliquer sur une interface
+interface GigabitEthernet0/0
+  ip access-group 100 in             # en entrée
+  ip access-group 101 out            # en sortie
 
-### Afficher les informations du service NAT :
-
-```
-Router# show ip nat ‘statistics/translations’
+show access-lists                    # toutes les ACL avec compteurs
+show ip access-lists 100             # ACL spécifique
+show interfaces GigabitEthernet0/0   # vérifier l'ACL appliquée
 ```
 
+!!! warning "Règle implicite"
+    Toute ACL Cisco se termine par un `deny ip any any` implicite. Toujours prévoir une règle `permit` explicite pour le trafic légitime.
 
+---
 
-### Afficher les informations de protocole de routage RIP :
+## NAT
 
-```
-Router# show ip rip database
-```
+```bash
+# Définir les interfaces
+interface GigabitEthernet0/0
+  ip nat inside
+interface GigabitEthernet0/1
+  ip nat outside
 
+# PAT (Overload) — partager une IP publique
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+access-list 1 permit 192.168.1.0 0.0.0.255
 
+# NAT statique (1:1)
+ip nat inside source static 192.168.1.10 203.0.113.10
 
-### Afficher les informations de protocole de routage OSPF :
+# NAT pool
+ip nat pool MON-POOL 203.0.113.10 203.0.113.20 netmask 255.255.255.0
+ip nat inside source list 1 pool MON-POOL
 
+show ip nat translations             # table NAT active
+show ip nat statistics
+clear ip nat translation *           # vider la table NAT
 ```
-Router# show ip ospf database
-```
-
 
-
-### Afficher les informations de protocole de routage EIGRP :
-
-```
-Router# show ip eigrp database
-```
+---
 
+## DHCP
 
+```bash
+ip dhcp excluded-address 192.168.1.1 192.168.1.20   # exclure les IPs fixes
 
-### Afficher l’heure ainsi que la date du systèème :
+ip dhcp pool LAN
+  network 192.168.1.0 255.255.255.0
+  default-router 192.168.1.1
+  dns-server 8.8.8.8 8.8.4.4
+  domain-name massivedynamics.be
+  lease 7                                             # 7 jours
 
+show ip dhcp pool                    # infos des pools
+show ip dhcp binding                 # baux actifs
+show ip dhcp conflict                # conflits détectés
+clear ip dhcp binding *              # vider tous les baux
 ```
-Router# show clock
-```
 
+---
 
+## Diagnostic et dépannage
 
-### Afficher les informations de protocole VTP :
+### Commandes show essentielles
 
-```
-Switch# show vtp
+```bash
+show version                         # IOS, uptime, mémoire, interfaces
+show running-config                  # configuration active (sh run)
+show startup-config                  # configuration en NVRAM
+show ip route                        # table de routage
+show ip interface brief              # état rapide de toutes les interfaces
+show interfaces                      # compteurs et erreurs
+show cdp neighbors                   # voisins CDP (Cisco Discovery Protocol)
+show cdp neighbors detail            # avec IPs
+show arp                             # table ARP
+show mac address-table               # table MAC (switch)
+show processes cpu                   # utilisation CPU
+show memory                          # utilisation mémoire
+show log                             # logs système
+show clock                           # heure et date
 ```
-
-
 
-### Afficher les informations de protocole STP :
+### Debug
 
+```bash
+debug ip routing                     # événements de routage
+debug ip ospf events                 # événements OSPF
+debug ip nat                         # traductions NAT
+debug ip dhcp server events          # événements DHCP
+undebug all                          # désactiver tous les debugs (ou: no debug all)
+terminal monitor                     # afficher les logs en SSH
 ```
-Switch# show spanning-tree
-```
 
+!!! danger "Debug en production"
+    Les commandes `debug` peuvent saturer le CPU. Toujours utiliser `undebug all` après le diagnostic et éviter en heure de pointe.
 
+### Ping et traceroute
 
-### Afficher les VLANs en brief :
+```bash
+ping 8.8.8.8                         # ping standard (5 paquets ICMP)
+ping 8.8.8.8 repeat 100              # 100 paquets
+ping 8.8.8.8 size 1500               # avec MTU personnalisé
+ping 8.8.8.8 source GigabitEthernet0/0  # depuis une interface spécifique
 
-```
-Switch# show vlan brief
+traceroute 8.8.8.8                   # traceroute
+traceroute 8.8.8.8 source 192.168.1.1
 ```
 
+---
 
+## Sauvegarde et gestion de la config
 
-## Pour plus d’infos sur n’importe quelle commande ou bien sur n’importe quelle mode ainsi que leurs commandes :
+```bash
+copy running-config startup-config   # sauvegarder (ou: wr)
+copy startup-config running-config   # restaurer depuis NVRAM
+erase startup-config                 # effacer la config de démarrage
+reload                               # redémarrer
 
-###  Afficher les commandes du mode privilégié :
+# Sauvegarder vers un serveur TFTP
+copy running-config tftp://192.168.1.100/router-backup.cfg
+copy tftp://192.168.1.100/router-backup.cfg running-config
 
-```
-Router# ?
-```
+# Sauvegarder vers un serveur FTP
+copy running-config ftp://user:pass@192.168.1.100/backup.cfg
 
+# Voir les différences entre running et startup
+show archive config differences system:running-config system:startup-config
 ```
-Switch# ?
-```
-
 
+---
 
-###  Exemple :
+## Bonnes pratiques
 
-```
-Router# show ?
-```
+- Toujours sauvegarder avant toute modification : `copy run start`.
+- Utiliser `enable secret` plutôt que `enable password` (MD5 vs texte clair).
+- Forcer SSH v2 et interdire Telnet sur les VTY.
+- Placer un `deny ip any any log` explicite en fin d'ACL pour logger le trafic bloqué.
+- Activer `spanning-tree portfast` uniquement sur les ports connectés à des hôtes, jamais entre switches.
+- Désactiver les interfaces inutilisées : `interface range fa0/10-24` + `shutdown` + `switchport access vlan 999`.
 
+```bash
+# Désactiver les interfaces inutilisées en masse
+interface range FastEthernet0/10-24
+  shutdown
+  switchport access vlan 999         # VLAN poubelle non routé
+  description INUTILISE
 ```
-Router# show ?
-```
-
-
-
-
