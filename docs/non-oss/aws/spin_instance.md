@@ -7,17 +7,48 @@ last_modified: 2026-04-01
 
 ## Introduction
 
+L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud)
+
 ## Définitions
 
-## Créer un VPC
+### Instance
+Serveur virtuel en exécution créé à partir d'une AMI. Chaque instance possède une configuration (type, CPU, RAM, stockage) et peut être accessible via une adresse IP publique ou privée.
+
+### Type d'instance
+Catégorie déterminant les ressources allouées (CPU, RAM, réseau). Exemples : t3.micro (gratuit), t3.small, m5.large (usage général), c5.xlarge (calcul intensif).
+
+### AMI (Amazon Machine Image)
+Modèle préconfigué contenant le système d'exploitation, les dépendances et les applications. Sert de base pour créer des instances identiques.
+
+### VPC (Virtual Private Cloud)
+Réseau virtuel privé dans lequel les instances sont déployées. Permet de segmenter et contrôler le trafic réseau.
+
+### Security Group
+Pare-feu virtuel contrôlant les règles d'entrée/sortie des instances. Définit quels ports et protocoles sont accessibles.
+
+### Paire de clés
+Paire cryptographique (publique/privée) permettant l'authentification SSH vers l'instance. La clé privée doit être conservée en sécurité.
+
+## Créer les Security Groups
+
+Un bonne pratique est de configurer les SG *avant* la création des instances, puis de leur assigner les SG créés précédemment.
+On va donc dans **EC2 > Réseau et sécurité > Groupes de sécurité** pour en créer un premier qui permettra à *NOTRE* IP, et uniquement la notre, de se connecter, en SSH.
+
+On assigne un nom clair, une description, et on lui rattache le VPC.
+
+![Capture d'écran: security groups](../../assets/non-oss/aws/create_security_groups.png)
+
+Pour SSH, on va selectionner dans les *Règles Entrantes* SSH, qui va préshot le port 22 par défaut. Dans la liste des *Sources*, on selectionne `Mon IP` et on ajoute une description.
+
+C'est tout ! On peut ajouter une balise au besoin, sinon on peut créer le SG.
 
 ## Créer une EC2
 
 ### Configurer l'instance
 
-On navigue dans le menu EC2 > Instances > Lancer une instance, qui nous ouvre une interface de configuration.
+On navigue dans le menu **EC2 > Instances > Lancer une instance**, qui nous ouvre une interface de configuration.
 
-![Capture d'écran de la console AWS EC2](../../assets/non-oss/aws/spin1.png)
+![Capture d'écran: spin ec2](../../assets/non-oss/aws/spin_instance.png)
 
 !!! question "Bonnes pratiques"
 
@@ -52,12 +83,48 @@ haute vitesse ou dense HDD. Pour les bases de données NoSQL, data warehouses, s
   
 - HPC (hpc) — réseau ultra-faible latence (EFA), pour la simulation scientifique et les workloads MPI.
 
-
 ### Paire de clés
 
 On crée (ou si déjà fait, on la selectionne) une paire de clef.
 
 On lui donne un nom, et on choisi un protocole de chiffrement. ED25519 est plus récent et robuste, mais non compatible avec d'anciennes machines. Enfin, le format (.pem sous Linux) permet d'enregistrer la clef pour se connecter, en toute légitimité, à l'instance.
 
+!!! warning "Clé d'authentification"
+
+    Cette paire de clef permet de s'authentifier sur le serveur créé. Sans la clé, pas de connexion. On télécharge donc la clé générée, et on la met dans un endroit accessible.
+
 ### Paramètres réseau
 
+
+
+### Se connecter
+
+On remplace $IP par l'IP *publique* de l'instance EC2 et $USER par le nom d'utilisateur par défaut de la distribution.
+Le `key_pair.pem` est la clef privée récupérée plus haut.
+
+```sh
+ssh -i /path/key_pair.pem $USER@$IP
+```
+
+ Utilisateurs par défaut 
+
+=== "Linux"
+
+    | AMI | Utilisateur |
+    |-----|-------------|
+    | Amazon Linux 2 / 2023 | `ec2-user` |
+    | Ubuntu | `ubuntu` |
+    | Debian | `admin` |
+    | RHEL | `ec2-user` ou `root` |
+    | CentOS | `centos` ou `ec2-user` |
+    | Fedora | `fedora` ou `ec2-user` |
+    | SUSE | `ec2-user` ou `root` |
+    | Bitnami AMIs | `bitnami` |
+
+=== "Windows"
+
+    | AMI | Utilisateur |
+    |-----|-------------|
+    | Windows Server (toutes versions) | `Administrator` |
+
+> Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
