@@ -48,10 +48,15 @@ build_site:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
-pages:
+deploy_cloudflare:
   stage: deploy
+  image: node:24
   script:
-    - echo "Pages are built in build_site job; artifacts are used for deployment."
+    - npm install -g wrangler
+    - wrangler pages deploy public
+  variables:
+    CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
+    CLOUDFLARE_ACCOUNT_ID: "${CLOUDFLARE_ACCOUNT_ID}"
   needs:
     - job: build_site
       artifacts: true

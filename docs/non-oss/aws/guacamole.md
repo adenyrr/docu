@@ -55,7 +55,7 @@ Modèle préconfigué d'une instance EC2 contenant le système d'exploitation et
 
 ### Security Groups
 
-Après avoir selectionné son [VPC](non-oss/aws/vpc.md), on va créer les Security Groups :
+Après avoir selectionné son [VPC](vpc.md), on va créer les Security Groups :
 
 
 #### SG principal : Guacamole Server
@@ -66,7 +66,7 @@ Après avoir selectionné son [VPC](non-oss/aws/vpc.md), on va créer les Securi
 | Inbound | HTTP | TCP | 80 | 0.0.0.0/0 | Redirection vers HTTPS (optionnel) |
 | Outbound | All traffic | All | All | 0.0.0.0/0 | Accès sortant vers les cibles |
 
----
+
 
 #### SG cible : Windows (RDP)
 
@@ -79,7 +79,6 @@ Après avoir selectionné son [VPC](non-oss/aws/vpc.md), on va créer les Securi
 
     La source est le Security Group ID du serveur Guacamole, pas une plage IP.
 
----
 
 #### SG cible : GNU/Linux (VNC)
 
@@ -90,8 +89,6 @@ Après avoir selectionné son [VPC](non-oss/aws/vpc.md), on va créer les Securi
 | Outbound | All traffic | All | All | 0.0.0.0/0 | Sortant libre |
 
 
----
-
 #### SG cible : GNU/Linux (SSH)
 
 | Règle | Type | Protocole | Port | Source | Description |
@@ -99,9 +96,7 @@ Après avoir selectionné son [VPC](non-oss/aws/vpc.md), on va créer les Securi
 | Inbound | SSH | TCP | 22 | sg-guacamole | SSH depuis Guacamole uniquement |
 | Outbound | All traffic | All | All | 0.0.0.0/0 | Sortant libre |
 
----
-
-## Récapitulatif des flux
+### Récapitulatif des flux
 
 ```
 Internet
@@ -114,3 +109,8 @@ Internet
 ```
 
 Les SGs des machines cibles n'autorisent aucun accès direct depuis Internet. Tout transite par Guacamole, qui joue le rôle de bastion managé.
+
+### Création des EC2
+
+On crée alors, au minimum, [2 instances EC2](spin_instance.md) : le guacamole, et la machine cible.
+

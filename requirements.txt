@@ -1,6 +1,6 @@
-zensical
-mkdocs-git-revision-date-localized-plugin
-mkdocs-glightbox
-mkdocs-minify-plugin
-mkdocs-macros-plugin
-mkdocs-redirects
+zensical>=0.0.34
+mkdocs-git-revision-date-localized-plugin>=0.14.0
+mkdocs-glightbox>=0.4.0
+mkdocs-minify-plugin>=0.8.0
+mkdocs-macros-plugin>=1.0.0
+mkdocs-redirects>=1.2.0
