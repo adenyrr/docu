@@ -72,9 +72,12 @@ source .venv/bin/activate
 
 # installer Zensical et dépendances
 pip install --upgrade pip
-pip install "zensical==0.0.15" \
-    mkdocs-git-revision-date-localized-plugin \
-    mkdocs-glightbox mkdocs-minify-plugin mkdocs-macros-plugin
+pip install "zensical==0.0.34" \
+  "mkdocs-git-revision-date-localized-plugin==1.5.1" \
+  "mkdocs-glightbox==0.5.2" \
+  "mkdocs-minify-plugin==0.8.0" \
+  "mkdocs-macros-plugin==1.5.0" \
+  "mkdocs-redirects==1.2.3"
 
 # lancer un serveur de développement
 zensical serve
@@ -85,7 +88,7 @@ zensical build --clean
 Le dossier `public/` peut être déployé sur n'importe quel hébergeur de sites
 statiques. Le pipeline GitLab s'en charge automatiquement lors des push sur
 la branche par défaut.
-> La chaîne CI (GitLab) installe Zensical 0.0.15 et les plugins listés
+> La chaîne CI (GitLab) installe Zensical et les plugins listés
 > ci‑dessus avant de lancer `zensical build --clean`.
 
 ---
