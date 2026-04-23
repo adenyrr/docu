@@ -64,6 +64,9 @@ temp/
 *.tmp
 *.bak
 
+# Generated revision map
+docs/assets/revision-dates.json
+
 # Node (if using any JS tooling)
 node_modules/
 

@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block extrahead %}
+{{ super() }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+{% endblock %}
+
 {% block announce %}
 <div class="ktty-bar">
   <div class="ktty-winctl">

@@ -265,3 +265,159 @@ if (typeof document$ !== 'undefined') {
   document.addEventListener('DOMContentSwitch', attachReveal); // Zensical/Material
 })();
 
+/* ── GLightbox image enhancement ─────────────────────────── */
+(function () {
+  function shouldSkipImage(img) {
+    if (!img || !img.getAttribute('src')) return true;
+    if (img.closest('a')) return true;
+    if (img.classList.contains('off-glb')) return true;
+    if (img.classList.contains('twemoji') || img.classList.contains('gemoji') || img.classList.contains('emojione')) {
+      return true;
+    }
+    return false;
+  }
+
+  function wrapImagesForLightbox() {
+    var images = document.querySelectorAll('.md-typeset img');
+    images.forEach(function (img) {
+      if (shouldSkipImage(img)) return;
+
+      var src = img.getAttribute('src');
+      var anchor = document.createElement('a');
+      anchor.className = 'glightbox';
+      anchor.setAttribute('href', src);
+      anchor.setAttribute('data-type', 'image');
+
+      var alt = img.getAttribute('alt');
+      if (alt) anchor.setAttribute('data-title', alt);
+
+      img.parentNode.insertBefore(anchor, img);
+      anchor.appendChild(img);
+    });
+  }
+
+  function initGlightbox() {
+    if (typeof window.GLightbox !== 'function') return;
+
+    if (window.__docuGlightbox && typeof window.__docuGlightbox.reload === 'function') {
+      window.__docuGlightbox.reload();
+      return;
+    }
+
+    window.__docuGlightbox = window.GLightbox({
+      selector: 'a.glightbox',
+      touchNavigation: true,
+      loop: false,
+      zoomable: true,
+      draggable: true,
+      openEffect: 'zoom',
+      closeEffect: 'zoom',
+      slideEffect: 'slide'
+    });
+  }
+
+  function bootGlightbox() {
+    wrapImagesForLightbox();
+    initGlightbox();
+  }
+
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(bootGlightbox);
+  } else {
+    document.addEventListener('DOMContentLoaded', bootGlightbox);
+  }
+})();
+
+/* ── Last updated date from Git map ─────────────────────── */
+(function () {
+  var revisionCache = null;
+
+  function getRevisionMapUrl() {
+    try {
+      if (typeof __md_scope !== 'undefined') {
+        return new URL('assets/revision-dates.json', __md_scope).toString();
+      }
+    } catch (err) {
+      // Fall through to default path
+    }
+    return '/assets/revision-dates.json';
+  }
+
+  function getCanonicalPath() {
+    var canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical && canonical.href) {
+      try {
+        return new URL(canonical.href).pathname;
+      } catch (err) {
+        // Ignore invalid canonical URLs
+      }
+    }
+    return window.location.pathname;
+  }
+
+  function normalizePath(pathname) {
+    if (!pathname) return '/index.html';
+    if (pathname === '/') return '/index.html';
+    if (pathname.endsWith('/')) return pathname + 'index.html';
+    return pathname;
+  }
+
+  function upsertDateBlock(displayDate, isoDate) {
+    var container = document.querySelector('.md-content__inner');
+    if (!container) return;
+
+    var existing = document.getElementById('docu-last-updated');
+    if (existing) existing.remove();
+
+    var aside = document.createElement('aside');
+    aside.id = 'docu-last-updated';
+    aside.className = 'md-source-file';
+
+    var fact = document.createElement('span');
+    fact.className = 'md-source-file__fact';
+    fact.textContent = 'Dernière modification : ' + displayDate;
+    if (isoDate) fact.title = isoDate;
+
+    aside.appendChild(fact);
+    container.appendChild(aside);
+  }
+
+  function loadRevisionMap() {
+    if (revisionCache) return Promise.resolve(revisionCache);
+
+    return fetch(getRevisionMapUrl(), { cache: 'no-store' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('revision map unavailable');
+        return response.json();
+      })
+      .then(function (data) {
+        revisionCache = data;
+        return data;
+      });
+  }
+
+  function renderRevisionDate() {
+    loadRevisionMap()
+      .then(function (data) {
+        var pages = (data && data.pages) || {};
+        var canonical = normalizePath(getCanonicalPath());
+        var entry = pages[canonical] || pages[canonical.replace(/index\.html$/, '')];
+
+        if (!entry) return;
+
+        var display = entry.display || entry.iso;
+        if (!display) return;
+        upsertDateBlock(display, entry.iso || '');
+      })
+      .catch(function () {
+        // Silent fallback: date block is optional
+      });
+  }
+
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(renderRevisionDate);
+  } else {
+    document.addEventListener('DOMContentLoaded', renderRevisionDate);
+  }
+})();
+

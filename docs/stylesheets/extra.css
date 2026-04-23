@@ -262,6 +262,19 @@ body { min-height: 100vh; }
   margin-left: 1px;
 }
 
+@media (max-width: 960px) {
+  .md-header__title::after {
+    content: "";
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-header__title::after {
+    animation: none;
+  }
+}
+
 @keyframes blink-cursor {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
@@ -439,6 +452,16 @@ body { min-height: 100vh; }
 .md-typeset a:hover {
   color: var(--accent);
   text-shadow: 0 0 16px var(--glow-hover);
+}
+
+.md-typeset a.glightbox img {
+  cursor: zoom-in;
+}
+
+#docu-last-updated {
+  margin-top: 1.2rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--card-border);
 }
 
 /* h1 — smooth oscillating gradient (teal ↔ orange, no snap) */
