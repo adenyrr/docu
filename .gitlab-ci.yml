@@ -53,7 +53,10 @@ deploy_cloudflare:
   image: node:24
   script:
     - npm install -g wrangler
-    - wrangler pages deploy public --project-name "$CLOUDFLARE_PAGES_PROJECT_NAME"
+    - wrangler pages deploy public --project-name "docu"
+  variables:
+    CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
+    CLOUDFLARE_ACCOUNT_ID: "${CLOUDFLARE_ACCOUNT_ID}"
   needs:
     - job: build_site
       artifacts: true
