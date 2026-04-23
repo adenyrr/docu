@@ -108,23 +108,14 @@ ssh -i /path/key_pair.pem $USER@$IP
 > Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
 
  !!! info
-    === "Linux"
 
-        | AMI | Utilisateur |
-        |:----|:------------|
-        | Amazon Linux 2 / 2023 | `ec2-user` |
-        | Ubuntu | `ubuntu` |
-        | Debian | `admin` |
-        | RHEL | `ec2-user` ou `root` |
-        | CentOS | `centos` ou `ec2-user` |
-        | Fedora | `fedora` ou `ec2-user` |
-        | SUSE | `ec2-user` ou `root` |
-        | Bitnami AMIs | `bitnami` |
+    === "Linux"
+    
+    `ec2-user`, `root` ou le nom de la distribution (`ubuntu`, ...)
+
 
     === "Windows"
 
-        | AMI | Utilisateur |
-        |:----|:------------|
-        | Windows Server (toutes versions) | `Administrator` |
+    `Administrator` sauf si connecté à un AD
 
 
