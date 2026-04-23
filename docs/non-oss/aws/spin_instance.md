@@ -108,7 +108,6 @@ ssh -i /path/key_pair.pem $USER@$IP
 > Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
 
  !!! info
-
     === "Linux"
 
         | AMI | Utilisateur |
