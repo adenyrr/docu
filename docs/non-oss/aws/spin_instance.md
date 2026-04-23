@@ -107,14 +107,14 @@ ssh -i /path/key_pair.pem $USER@$IP
 ```
 > Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
 
-    !!! info
+Voici les noms d'utilisateur par défaut des AMI.
 
-        === "Linux"
+    === "Linux"
         
-        `ec2-user`, `root` ou le nom de la distribution (`ubuntu`, ...)
+    `ec2-user`, `root` ou le nom de la distribution (`ubuntu`, ...)
 
-        === "Windows"
+    === "Windows"
 
-        `Administrator` sauf si connecté à un AD
+     `Administrator` sauf si connecté à un AD
 
 
