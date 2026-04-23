@@ -105,13 +105,14 @@ Le `key_pair.pem` est la clef privée récupérée plus haut.
 ```sh
 ssh -i /path/key_pair.pem $USER@$IP
 ```
+> Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
 
- ??? tip "Utilisateurs par défaut"
+ !!! info
 
     === "Linux"
 
         | AMI | Utilisateur |
-        |-----|-------------|
+        |:----|:------------|
         | Amazon Linux 2 / 2023 | `ec2-user` |
         | Ubuntu | `ubuntu` |
         | Debian | `admin` |
@@ -124,7 +125,7 @@ ssh -i /path/key_pair.pem $USER@$IP
     === "Windows"
 
         | AMI | Utilisateur |
-        |-----|-------------|
+        |:----|:------------|
         | Windows Server (toutes versions) | `Administrator` |
 
-> Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
+
