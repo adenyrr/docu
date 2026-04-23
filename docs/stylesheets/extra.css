@@ -262,7 +262,7 @@ body { min-height: 100vh; }
   margin-left: 1px;
 }
 
-@media (max-width: 960px) {
+@media screen and (max-width: 76.234375em), (hover: none) and (pointer: coarse) {
   .md-header__title::after {
     content: "";
     animation: none;
@@ -691,31 +691,46 @@ body { min-height: 100vh; }
 
 /* Inner content: no max-width cap, responsive horizontal padding */
 .md-content__inner {
+  --docu-content-bleed: 1.5rem;
   max-width: none !important;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: var(--docu-content-bleed);
+  padding-right: var(--docu-content-bleed);
 }
 
 @media screen and (min-width: 960px) {
   .md-content__inner {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    --docu-content-bleed: 2.5rem;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .md-content__inner {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
+    --docu-content-bleed: 3.5rem;
   }
 }
 
 /* ── Tables ───────────────────────────────────────────────── */
-.md-typeset table {
+.md-typeset .md-typeset__table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.md-typeset .md-typeset__table > table {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
   border-radius: 8px;
-  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
   border: 1px solid var(--card-border);
+  table-layout: auto;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.md-typeset .tabbed-block .md-typeset__table {
+  width: 100%;
 }
 
 .md-typeset table:not([class]) th {
@@ -725,8 +740,37 @@ body { min-height: 100vh; }
   letter-spacing: 0.03em;
 }
 
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.68rem 0.95rem;
+  vertical-align: top;
+}
+
 .md-typeset table:not([class]) tr:hover {
   background: var(--glow) !important;
+}
+
+/* ── Content tabs ────────────────────────────────────────── */
+.md-typeset .tabbed-set {
+  width: calc(100% + (var(--docu-content-bleed) * 2));
+  margin-left: calc(var(--docu-content-bleed) * -1);
+  margin-right: calc(var(--docu-content-bleed) * -1);
+}
+
+.md-typeset .tabbed-labels,
+.md-typeset .tabbed-content {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.md-typeset .tabbed-content {
+  padding-top: 0.35rem;
+}
+
+.md-typeset .tabbed-block {
+  width: 100%;
+  min-width: 0;
+  padding-top: 0.2rem;
 }
 
 /* ── Page load transition ─────────────────────────────────── */
