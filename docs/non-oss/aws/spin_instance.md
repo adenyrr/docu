@@ -9,24 +9,24 @@ last_modified: 2026-04-01
 
 L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud)
 
-## Définitions
+### Définitions
 
-### Instance
+#### Instance
 Serveur virtuel en exécution créé à partir d'une AMI. Chaque instance possède une configuration (type, CPU, RAM, stockage) et peut être accessible via une adresse IP publique ou privée.
 
-### Type d'instance
+#### Type d'instance
 Catégorie déterminant les ressources allouées (CPU, RAM, réseau). Exemples : t3.micro (gratuit), t3.small, m5.large (usage général), c5.xlarge (calcul intensif).
 
-### AMI (Amazon Machine Image)
+#### AMI (Amazon Machine Image)
 Modèle préconfigué contenant le système d'exploitation, les dépendances et les applications. Sert de base pour créer des instances identiques.
 
-### VPC (Virtual Private Cloud)
+#### VPC (Virtual Private Cloud)
 Réseau virtuel privé dans lequel les instances sont déployées. Permet de segmenter et contrôler le trafic réseau.
 
-### Security Group
+#### Security Group
 Pare-feu virtuel contrôlant les règles d'entrée/sortie des instances. Définit quels ports et protocoles sont accessibles.
 
-### Paire de clés
+#### Paire de clés
 Paire cryptographique (publique/privée) permettant l'authentification SSH vers l'instance. La clé privée doit être conservée en sécurité.
 
 ## Créer les Security Groups
@@ -107,14 +107,14 @@ ssh -i /path/key_pair.pem $USER@$IP
 ```
 > Pour Windows, le mot de passe initial est récupérable via **EC2 > Instances > Get Windows Password** avec la clé privée `.pem`.
 
-Voici les noms d'utilisateur par défaut des AMI.
+!!! note "Voici les noms d'utilisateur par défaut des AMI"
 
     === "Linux"
-        
-    `ec2-user`, `root` ou le nom de la distribution (`ubuntu`, ...)
+            
+        `ec2-user`, `root` ou le nom de la distribution (`ubuntu`, ...)
 
     === "Windows"
 
-     `Administrator` sauf si connecté à un AD
+        `Administrator` sauf si connecté à un AD
 
 
