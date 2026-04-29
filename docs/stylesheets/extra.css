@@ -718,6 +718,7 @@ body { min-height: 100vh; }
   margin: 1.1rem 0;
   border-radius: 10px;
   scrollbar-width: thin;
+  min-width: 0;
 }
 
 .md-typeset .md-typeset__table > table {
@@ -726,20 +727,33 @@ body { min-height: 100vh; }
   margin-right: 0;
   background: var(--card-bg);
   border-radius: 8px;
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   border: 1px solid var(--card-border);
-  table-layout: auto;
+  table-layout: fixed;
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
+/* Tables in admonitions and tabbed content — better responsive handling */
 .md-typeset .tabbed-block .md-typeset__table,
 .md-typeset .admonition .md-typeset__table,
 .md-typeset details .md-typeset__table {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 0.8rem 0;
+  border-radius: 8px;
+  min-width: 0;
 }
 
-.md-typeset table:not([class]) thead th {
+.md-typeset .tabbed-block .md-typeset__table > table,
+.md-typeset .admonition .md-typeset__table > table,
+.md-typeset details .md-typeset__table > table {
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.md-typeset table thead th {
   background: linear-gradient(180deg, var(--glow), transparent);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.82rem;
@@ -748,54 +762,124 @@ body { min-height: 100vh; }
   border-bottom: 1px solid var(--card-border);
 }
 
-.md-typeset table:not([class]) th,
-.md-typeset table:not([class]) td {
+.md-typeset table th,
+.md-typeset table td {
   padding: 0.68rem 0.95rem;
   vertical-align: top;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid rgba(255,255,255,0.04);
   overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
 }
 
-.md-typeset table:not([class]) tr:hover {
+/* Remove right border on last cell */
+.md-typeset table th:last-child,
+.md-typeset table td:last-child {
+  border-right: none;
+}
+
+/* Stronger header bottom border */
+.md-typeset table thead th {
+  border-bottom: 2px solid rgba(255,255,255,0.12);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.md-typeset table thead th:last-child {
+  border-right: none;
+}
+
+/* Reduce padding in tables within admonitions for better fit */
+.md-typeset .admonition table:not([class]) th,
+.md-typeset .admonition table:not([class]) td,
+.md-typeset details table:not([class]) th,
+.md-typeset details table:not([class]) td {
+  padding: 0.5rem 0.65rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+  border-right: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+.md-typeset .admonition table:not([class]) thead th,
+.md-typeset details table:not([class]) thead th {
+  border-bottom: 2px solid rgba(255,255,255,0.25) !important;
+  border-right: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+.md-typeset .admonition table:not([class]) th:last-child,
+.md-typeset .admonition table:not([class]) td:last-child,
+.md-typeset details table:not([class]) th:last-child,
+.md-typeset details table:not([class]) td:last-child {
+  border-right: none !important;
+}
+
+/* Light theme variant for admonition tables */
+[data-md-color-scheme="default"] .md-typeset .admonition table:not([class]) th,
+[data-md-color-scheme="default"] .md-typeset .admonition table:not([class]) td,
+[data-md-color-scheme="default"] .md-typeset details table:not([class]) th,
+[data-md-color-scheme="default"] .md-typeset details table:not([class]) td {
+  border-bottom-color: rgba(150,90,50,0.18) !important;
+  border-right-color: rgba(150,90,50,0.15) !important;
+}
+
+[data-md-color-scheme="default"] .md-typeset .admonition table:not([class]) thead th,
+[data-md-color-scheme="default"] .md-typeset details table:not([class]) thead th {
+  border-bottom-color: rgba(150,90,50,0.28) !important;
+  border-right-color: rgba(150,90,50,0.22) !important;
+}
+
+.md-typeset table tr:hover {
   background: var(--glow) !important;
 }
 
-.md-typeset table:not([class]) tbody tr:nth-child(even) {
-  background: rgba(255,255,255,0.015);
+.md-typeset table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.025);
 }
 
-.md-typeset table:not([class]) tbody tr:last-child td {
+.md-typeset table tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.md-typeset table:not([class]) thead th:first-child {
+.md-typeset table thead th:first-child {
   border-top-left-radius: 8px;
 }
 
-.md-typeset table:not([class]) thead th:last-child {
+.md-typeset table thead th:last-child {
   border-top-right-radius: 8px;
 }
 
-.md-typeset table:not([class]) tbody tr:last-child td:first-child {
+.md-typeset table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 8px;
 }
 
-.md-typeset table:not([class]) tbody tr:last-child td:last-child {
+.md-typeset table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
 
-[data-md-color-scheme="default"] .md-typeset table:not([class]) tbody tr:nth-child(even) {
-  background: rgba(150,90,50,0.035);
+[data-md-color-scheme="default"] .md-typeset table tbody tr:nth-child(even) {
+  background: rgba(150,90,50,0.05);
 }
 
-[data-md-color-scheme="slate"] .md-typeset table:not([class]) th,
-[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
-  border-bottom-color: rgba(255,255,255,0.05);
+[data-md-color-scheme="slate"] .md-typeset table th,
+[data-md-color-scheme="slate"] .md-typeset table td {
+  border-bottom-color: rgba(255,255,255,0.08);
+  border-right-color: rgba(255,255,255,0.05);
 }
 
-[data-md-color-scheme="default"] .md-typeset table:not([class]) th,
-[data-md-color-scheme="default"] .md-typeset table:not([class]) td {
-  border-bottom-color: rgba(150,90,50,0.08);
+[data-md-color-scheme="slate"] .md-typeset table thead th {
+  border-bottom-color: rgba(255,255,255,0.15);
+  border-right-color: rgba(255,255,255,0.08);
+}
+
+[data-md-color-scheme="default"] .md-typeset table th,
+[data-md-color-scheme="default"] .md-typeset table td {
+  border-bottom-color: rgba(150,90,50,0.12);
+  border-right-color: rgba(150,90,50,0.06);
+}
+
+[data-md-color-scheme="default"] .md-typeset table thead th {
+  border-bottom-color: rgba(150,90,50,0.16);
+  border-right-color: rgba(150,90,50,0.10);
 }
 
 /* ── Content tabs ────────────────────────────────────────── */
