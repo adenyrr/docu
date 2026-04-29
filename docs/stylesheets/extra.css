@@ -805,10 +805,26 @@ body { min-height: 100vh; }
   margin-right: calc(var(--docu-content-bleed) * -1);
 }
 
+.md-typeset .admonition .tabbed-set,
+.md-typeset details .tabbed-set {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .md-typeset .tabbed-labels,
 .md-typeset .tabbed-content {
   width: 100%;
   box-sizing: border-box;
+}
+
+.md-typeset .admonition .tabbed-labels,
+.md-typeset .admonition .tabbed-content,
+.md-typeset details .tabbed-labels,
+.md-typeset details .tabbed-content {
+  width: 100%;
 }
 
 .md-typeset .tabbed-content {
