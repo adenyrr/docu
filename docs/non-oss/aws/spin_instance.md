@@ -95,7 +95,33 @@ On lui donne un nom, et on choisi un protocole de chiffrement. ED25519 est plus 
 
 ### Paramètres réseau
 
+On commence par s'assurer qu'on est dans le bon VPC, ensuite on choisi le ou les réseaux assignés.
+Le VPC est découpé en sous-réseaux (subnets), associés chacun à une zone de disponibilité (AZ).
 
+    - Publique : a une route vers un Internet Gateway 
+    → les instances sont joignables depuis Internet.
+
+    - Privé : pas de route directe vers Internet 
+    → les instances sont isolées dans leur sous-réseau, ou utilisent un NAT Gateway pour le trafic sortant uniquement.
+
+Pour que l'instance soit joignable depuis l'extérieur, il faut non seulement lui assigner un subnet publique, mais également une adresse IP. Celle-ci est temporaire. Pour fixer une adresse publique, il faut d'abord créer une ElasticIP dédiée, puis l'assigner à la machine.
+
+Enfin, on selectionne quels Security Groups seront appliqués. Par défaut, tout le trafic entrant est DENY, le trafic sortant est ALLOW.
+
+La configuration réseau avancée permet un contrôle plus granulaire d'une ou plusieurs interfaces qui seront assignées à la machine.
+
+### Stockage
+
+Le stockage par défaut d'une instance est EBS, un disque dur virtuel rattaché à cette instance. Voici un aperçu des types de stockage disponibles.
+
+| | EBS | EFS | S3 |
+|---|---|---|---|
+| Type | Bloc | Fichier (NFS) | Objet |
+| Accès | 1 instance (même AZ) | N instances (multi-AZ) | Partout (HTTP API) |
+| Latence | Très faible | Faible | Plus élevée |
+| Capacité | Fixe (à provisionner) | Élastique | Illimitée |
+| Prix | Moyen | Élevé | Faible |
+| Use case typique | Disque OS / BDD | Partage fichiers | Backup / assets / data lake |
 
 ### Se connecter
 
