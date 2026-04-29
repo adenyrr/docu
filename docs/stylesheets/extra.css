@@ -715,12 +715,16 @@ body { min-height: 100vh; }
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  margin: 1.1rem 0;
+  border-radius: 10px;
+  scrollbar-width: thin;
 }
 
 .md-typeset .md-typeset__table > table {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+  background: var(--card-bg);
   border-radius: 8px;
   border-collapse: separate;
   border-spacing: 0;
@@ -729,25 +733,69 @@ body { min-height: 100vh; }
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
-.md-typeset .tabbed-block .md-typeset__table {
+.md-typeset .tabbed-block .md-typeset__table,
+.md-typeset .admonition .md-typeset__table,
+.md-typeset details .md-typeset__table {
   width: 100%;
 }
 
-.md-typeset table:not([class]) th {
-  background: var(--glow);
+.md-typeset table:not([class]) thead th {
+  background: linear-gradient(180deg, var(--glow), transparent);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 0.82rem;
   letter-spacing: 0.03em;
+  color: var(--text);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .md-typeset table:not([class]) th,
 .md-typeset table:not([class]) td {
   padding: 0.68rem 0.95rem;
   vertical-align: top;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  overflow-wrap: anywhere;
 }
 
 .md-typeset table:not([class]) tr:hover {
   background: var(--glow) !important;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.015);
+}
+
+.md-typeset table:not([class]) tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.md-typeset table:not([class]) thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.md-typeset table:not([class]) thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.md-typeset table:not([class]) tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.md-typeset table:not([class]) tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: rgba(150,90,50,0.035);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th,
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  border-bottom-color: rgba(255,255,255,0.05);
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th,
+[data-md-color-scheme="default"] .md-typeset table:not([class]) td {
+  border-bottom-color: rgba(150,90,50,0.08);
 }
 
 /* ── Content tabs ────────────────────────────────────────── */
