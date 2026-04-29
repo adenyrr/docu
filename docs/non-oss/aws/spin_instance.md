@@ -98,11 +98,11 @@ On lui donne un nom, et on choisi un protocole de chiffrement. ED25519 est plus 
 On commence par s'assurer qu'on est dans le bon VPC, ensuite on choisi le ou les réseaux assignés.
 Le VPC est découpé en sous-réseaux (subnets), associés chacun à une zone de disponibilité (AZ).
 
-    - Publique : a une route vers un Internet Gateway 
-    → les instances sont joignables depuis Internet.
+- Publique : a une route vers un Internet Gateway 
+→ les instances sont joignables depuis Internet.
 
-    - Privé : pas de route directe vers Internet 
-    → les instances sont isolées dans leur sous-réseau, ou utilisent un NAT Gateway pour le trafic sortant uniquement.
+- Privé : pas de route directe vers Internet 
+→ les instances sont isolées dans leur sous-réseau, ou utilisent un NAT Gateway pour le trafic sortant uniquement.
 
 Pour que l'instance soit joignable depuis l'extérieur, il faut non seulement lui assigner un subnet publique, mais également une adresse IP. Celle-ci est temporaire. Pour fixer une adresse publique, il faut d'abord créer une ElasticIP dédiée, puis l'assigner à la machine.
 
