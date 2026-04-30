@@ -7,7 +7,7 @@ last_modified: 2026-04-01
 
 ## Introduction
 
-L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud)
+L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
 
 ### Définitions
 
