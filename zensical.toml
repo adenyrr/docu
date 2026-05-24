@@ -22,6 +22,7 @@ nav = [
       {"calamares.sh" = "calamares.md"},
   ]},
   {"~/network" = [
+      {"dns.sh" = "reseau/dns.md"},
       {"segmentation.sh" = "reseau/vlan.md"},
       {"pki.sh" = "reseau/stepca.md"},
       {"traefik.sh" = "reseau/traefik.md"},

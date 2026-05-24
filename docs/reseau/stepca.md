@@ -38,7 +38,6 @@ Contrairement aux approches traditionnelles qui sécurisent principalement les e
 
 L'alternative la plus courante est d'utiliser, plus simplement, des certificats Let's Encrypt mais elle ne permet plus de faire du mTLS.
   
-
 ## Installation
 
 ### Prérequis
