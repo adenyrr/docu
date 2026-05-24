@@ -152,6 +152,27 @@ Enfin, utiliser le domaine choisi (ex: dns.domain.tld) pour le certificat (donc 
 
 Android devrait alors utiliser ce serveur DNS, et uniquement celui-ci. Vérifier dans les logs, en selectionnant le protocole TLS.
 
+### Utilisation du split-dns
+
+Le split-dns permet de modifier les champs renvoyés lors d'une requête, en fonction de son origine.
+
+On installe d'abord l'app via `Apps > App Store` et on trouve `Split Horizon`. 
+Une fois installé, on modifie les champs A d'une zone locale en champ APP. L'APP Name est `Split Horizon` et le PATH est `SimpleAddress`.
+En lieu et place de l'IPv4 du champ A, on modifie le json déjà présent, en respectant le format:
+
+```json
+{
+  "public": [
+    "1.1.1.1",
+    "2.2.2.2"
+  ],
+  "private": [
+    "192.168.1.1",
+    "::1"
+  ]
+}
+```
+
 ### Utilisation de QUIC et HTTP/3
 
 ```sh

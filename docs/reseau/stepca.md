@@ -94,7 +94,7 @@ step ca init \
 ```
 !!! danger "Password"
 
-    Le mot de passe choisi DOIT rester secret. Si ce password est compris, c'est toute la PKI qui l'est !
+    Le mot de passe choisi DOIT rester secret. Si ce password est compromis, c'est toute la PKI qui l'est !
 
 La sortie devrait être du type :
 
