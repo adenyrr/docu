@@ -74,7 +74,7 @@ username admin privilege 15 secret MonSecret
 ### SSH
 
 ```bash
-ip domain-name massivedynamics.be        # requis pour SSH
+ip domain-name domain.tld        # requis pour SSH
 crypto key generate rsa modulus 2048     # générer les clés RSA
 ip ssh version 2                         # forcer SSH v2
 ip ssh time-out 60
@@ -322,7 +322,7 @@ ip dhcp pool LAN
   network 192.168.1.0 255.255.255.0
   default-router 192.168.1.1
   dns-server 8.8.8.8 8.8.4.4
-  domain-name massivedynamics.be
+  domain-name domain.tld
   lease 7                                             # 7 jours
 
 show ip dhcp pool                    # infos des pools

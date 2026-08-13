@@ -454,6 +454,18 @@ body { min-height: 100vh; }
   text-shadow: 0 0 16px var(--glow-hover);
 }
 
+/* Signale les liens qui quittent le site, sans marquer les URL absolues internes. */
+.md-typeset a[href^="http"]:not([href*="//docu.adenyrr.me"])::after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 0.2em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: 0.12em;
+}
+
 .md-typeset a.glightbox img {
   cursor: zoom-in;
 }
@@ -884,9 +896,10 @@ body { min-height: 100vh; }
 
 /* ── Content tabs ────────────────────────────────────────── */
 .md-typeset .tabbed-set {
-  width: calc(100% + (var(--docu-content-bleed) * 2));
-  margin-left: calc(var(--docu-content-bleed) * -1);
-  margin-right: calc(var(--docu-content-bleed) * -1);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .md-typeset .admonition .tabbed-set,

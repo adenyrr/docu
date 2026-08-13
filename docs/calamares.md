@@ -10,8 +10,7 @@ last_modified: 2026-03-26
 
 ### Disclaimer
 
-Ce guide détaille notamment comment je construits mes infras. J'essaie autant que possible de respecter les bonnes pratiques *en l'atat actuel de mes connaissances*. SI vous avez des remarques ou suggestions, contactez moi :). 
-J'essaierai d'éditer et d'actualiser ce site le plus régulièrement possible.
+Ce guide détaille notamment comment je construits mes infras. J'essaie autant que possible de respecter les bonnes pratiques *en l'atat actuel de mes connaissances*. Si vous avez des remarques ou suggestions, contactez moi :). Le but ultime est de tendre, autant que possible, vers les normes [ANSSI-BP-028](https://messervices.cyber.gouv.fr/guides/en-configuration-recommendations-gnulinux-system) et la conformité [CIS-1/2](https://www.cisecurity.org/cis-benchmarks).
 
 ## L'infra physique
 
@@ -22,6 +21,8 @@ J'essaierai d'éditer et d'actualiser ce site le plus régulièrement possible.
 #### Segmentation
 
 #### DNS
+
+Pour les DNS, j'utilise [Technitium](reseau/dns.md). Il dispose d'un exporter prometheus, laisse le choix de la base de données utilisée et accepte sans consommation des milliers de requêtes par heures. Il me permet de faire du DoT, DoH ou même du Split-DNS.
 
 ### Proxmox
 

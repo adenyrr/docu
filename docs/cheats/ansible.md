@@ -65,11 +65,11 @@ ansible webservers -m ping -u alice  # avec un utilisateur SSH spécifique
 # inventory/hosts
 
 [webservers]
-web01.massivedynamics.be
-web02.massivedynamics.be ansible_user=ubuntu
+web01.domain.tld
+web02.domain.tld ansible_user=ubuntu
 
 [dbservers]
-db01.massivedynamics.be ansible_port=2222
+db01.domain.tld ansible_port=2222
 
 [lxc]
 lxc-nginx ansible_host=10.0.0.10 ansible_user=root
@@ -92,12 +92,12 @@ all:
   children:
     webservers:
       hosts:
-        web01.massivedynamics.be:
-        web02.massivedynamics.be:
+        web01.domain.tld:
+        web02.domain.tld:
           ansible_user: ubuntu
     dbservers:
       hosts:
-        db01.massivedynamics.be:
+        db01.domain.tld:
           ansible_port: 2222
   vars:
     ansible_user: admin
@@ -293,8 +293,8 @@ inventory/
 - blockinfile:
     path: /etc/hosts
     block: |
-      10.0.0.10 lxc-nginx nginx.mkhome.internal
-      10.0.0.11 lxc-db db.mkhome.internal
+      10.0.0.10 lxc-nginx nginx.internal
+      10.0.0.11 lxc-db db.internal
 ```
 
 ### Gestion des paquets

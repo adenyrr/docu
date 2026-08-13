@@ -129,9 +129,9 @@ terraform {
   }
 
   backend "http" {
-    address        = "https://gitlab.massivedynamics.be/api/v4/projects/1/terraform/state/homelab"
-    lock_address   = "https://gitlab.massivedynamics.be/api/v4/projects/1/terraform/state/homelab/lock"
-    unlock_address = "https://gitlab.massivedynamics.be/api/v4/projects/1/terraform/state/homelab/lock"
+    address        = "https://gitlab.domain.tld/api/v4/projects/1/terraform/state/homelab"
+    lock_address   = "https://gitlab.domain.tld/api/v4/projects/1/terraform/state/homelab/lock"
+    unlock_address = "https://gitlab.domain.tld/api/v4/projects/1/terraform/state/homelab/lock"
     lock_method    = "POST"
     unlock_method  = "DELETE"
     username       = "tofu"
@@ -142,7 +142,7 @@ terraform {
 
 # providers.tf
 provider "proxmox" {
-  endpoint = "https://proxmox.mkhome.internal:8006"
+  endpoint = "https://proxmox.internal:8006"
   username = var.proxmox_user
   password = var.proxmox_password
   insecure = false
@@ -461,9 +461,9 @@ output "nginx_id" {
 ```hcl
 terraform {
   backend "http" {
-    address        = "https://gitlab.massivedynamics.be/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME"
-    lock_address   = "https://gitlab.massivedynamics.be/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME/lock"
-    unlock_address = "https://gitlab.massivedynamics.be/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME/lock"
+    address        = "https://gitlab.domain.tld/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME"
+    lock_address   = "https://gitlab.domain.tld/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME/lock"
+    unlock_address = "https://gitlab.domain.tld/api/v4/projects/PROJECT_ID/terraform/state/STATE_NAME/lock"
     lock_method    = "POST"
     unlock_method  = "DELETE"
     username       = "tofu"
@@ -481,7 +481,7 @@ terraform {
     bucket   = "tofu-state"
     key      = "homelab/terraform.tfstate"
     region   = "us-east-1"
-    endpoint = "https://minio.massivedynamics.be"
+    endpoint = "https://minio.domain.tld"
 
     access_key = var.minio_access_key
     secret_key = var.minio_secret_key
