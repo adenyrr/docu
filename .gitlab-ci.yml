@@ -17,7 +17,7 @@ renovate:
   variables:
     RENOVATE_TOKEN: "${PERSONAL_TOKEN}"
   script:
-    - renovate --platform gitlab --autodiscover
+    - renovate --platform gitlab --autodiscover --autodiscover-filter="$CI_PROJECT_PATH"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
   

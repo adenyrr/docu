@@ -108,7 +108,7 @@ des dépendances listées dans `requirements.txt`.
 Pour activer les mises à jour automatiques :
 
 1. Ajouter la variable CI `PERSONAL_TOKEN` (scope `api`) via *Settings → CI/CD → Variables*.
-2. Créer un Schedule (CI/CD → Schedules) pour déclencher périodiquement le job `renovate`.
+2. Créer un Schedule (CI/CD → Schedules) pour déclencher périodiquement le job `renovate` (hebdomadaire ou quotidien). La fréquence du Schedule GitLab pilote les vérifications de Renovate.
 3. Renovate ouvrira des Merge Requests pour les nouvelles versions; testez et mergez.
 ---
 

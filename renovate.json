@@ -8,9 +8,6 @@
     ]
   },
   "automerge": false,
-  "schedule": [
-    "at 03:00 on Monday"
-  ],
   "packageRules": [
     {
       "matchUpdateTypes": [
