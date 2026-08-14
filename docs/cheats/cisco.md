@@ -1,3 +1,10 @@
+---
+tags:
+  - cisco
+  - réseau
+  - commandes
+  - adminsys
+---
 # Cisco IOS — Cheat Sheet : Commandes usuelles
 
 > Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.

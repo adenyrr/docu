@@ -2,6 +2,11 @@
 title: "Installation GitLab self-hosted"
 description: "Configuration GitLab dépôt git DevOps"
 last_modified: 2026-03-26
+tags:
+  - gitlab
+  - git
+  - devops
+  - self-hosting
 ---
 
 ## Introduction

@@ -1,3 +1,10 @@
+---
+tags:
+  - linux
+  - fichiers
+  - commandes
+  - shell
+---
 # Linux — Cheat Sheet : Opérations sur les fichiers
 
 > Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.

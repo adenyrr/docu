@@ -2,6 +2,11 @@
 title: "Spiner une instance AWS EC2"
 description: "Créer et configuration une EC2 dans la console amazon"
 last_modified: 2026-04-01
+tags:
+  - aws
+  - ec2
+  - cloud
+  - iac
 ---
 # Créer et configurer des instances EC2 sur AWS
 

@@ -2,6 +2,11 @@
 title: "Créer conteneur LXC Proxmox"
 description: "Guide création configuration conteneurs LXC"
 last_modified: 2026-03-26
+tags:
+  - virtualisation
+  - proxmox
+  - lxc
+  - conteneurs
 ---
 
 # Introduction

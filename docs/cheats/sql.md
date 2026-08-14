@@ -1,3 +1,10 @@
+---
+tags:
+  - sql
+  - base-de-données
+  - commandes
+  - adminsys
+---
 # SQL — Cheat Sheet : Manipulation de données
 
 > Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.

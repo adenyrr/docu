@@ -74,6 +74,7 @@ nav = [
      {"sql_cheats.sh" = "cheats/sql.md"},
      {"cisco_cheats.sh" = "cheats/cisco.md"},
   ]},
+   {"Tags" = "tags.md"},
   {"~/non-free" = [
      {"/aws" = [
       {"spin_instance.sh" = "non-oss/aws/spin_instance.md"},
@@ -267,8 +268,31 @@ text = "Inclusive Sans"
 code = "Jetbrains Mono"
 
 #[project.theme.icon]
+#[project.theme.icon]
 #logo = "lucide/smile"
 #repo = "lucide/smile"
+
+# Tag identifiers (display name -> identifier)
+[project.extra.tags]
+"Linux" = "linux"
+"Réseau" = "reseau"
+"Sécurité" = "securite"
+"IaC" = "iac"
+"Docker" = "docker"
+"Homelab" = "homelab"
+"Domotique" = "domotique"
+"SQL" = "sql"
+
+[project.theme.icon.tag]
+default = "lucide/tag"
+linux = "lucide/server"
+reseau = "lucide/network"
+securite = "lucide/shield"
+iac = "lucide/atom"
+docker = "lucide/package"
+homelab = "lucide/home"
+domotique = "lucide/plug"
+sql = "lucide/database"
 
 # Extra 
 

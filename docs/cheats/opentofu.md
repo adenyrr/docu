@@ -1,3 +1,10 @@
+---
+tags:
+  - opentofu
+  - iac
+  - terraform
+  - cloud
+---
 # OpenTofu — Cheat Sheet
 
 > Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).

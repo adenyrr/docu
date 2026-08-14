@@ -2,6 +2,11 @@
 title: "Quelques commandes utiles"
 description: "Cheatsheet adminsys"
 last_modified: 2026-01-12
+tags:
+  - commandes
+  - linux
+  - adminsys
+  - outils
 ---
 
 # Quelques commandes utiles : 

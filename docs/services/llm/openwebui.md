@@ -2,6 +2,11 @@
 title: "Ollama Open-WebUI local"
 description: "Configuration LLM modèles langage locaux"
 last_modified: 2026-03-26
+tags:
+  - llm
+  - ollama
+  - self-hosting
+  - docker
 ---
 
 ## Introduction

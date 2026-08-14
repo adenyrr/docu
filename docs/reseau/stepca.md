@@ -2,6 +2,11 @@
 title: "PKI autorité certification locale"
 description: "Infrastructure clés privées automatisé mTLS"
 last_modified: 2026-03-26
+tags:
+  - réseau
+  - sécurité
+  - pki
+  - tls
 ---
 
 ## Introduction

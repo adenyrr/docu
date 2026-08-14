@@ -1,3 +1,10 @@
+---
+tags:
+  - linux
+  - commandes
+  - shell
+  - adminsys
+---
 # Linux — Cheat Sheet : Commandes de base
 
 > Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.

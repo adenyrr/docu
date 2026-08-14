@@ -2,6 +2,11 @@
 title: "Sécuriser serveur Debian"
 description: "Bonnes pratiques essentielles configuration serveur"
 last_modified: 2026-03-26
+tags:
+  - sécurité
+  - debian
+  - linux
+  - adminsys
 ---
 
 # Introduction

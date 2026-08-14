@@ -2,6 +2,11 @@
 title: "Jellyfin streaming personnel"
 description: "Serveur streaming vidéos films séries"
 last_modified: 2026-03-26
+tags:
+  - jellyfin
+  - médias
+  - self-hosting
+  - docker
 ---
 
 ## Introduction

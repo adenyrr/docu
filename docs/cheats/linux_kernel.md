@@ -1,3 +1,11 @@
+---
+tags:
+  - linux
+  - kernel
+  - systemd
+  - sécurité
+  - adminsys
+---
 # Linux — Cheat Sheet : Kernel & Système
 
 > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.

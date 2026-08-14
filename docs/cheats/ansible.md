@@ -1,3 +1,10 @@
+---
+tags:
+  - ansible
+  - iac
+  - automatisation
+  - adminsys
+---
 # Ansible — Cheat Sheet
 
 > Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.

@@ -2,6 +2,11 @@
 title: "Commandes Linux"
 description: "Cheat-sheet des commandes Linux courantes"
 last_modified: 2026-04-01
+tags:
+  - linux
+  - commandes
+  - shell
+  - adminsys
 ---
 # Linux - Commandes de base
 

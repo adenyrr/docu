@@ -1,3 +1,10 @@
+---
+tags:
+  - aws
+  - load-balancer
+  - cloud
+  - réseau
+---
 # Le load-balancer
 
 ## Introduction

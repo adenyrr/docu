@@ -2,6 +2,11 @@
 title: "Interface météo allergie HA"
 description: "Configuration interface météo et niveau allergènes"
 last_modified: 2026-03-26
+tags:
+  - home-assistant
+  - domotique
+  - météo
+  - iot
 ---
 
 ### Introduction

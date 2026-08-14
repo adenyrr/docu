@@ -2,6 +2,11 @@
 title: "Ressources communautés tech"
 description: "Points accès blogs forums et vidéastes tech"
 last_modified: 2026-03-26
+tags:
+  - ressources
+  - communautés
+  - outils
+  - veille
 ---
 
 ## Communautés tech

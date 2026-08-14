@@ -1,7 +1,12 @@
 ---
 title: "Serveur DNS autoritaire"
 description: "DNS autoritaire local avec blackhole et logging"
-last_modified: 2026-05-29
+last_modified: 2026-08-14
+tags:
+  - réseau
+  - dns
+  - homelab
+  - sécurité
 ---
 
 ## Introduction
@@ -146,7 +151,12 @@ Pour plus de logs ou les garder plus longtemps, une base de données de type Pos
 ### Utiliser le DoT sur Android
 
 Par défaut, les versions récentes d'Android supportent un serveur DNS distant uniquement en DoT (DNS over TLS). Technitium est nativement compatible : une fois un certificat installé, il suffit d'activer le protocole ainsi qu'un port (853 standard).
+
 Dans le routeur, ajouter une règle WAN pour les connexions entrantes vers l'IP interne du DNS (WAN:853 --> IPDNS:853). Autoriser également les récursions pour les connexions externes dans le menu `Settings > Recursion`.
+
+!!! warning "VLAN"
+
+    Étant donné que l'un des ports du routeur sera ouvert, il est impératif d'avoir un vlan dédié et cloisonné. Les autres vlans peuvent avoir accès à celui-ci, mais ce dernier de doit avoir accès à rien, exepté le WAN.
 
 Enfin, utiliser le domaine choisi (ex: dns.domain.tld) pour le certificat (donc un domaine enregistré avec un sous-domaine pointant vers l'IP publique) dans android, sans sheme : `dns.domain.tld`.
 

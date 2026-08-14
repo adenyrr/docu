@@ -40,6 +40,7 @@ build_site:
   script:
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
+    - python scripts/generate_tags_index.py
     - python scripts/generate_revision_dates.py
     - zensical build --clean
     - if [ -f "$CI_PROJECT_DIR/sitemap.xml" ]; then cp -v "$CI_PROJECT_DIR/sitemap.xml" public/; else echo "sitemap.xml not found in repo root"; fi

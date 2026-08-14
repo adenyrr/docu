@@ -2,6 +2,11 @@
 title: "Logiciels Linux personnels"
 description: "Liste des applications et outils utilisés"
 last_modified: 2026-03-26
+tags:
+  - linux
+  - logiciels
+  - outils
+  - opensource
 ---
 
 # Liste de logiciels que j'utilise :

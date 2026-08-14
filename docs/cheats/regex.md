@@ -1,3 +1,10 @@
+---
+tags:
+  - regex
+  - commandes
+  - linux
+  - outils
+---
 # Regex — Cheat Sheet
 
 > Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.

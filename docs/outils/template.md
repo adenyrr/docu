@@ -2,6 +2,11 @@
 title: "Template docker-compose"
 description: "Structure configuration fichier compose YAML"
 last_modified: 2026-03-26
+tags:
+  - docker
+  - docker-compose
+  - self-hosting
+  - yaml
 ---
 
 # Structure typique d'un fichier docker compose au format yaml.

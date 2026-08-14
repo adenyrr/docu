@@ -2,6 +2,11 @@
 title: "Guide d'installation homelab"
 description: "Guide complet d'installation infrastructure personnalisée"
 last_modified: 2026-03-26
+tags:
+  - homelab
+  - installation
+  - linux
+  - infrastructure
 ---
 
 ## Introduction

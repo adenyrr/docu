@@ -2,6 +2,11 @@
 title: "Installer Home Assistant"
 description: "Guide complet d'installation Home Assistant"
 last_modified: 2026-03-26
+tags:
+  - home-assistant
+  - domotique
+  - self-hosting
+  - iot
 ---
 
 ## Introduction
