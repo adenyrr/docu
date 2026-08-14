@@ -1,11 +1,12 @@
 ---
-title: "Tag: jellyfin"
-description: "Pages marquées "jellyfin""
-last_modified: 2026-08-14T10:48:33.372725Z
+title: "Tag: médias"
+description: "Pages marquées "médias""
+last_modified: 2026-08-14T10:48:33.372820Z
 ---
 
-# jellyfin
+# médias
 
-Nombre de pages : 1
+Nombre de pages : 2
 
 - [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre et classer le contenu via les métadonnées en complétant celles-ci par la recherche sur des bases de donnes telles que IMDb. En bref, elle transforme n'importe quelle bibliothèque de films et séries en netflix personnel.
+- [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 

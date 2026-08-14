@@ -10,6 +10,7 @@ Features:
 """
 import os
 import re
+import unicodedata
 import sys
 import datetime
 from collections import defaultdict, Counter
@@ -22,9 +23,12 @@ FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.S)
 
 
 def slugify(s: str) -> str:
-    s = s.lower().strip()
+    s = s.strip().lower()
+    # normalize unicode to ASCII
+    s = unicodedata.normalize("NFKD", s)
+    s = s.encode("ascii", "ignore").decode("ascii")
     s = re.sub(r"[^a-z0-9\- ]+", "", s)
-    s = s.replace(" ", "-")
+    s = re.sub(r"\s+", "-", s)
     return s
 
 
@@ -133,6 +137,16 @@ def collect():
             tags = meta.get("tags", [])
             title = meta.get("title") or os.path.splitext(fn)[0]
             excerpt = meta.get("excerpt", "")
+            # clean excerpt: remove markdown links and code ticks
+            if excerpt:
+                # strip leading blockquote markers
+                excerpt = re.sub(r"^>\s*", "", excerpt)
+                # replace markdown links [text](url) -> text
+                excerpt = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", excerpt)
+                # remove inline code ticks
+                excerpt = excerpt.replace("`", "")
+                # collapse whitespace
+                excerpt = re.sub(r"\s+", " ", excerpt).strip()
             for t in tags:
                 tag_map[t].append({"title": title, "path": rel, "excerpt": excerpt})
     return tag_map
@@ -200,11 +214,11 @@ def render_main(tag_map):
             entries = tag_map[t]
             lines.append(f"<details id=\"{slug}\">\n<summary>{t} ({len(entries)})</summary>\n\n")
             for e in sorted(entries, key=lambda x: x["title"].lower()):
-                excerpt = e["excerpt"] or ""
-                if len(excerpt) > 140:
-                    excerpt = excerpt[:137] + "..."
+                excerpt = e.get("excerpt", "") or ""
+                if len(excerpt) > 180:
+                    excerpt = excerpt[:177] + "..."
                 lines.append(f"- [{e['title']}]({e['path']}) — {excerpt}")
-            lines.append("\n[/details]\n")
+            lines.append("\n</details>\n")
     content = "\n".join(lines) + "\n"
     out = os.path.join(DOCS_DIR, "tags.md")
     with open(out, "w", encoding="utf-8") as f:

@@ -1,7 +1,7 @@
 ---
 title: "Tag: virtualisation"
 description: "Pages marquées "virtualisation""
-last_modified: 2026-08-14T10:41:21.303506Z
+last_modified: 2026-08-14T10:48:33.363215Z
 ---
 
 # virtualisation
@@ -12,4 +12,4 @@ Nombre de pages : 5
 - [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut télécharger l'image. Pour une première LXC, Debian 13 est un bon choix et présent dans les templates de base.
 - [Installer une VM Debian](virtu/vminstall.md) — 
 - [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Schéma infrastructure homelab](infra.md) — ```mermaid
+- [Schéma infrastructure homelab](infra.md) — mermaid

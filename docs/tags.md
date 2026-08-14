@@ -1,7 +1,7 @@
 ---
 title: "Tags"
 description: "Index des tags généré automatiquement"
-last_modified: 2026-08-14T10:41:21.308970Z
+last_modified: 2026-08-14T10:48:33.373554Z
 ---
 
 # Tags
@@ -21,24 +21,24 @@ Cette page est générée automatiquement.
 - [gitlab](#gitlab) (2) — [page tag](/tags/gitlab.html)
 - [infrastructure](#infrastructure) (2) — [page tag](/tags/infrastructure.html)
 - [llm](#llm) (2) — [page tag](/tags/llm.html)
-- [médias](#mdias) (2) — [page tag](/tags/mdias.html)
+- [médias](#medias) (2) — [page tag](/tags/medias.html)
 - [ollama](#ollama) (2) — [page tag](/tags/ollama.html)
 - [opensource](#opensource) (2) — [page tag](/tags/opensource.html)
 - [veille](#veille) (2) — [page tag](/tags/veille.html)
 - [ci-cd](#ci-cd) (1) — [page tag](/tags/ci-cd.html)
 - [cisco](#cisco) (1) — [page tag](/tags/cisco.html)
-- [communautés](#communauts) (1) — [page tag](/tags/communauts.html)
+- [communautés](#communautes) (1) — [page tag](/tags/communautes.html)
 - [conteneurs](#conteneurs) (1) — [page tag](/tags/conteneurs.html)
 - [documentation](#documentation) (1) — [page tag](/tags/documentation.html)
 - [ec2](#ec2) (1) — [page tag](/tags/ec2.html)
 - [fichiers](#fichiers) (1) — [page tag](/tags/fichiers.html)
 - [git](#git) (1) — [page tag](/tags/git.html)
 - [installation](#installation) (1) — [page tag](/tags/installation.html)
-- [intégrations](#intgrations) (1) — [page tag](/tags/intgrations.html)
+- [intégrations](#integrations) (1) — [page tag](/tags/integrations.html)
 - [jellyfin](#jellyfin) (1) — [page tag](/tags/jellyfin.html)
 - [logiciels](#logiciels) (1) — [page tag](/tags/logiciels.html)
 - [mcp](#mcp) (1) — [page tag](/tags/mcp.html)
-- [météo](#mto) (1) — [page tag](/tags/mto.html)
+- [météo](#meteo) (1) — [page tag](/tags/meteo.html)
 - [qbittorrent](#qbittorrent) (1) — [page tag](/tags/qbittorrent.html)
 - [regex](#regex) (1) — [page tag](/tags/regex.html)
 - [scripts](#scripts) (1) — [page tag](/tags/scripts.html)
@@ -47,7 +47,7 @@ Cette page est générée automatiquement.
 - [youtube](#youtube) (1) — [page tag](/tags/youtube.html)
 
 ### Bases de données
-- [base-de-données](#base-de-donnes) (1) — [page tag](/tags/base-de-donnes.html)
+- [base-de-données](#base-de-donnees) (1) — [page tag](/tags/base-de-donnees.html)
 - [sql](#sql) (1) — [page tag](/tags/sql.html)
 
 ### Conteneurs / Docker
@@ -80,7 +80,7 @@ Cette page est générée automatiquement.
 - [systemd](#systemd) (1) — [page tag](/tags/systemd.html)
 
 ### Réseau
-- [réseau](#rseau) (7) — [page tag](/tags/rseau.html)
+- [réseau](#reseau) (7) — [page tag](/tags/reseau.html)
 - [aws](#aws) (2) — [page tag](/tags/aws.html)
 - [dns](#dns) (1) — [page tag](/tags/dns.html)
 - [load-balancer](#load-balancer) (1) — [page tag](/tags/load-balancer.html)
@@ -88,7 +88,7 @@ Cette page est générée automatiquement.
 - [vlan](#vlan) (1) — [page tag](/tags/vlan.html)
 
 ### Sécurité
-- [sécurité](#scurit) (6) — [page tag](/tags/scurit.html)
+- [sécurité](#securite) (6) — [page tag](/tags/securite.html)
 - [pki](#pki) (1) — [page tag](/tags/pki.html)
 - [tls](#tls) (1) — [page tag](/tags/tls.html)
 
@@ -99,155 +99,155 @@ Cette page est générée automatiquement.
 <summary>adminsys (9)</summary>
 
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — > Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — > Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
+- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
+- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
 - [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — > Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
 - [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Quelques commandes utiles](outils/commandes.md) — La commande `sed` permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'co...
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — > Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sa...
+- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
+- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
+- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
 
-[/details]
+</details>
 
 <details id="self-hosting">
 <summary>self-hosting (8)</summary>
 
 
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informat...
-- [Installation GitLab self-hosted](services/gitlab/install.md) — [GitLab](https://gitlab.com/) est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégratio...
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Ho...
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — [Jellyfin](https://jellyfin.org/) est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos...
+- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
+- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
+- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
+- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
 - [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — [Ollama](https://ollama.com/) est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) ...
+- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
 - [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
 - [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
 
-[/details]
+</details>
 
 <details id="commandes">
 <summary>commandes (7)</summary>
 
 
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — > Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
+- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
 - [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — > Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — > Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
-- [Quelques commandes utiles](outils/commandes.md) — La commande `sed` permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'co...
-- [Regex — Cheat Sheet](cheats/regex.md) — > Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — > Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
+- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
+- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
+- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
+- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
+- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
 
-[/details]
+</details>
 
 <details id="homelab">
 <summary>homelab (6)</summary>
 
 
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informat...
+- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
 - [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Guide d'installation homelab](calamares.md) — [Calamares](https://calamares.io/) c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'inst...
+- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
 - [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Schéma infrastructure homelab](infra.md) — ```mermaid
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. C...
+- [Schéma infrastructure homelab](infra.md) — mermaid
+- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
 
-[/details]
+</details>
 
 <details id="outils">
 <summary>outils (6)</summary>
 
 
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous [OpenSuse](https://www.opensuse.org/) Tumbleweed. Sur ceux-ci, j'utilise principalement [hyprland](https://...
-- [Outils Windows ressources](outils/links.md) — Le script de [massgrave](https://massgrave.dev/) permet d'activer une licence Windows ou Office.
-- [Quelques commandes utiles](outils/commandes.md) — La commande `sed` permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'co...
-- [Regex — Cheat Sheet](cheats/regex.md) — > Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [Ressources communautés tech](outils/ressources.md) — [Home Assistant Communauté Francophone](https://www.hacf.fr/) est une association Loi 1901 qui publie des news en rapport avec Home Assis...
+- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
+- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
+- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
+- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
+- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
 - [Ressources vidéo YouTube](outils/youtube.md) — 
 
-[/details]
+</details>
 
 <details id="automatisation">
 <summary>automatisation (3)</summary>
 
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — > Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
+- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
 - [Cloud-init automatisation instances](virtu/cloudinit.md) — 
 - [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
 
-[/details]
+</details>
 
 <details id="ressources">
 <summary>ressources (3)</summary>
 
 
-- [Outils Windows ressources](outils/links.md) — Le script de [massgrave](https://massgrave.dev/) permet d'activer une licence Windows ou Office.
-- [Ressources communautés tech](outils/ressources.md) — [Home Assistant Communauté Francophone](https://www.hacf.fr/) est une association Loi 1901 qui publie des news en rapport avec Home Assis...
+- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
+- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
 - [Ressources vidéo YouTube](outils/youtube.md) — 
 
-[/details]
+</details>
 
 <details id="gitlab">
 <summary>gitlab (2)</summary>
 
 
 - [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — [GitLab](https://gitlab.com/) est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégratio...
+- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
 
-[/details]
+</details>
 
 <details id="infrastructure">
 <summary>infrastructure (2)</summary>
 
 
-- [Guide d'installation homelab](calamares.md) — [Calamares](https://calamares.io/) c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'inst...
-- [Schéma infrastructure homelab](infra.md) — ```mermaid
+- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
+- [Schéma infrastructure homelab](infra.md) — mermaid
 
-[/details]
+</details>
 
 <details id="llm">
 <summary>llm (2)</summary>
 
 
 - [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — [Ollama](https://ollama.com/) est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) ...
+- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
 
-[/details]
+</details>
 
-<details id="mdias">
+<details id="medias">
 <summary>médias (2)</summary>
 
 
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — [Jellyfin](https://jellyfin.org/) est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos...
+- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
 - [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
 
-[/details]
+</details>
 
 <details id="ollama">
 <summary>ollama (2)</summary>
 
 
 - [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — [Ollama](https://ollama.com/) est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) ...
+- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
 
-[/details]
+</details>
 
 <details id="opensource">
 <summary>opensource (2)</summary>
 
 
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informat...
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous [OpenSuse](https://www.opensuse.org/) Tumbleweed. Sur ceux-ci, j'utilise principalement [hyprland](https://...
+- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
+- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
 
-[/details]
+</details>
 
 <details id="veille">
 <summary>veille (2)</summary>
 
 
-- [Ressources communautés tech](outils/ressources.md) — [Home Assistant Communauté Francophone](https://www.hacf.fr/) est une association Loi 1901 qui publie des news en rapport avec Home Assis...
+- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
 - [Ressources vidéo YouTube](outils/youtube.md) — 
 
-[/details]
+</details>
 
 <details id="ci-cd">
 <summary>ci-cd (1)</summary>
@@ -255,95 +255,95 @@ Cette page est générée automatiquement.
 
 - [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
 
-[/details]
+</details>
 
 <details id="cisco">
 <summary>cisco (1)</summary>
 
 
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — > Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
+- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
 
-[/details]
+</details>
 
-<details id="communauts">
+<details id="communautes">
 <summary>communautés (1)</summary>
 
 
-- [Ressources communautés tech](outils/ressources.md) — [Home Assistant Communauté Francophone](https://www.hacf.fr/) est une association Loi 1901 qui publie des news en rapport avec Home Assis...
+- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
 
-[/details]
+</details>
 
 <details id="conteneurs">
 <summary>conteneurs (1)</summary>
 
 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on ...
+- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
 
-[/details]
+</details>
 
 <details id="documentation">
 <summary>documentation (1)</summary>
 
 
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informat...
+- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
 
-[/details]
+</details>
 
 <details id="ec2">
 <summary>ec2 (1)</summary>
 
 
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elas...
+- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
 
-[/details]
+</details>
 
 <details id="fichiers">
 <summary>fichiers (1)</summary>
 
 
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — > Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
+- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
 
-[/details]
+</details>
 
 <details id="git">
 <summary>git (1)</summary>
 
 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — [GitLab](https://gitlab.com/) est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégratio...
+- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
 
-[/details]
+</details>
 
 <details id="installation">
 <summary>installation (1)</summary>
 
 
-- [Guide d'installation homelab](calamares.md) — [Calamares](https://calamares.io/) c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'inst...
+- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
 
-[/details]
+</details>
 
-<details id="intgrations">
+<details id="integrations">
 <summary>intégrations (1)</summary>
 
 
 - [Intégrations Home Assistant](hassio/integrations.md) — 
 
-[/details]
+</details>
 
 <details id="jellyfin">
 <summary>jellyfin (1)</summary>
 
 
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — [Jellyfin](https://jellyfin.org/) est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos...
+- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
 
-[/details]
+</details>
 
 <details id="logiciels">
 <summary>logiciels (1)</summary>
 
 
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous [OpenSuse](https://www.opensuse.org/) Tumbleweed. Sur ceux-ci, j'utilise principalement [hyprland](https://...
+- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
 
-[/details]
+</details>
 
 <details id="mcp">
 <summary>mcp (1)</summary>
@@ -351,15 +351,15 @@ Cette page est générée automatiquement.
 
 - [Model Context Protocol Ollama](services/llm/mcpo.md) — 
 
-[/details]
+</details>
 
-<details id="mto">
+<details id="meteo">
 <summary>météo (1)</summary>
 
 
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes ...
+- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
 
-[/details]
+</details>
 
 <details id="qbittorrent">
 <summary>qbittorrent (1)</summary>
@@ -367,31 +367,31 @@ Cette page est générée automatiquement.
 
 - [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
 
-[/details]
+</details>
 
 <details id="regex">
 <summary>regex (1)</summary>
 
 
-- [Regex — Cheat Sheet](cheats/regex.md) — > Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
+- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
 
-[/details]
+</details>
 
 <details id="scripts">
 <summary>scripts (1)</summary>
 
 
-- [Outils Windows ressources](outils/links.md) — Le script de [massgrave](https://massgrave.dev/) permet d'activer une licence Windows ou Office.
+- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
 
-[/details]
+</details>
 
 <details id="windows">
 <summary>windows (1)</summary>
 
 
-- [Outils Windows ressources](outils/links.md) — Le script de [massgrave](https://massgrave.dev/) permet d'activer une licence Windows ou Office.
+- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
 
-[/details]
+</details>
 
 <details id="yaml">
 <summary>yaml (1)</summary>
@@ -399,7 +399,7 @@ Cette page est générée automatiquement.
 
 - [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
 
-[/details]
+</details>
 
 <details id="youtube">
 <summary>youtube (1)</summary>
@@ -407,26 +407,26 @@ Cette page est générée automatiquement.
 
 - [Ressources vidéo YouTube](outils/youtube.md) — 
 
-[/details]
+</details>
 
 
 ### Bases de données
 
-<details id="base-de-donnes">
+<details id="base-de-donnees">
 <summary>base-de-données (1)</summary>
 
 
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — > Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
+- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
 
-[/details]
+</details>
 
 <details id="sql">
 <summary>sql (1)</summary>
 
 
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — > Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
+- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
 
-[/details]
+</details>
 
 
 ### Conteneurs / Docker
@@ -435,13 +435,13 @@ Cette page est générée automatiquement.
 <summary>docker (5)</summary>
 
 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme [Ollama](https://wiki.become.sh/services/ollama/) peuvent rester uniquement en local, d'autres comme [Home Ass...
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — [Jellyfin](https://jellyfin.org/) est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos...
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — [Ollama](https://ollama.com/) est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) ...
+- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
+- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
+- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
 - [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
 - [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
 
-[/details]
+</details>
 
 <details id="docker-compose">
 <summary>docker-compose (1)</summary>
@@ -449,15 +449,15 @@ Cette page est générée automatiquement.
 
 - [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
 
-[/details]
+</details>
 
 <details id="lxc">
 <summary>lxc (1)</summary>
 
 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on ...
+- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
 
-[/details]
+</details>
 
 
 ### Domotique
@@ -467,33 +467,33 @@ Cette page est générée automatiquement.
 
 
 - [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Ho...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes ...
+- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
+- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
 - [Intégrations Home Assistant](hassio/integrations.md) — 
 
-[/details]
+</details>
 
 <details id="home-assistant">
 <summary>home-assistant (4)</summary>
 
 
 - [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Ho...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes ...
+- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
+- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
 - [Intégrations Home Assistant](hassio/integrations.md) — 
 
-[/details]
+</details>
 
 <details id="iot">
 <summary>iot (4)</summary>
 
 
 - [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Ho...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes ...
+- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
+- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
 - [Intégrations Home Assistant](hassio/integrations.md) — 
 
-[/details]
+</details>
 
 <details id="hacs">
 <summary>hacs (1)</summary>
@@ -501,7 +501,7 @@ Cette page est générée automatiquement.
 
 - [HACS Home Assistant Community Store](hassio/hacs.md) — 
 
-[/details]
+</details>
 
 
 ### IaC / DevOps
@@ -510,39 +510,39 @@ Cette page est générée automatiquement.
 <summary>iac (4)</summary>
 
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — > Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
+- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
 - [Cloud-init automatisation instances](virtu/cloudinit.md) — 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — > Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elas...
+- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
+- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
 
-[/details]
+</details>
 
 <details id="cloud">
 <summary>cloud (3)</summary>
 
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group `LB-SG` pour l'ALB avec comme règle entrante `HTTP`, n'importe quelle source `0.0.0.0/0`.
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — > Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elas...
+- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
+- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
 
-[/details]
+</details>
 
 <details id="devops">
 <summary>devops (2)</summary>
 
 
 - [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — [GitLab](https://gitlab.com/) est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégratio...
+- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
 
-[/details]
+</details>
 
 <details id="ansible">
 <summary>ansible (1)</summary>
 
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — > Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
+- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
 
-[/details]
+</details>
 
 <details id="cloud-init">
 <summary>cloud-init (1)</summary>
@@ -550,23 +550,23 @@ Cette page est générée automatiquement.
 
 - [Cloud-init automatisation instances](virtu/cloudinit.md) — 
 
-[/details]
+</details>
 
 <details id="opentofu">
 <summary>opentofu (1)</summary>
 
 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — > Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
+- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
 
-[/details]
+</details>
 
 <details id="terraform">
 <summary>terraform (1)</summary>
 
 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — > Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
+- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
 
-[/details]
+</details>
 
 
 ### Infrastructure
@@ -576,124 +576,124 @@ Cette page est générée automatiquement.
 
 
 - [Commandes Linux](cheats/linux_user.md) — ---
-- [Guide d'installation homelab](calamares.md) — [Calamares](https://calamares.io/) c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'inst...
+- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
 - [Installer une VM Debian](virtu/vminstall.md) — 
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — > Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — > Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous [OpenSuse](https://www.opensuse.org/) Tumbleweed. Sur ceux-ci, j'utilise principalement [hyprland](https://...
-- [Quelques commandes utiles](outils/commandes.md) — La commande `sed` permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'co...
-- [Regex — Cheat Sheet](cheats/regex.md) — > Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sa...
+- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
+- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
+- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
+- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
+- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
 
-[/details]
+</details>
 
 <details id="virtualisation">
 <summary>virtualisation (5)</summary>
 
 
 - [Cloud-init automatisation instances](virtu/cloudinit.md) — 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on ...
+- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
 - [Installer une VM Debian](virtu/vminstall.md) — 
 - [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Schéma infrastructure homelab](infra.md) — ```mermaid
+- [Schéma infrastructure homelab](infra.md) — mermaid
 
-[/details]
+</details>
 
 <details id="proxmox">
 <summary>proxmox (3)</summary>
 
 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on ...
+- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
 - [Installer une VM Debian](virtu/vminstall.md) — 
 - [Proxmox VE hyperviseur](virtu/pve.md) — 
 
-[/details]
+</details>
 
 <details id="shell">
 <summary>shell (3)</summary>
 
 
 - [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — > Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — > Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
+- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
+- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
 
-[/details]
+</details>
 
 <details id="debian">
 <summary>debian (2)</summary>
 
 
 - [Installer une VM Debian](virtu/vminstall.md) — 
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sa...
+- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
 
-[/details]
+</details>
 
 <details id="kernel">
 <summary>kernel (1)</summary>
 
 
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
 
-[/details]
+</details>
 
 <details id="systemd">
 <summary>systemd (1)</summary>
 
 
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
 
-[/details]
+</details>
 
 
 ### Réseau
 
-<details id="rseau">
+<details id="reseau">
 <summary>réseau (7)</summary>
 
 
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — > Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
+- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
 - [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme [Ollama](https://wiki.become.sh/services/ollama/) peuvent rester uniquement en local, d'autres comme [Home Ass...
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group `LB-SG` pour l'ALB avec comme règle entrante `HTTP`, n'importe quelle source `0.0.0.0/0`.
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'...
-- [Schéma infrastructure homelab](infra.md) — ```mermaid
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. C...
+- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
+- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
+- [Schéma infrastructure homelab](infra.md) — mermaid
+- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
 
-[/details]
+</details>
 
 <details id="aws">
 <summary>aws (2)</summary>
 
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group `LB-SG` pour l'ALB avec comme règle entrante `HTTP`, n'importe quelle source `0.0.0.0/0`.
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elas...
+- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
 
-[/details]
+</details>
 
 <details id="dns">
 <summary>dns (1)</summary>
 
 
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. C...
+- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
 
-[/details]
+</details>
 
 <details id="load-balancer">
 <summary>load-balancer (1)</summary>
 
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group `LB-SG` pour l'ALB avec comme règle entrante `HTTP`, n'importe quelle source `0.0.0.0/0`.
+- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
 
-[/details]
+</details>
 
 <details id="reverse-proxy">
 <summary>reverse-proxy (1)</summary>
 
 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme [Ollama](https://wiki.become.sh/services/ollama/) peuvent rester uniquement en local, d'autres comme [Home Ass...
+- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
 
-[/details]
+</details>
 
 <details id="vlan">
 <summary>vlan (1)</summary>
@@ -701,37 +701,37 @@ Cette page est générée automatiquement.
 
 - [Configuration VLANs réseau](reseau/vlan.md) — 
 
-[/details]
+</details>
 
 
 ### Sécurité
 
-<details id="scurit">
+<details id="securite">
 <summary>sécurité (6)</summary>
 
 
 - [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme [Ollama](https://wiki.become.sh/services/ollama/) peuvent rester uniquement en local, d'autres comme [Home Ass...
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — > Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'...
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. C...
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sa...
+- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
+- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
+- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
 
-[/details]
+</details>
 
 <details id="pki">
 <summary>pki (1)</summary>
 
 
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'...
+- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
 
-[/details]
+</details>
 
 <details id="tls">
 <summary>tls (1)</summary>
 
 
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'...
+- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
 
-[/details]
+</details>
 

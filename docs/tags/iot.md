@@ -1,7 +1,7 @@
 ---
 title: "Tag: iot"
 description: "Pages marquées "iot""
-last_modified: 2026-08-14T10:41:21.305587Z
+last_modified: 2026-08-14T10:48:33.368322Z
 ---
 
 # iot

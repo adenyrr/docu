@@ -1,10 +1,10 @@
 ---
-title: "Tag: sql"
-description: "Pages marquées "sql""
-last_modified: 2026-08-14T10:48:33.366742Z
+title: "Tag: base-de-données"
+description: "Pages marquées "base-de-données""
+last_modified: 2026-08-14T10:48:33.366959Z
 ---
 
-# sql
+# base-de-données
 
 Nombre de pages : 1
 
