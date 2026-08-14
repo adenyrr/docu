@@ -74,7 +74,6 @@ nav = [
      {"sql_cheats.sh" = "cheats/sql.md"},
      {"cisco_cheats.sh" = "cheats/cisco.md"},
   ]},
-   {"Tags" = "tags.md"},
   {"~/non-free" = [
      {"/aws" = [
       {"spin_instance.sh" = "non-oss/aws/spin_instance.md"},
