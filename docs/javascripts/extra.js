@@ -265,69 +265,6 @@ if (typeof document$ !== 'undefined') {
   document.addEventListener('DOMContentSwitch', attachReveal); // Zensical/Material
 })();
 
-/* ── GLightbox image enhancement ─────────────────────────── */
-(function () {
-  function shouldSkipImage(img) {
-    if (!img || !img.getAttribute('src')) return true;
-    if (img.closest('a')) return true;
-    if (img.classList.contains('off-glb')) return true;
-    if (img.classList.contains('twemoji') || img.classList.contains('gemoji') || img.classList.contains('emojione')) {
-      return true;
-    }
-    return false;
-  }
-
-  function wrapImagesForLightbox() {
-    var images = document.querySelectorAll('.md-typeset img');
-    images.forEach(function (img) {
-      if (shouldSkipImage(img)) return;
-
-      var src = img.getAttribute('src');
-      var anchor = document.createElement('a');
-      anchor.className = 'glightbox';
-      anchor.setAttribute('href', src);
-      anchor.setAttribute('data-type', 'image');
-
-      var alt = img.getAttribute('alt');
-      if (alt) anchor.setAttribute('data-title', alt);
-
-      img.parentNode.insertBefore(anchor, img);
-      anchor.appendChild(img);
-    });
-  }
-
-  function initGlightbox() {
-    if (typeof window.GLightbox !== 'function') return;
-
-    if (window.__docuGlightbox && typeof window.__docuGlightbox.reload === 'function') {
-      window.__docuGlightbox.reload();
-      return;
-    }
-
-    window.__docuGlightbox = window.GLightbox({
-      selector: 'a.glightbox',
-      touchNavigation: true,
-      loop: false,
-      zoomable: true,
-      draggable: true,
-      openEffect: 'zoom',
-      closeEffect: 'zoom',
-      slideEffect: 'slide'
-    });
-  }
-
-  function bootGlightbox() {
-    wrapImagesForLightbox();
-    initGlightbox();
-  }
-
-  if (typeof document$ !== 'undefined') {
-    document$.subscribe(bootGlightbox);
-  } else {
-    document.addEventListener('DOMContentLoaded', bootGlightbox);
-  }
-})();
-
 /* ── Last updated date from Git map ─────────────────────── */
 (function () {
   var revisionCache = null;
@@ -420,4 +357,3 @@ if (typeof document$ !== 'undefined') {
     document.addEventListener('DOMContentLoaded', renderRevisionDate);
   }
 })();
-

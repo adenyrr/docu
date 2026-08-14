@@ -3,7 +3,7 @@ compatibility_date = "2026-08-14"
 workers_dev = false
 
 [[routes]]
-pattern = "docu.adenyrr.be"
+pattern = "docu.adenyrr.me"
 custom_domain = true
 
 [assets]

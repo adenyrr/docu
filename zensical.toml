@@ -294,8 +294,10 @@ enabled = true
 enable_creation_date = true
 type = "iso_date"
 
-# Lightbox for images
-[project.plugins.glightbox]
+# Lightbox and galleries for images, bundled by Zensical
+[project.markdown_extensions.zensical.extensions.glightbox]
+auto_caption = true
+skip_classes = ["twemoji", "gemoji", "emojione"]
 
 # HTML/CSS/JS minification (production)
 [project.plugins.minify]
