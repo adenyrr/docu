@@ -28,7 +28,7 @@ Cette documentation, mes sites et la plupart de mes projets sont rédigés et b�
 
 ## Notes sur le site
 
-Cette documentation est hébergée par [Gitlab Pages](https://vscodium.com/), via un runner CI/CD depuis le [repository](https://gitlab.com/adenyrr/docs).
+Cette documentation est déployée sur un [Cloudflare Worker](https://workers.cloudflare.com/), via un runner CI/CD depuis le dépôt GitLab.
 
 Par défaut, le thème utilisé est celui de l'utilisateur.trice. 
 Les polices d'écriture utilisées sont *[Inclusive Sans](https://fonts.google.com/specimen/Inclusive+Sans/license)* pour les textes et *[Jetbrains MONO](https://fonts.google.com/specimen/JetBrains+Mono)* pour le code afin de rendre la lecture accessible au plus grand nombre.

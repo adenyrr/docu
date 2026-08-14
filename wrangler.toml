@@ -1,0 +1,12 @@
+name = "docu"
+compatibility_date = "2026-08-14"
+workers_dev = false
+
+[[routes]]
+pattern = "docu.adenyrr.be"
+custom_domain = true
+
+[assets]
+directory = "./public"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"

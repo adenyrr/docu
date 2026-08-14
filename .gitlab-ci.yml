@@ -55,10 +55,13 @@ deploy_cloudflare:
   stage: deploy
   image: node:24
   script:
-    - npm install -g wrangler
-    - wrangler pages deploy public --project-name=docu --branch="${CI_COMMIT_BRANCH}"
+    - npm install --global wrangler@4
+    - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
+    - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
+    - wrangler deploy
   environment:
-    name: cloudflare-pages
+    name: cloudflare-worker
+    url: https://docu.adenyrr.be
   needs:
     - job: build_site
       artifacts: true

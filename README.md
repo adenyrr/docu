@@ -4,7 +4,7 @@ Ce dépôt contient la documentation personnelle d'**Adenyrr**. La pile
 technologique est légère et tournée autour de générateurs de sites statiques
 pour produire des pages HTML à partir de fichiers Markdown.
 
-Le site est disponible sur https://docu.adenyrr.me
+Le site est disponible sur https://docu.adenyrr.be
 ---
 
 ## Stack utilisée
@@ -72,8 +72,8 @@ source .venv/bin/activate
 
 # installer Zensical et dépendances
 pip install --upgrade pip
-pip install "zensical==0.0.34" \
-  "mkdocs-git-revision-date-localized-plugin==1.5.1" \
+pip install "zensical==0.0.54" \
+  "mkdocs-git-revision-date-localized-plugin==1.5.3" \
   "mkdocs-glightbox==0.5.2" \
   "mkdocs-minify-plugin==0.8.0" \
   "mkdocs-macros-plugin==1.5.0" \

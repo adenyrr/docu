@@ -455,7 +455,7 @@ body { min-height: 100vh; }
 }
 
 /* Signale les liens qui quittent le site, sans marquer les URL absolues internes. */
-.md-typeset a[href^="http"]:not([href*="//docu.adenyrr.me"])::after {
+.md-typeset a[href^="http"]:not([href*="//docu.adenyrr.be"])::after {
   content: "↗";
   display: inline-block;
   margin-left: 0.2em;

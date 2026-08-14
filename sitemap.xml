@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Home -->
   <url>
-    <loc>https://docu.adenyrr.me/</loc>
+    <loc>https://docu.adenyrr.be/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,13 +10,13 @@
 
   <!-- ~/home section -->
   <url>
-    <loc>https://docu.adenyrr.me/infra/</loc>
+    <loc>https://docu.adenyrr.be/infra/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/calamares/</loc>
+    <loc>https://docu.adenyrr.be/calamares/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -24,25 +24,25 @@
 
   <!-- ~/network section -->
   <url>
-    <loc>https://docu.adenyrr.me/reseau/vlan/</loc>
+    <loc>https://docu.adenyrr.be/reseau/vlan/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/reseau/stepca/</loc>
+    <loc>https://docu.adenyrr.be/reseau/stepca/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/reseau/traefik/</loc>
+    <loc>https://docu.adenyrr.be/reseau/traefik/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/reseau/swag/</loc>
+    <loc>https://docu.adenyrr.be/reseau/swag/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -50,31 +50,31 @@
 
   <!-- ~/virtu section -->
   <url>
-    <loc>https://docu.adenyrr.me/virtu/pve/</loc>
+    <loc>https://docu.adenyrr.be/virtu/pve/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/virtu/vminstall/</loc>
+    <loc>https://docu.adenyrr.be/virtu/vminstall/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/virtu/lxcinstall/</loc>
+    <loc>https://docu.adenyrr.be/virtu/lxcinstall/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/virtu/cloudinit/</loc>
+    <loc>https://docu.adenyrr.be/virtu/cloudinit/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/virtu/serverconfig/</loc>
+    <loc>https://docu.adenyrr.be/virtu/serverconfig/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -82,13 +82,13 @@
 
   <!-- ~/apps/gitlab section -->
   <url>
-    <loc>https://docu.adenyrr.me/services/gitlab/install/</loc>
+    <loc>https://docu.adenyrr.be/services/gitlab/install/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/services/gitlab/runner/</loc>
+    <loc>https://docu.adenyrr.be/services/gitlab/runner/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -96,13 +96,13 @@
 
   <!-- ~/apps/llm section -->
   <url>
-    <loc>https://docu.adenyrr.me/services/llm/openwebui/</loc>
+    <loc>https://docu.adenyrr.be/services/llm/openwebui/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/services/llm/mcpo/</loc>
+    <loc>https://docu.adenyrr.be/services/llm/mcpo/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -110,13 +110,13 @@
 
   <!-- ~/apps/media section -->
   <url>
-    <loc>https://docu.adenyrr.me/services/medias/jellyfin/</loc>
+    <loc>https://docu.adenyrr.be/services/medias/jellyfin/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/services/medias/qbit/</loc>
+    <loc>https://docu.adenyrr.be/services/medias/qbit/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -124,25 +124,25 @@
 
   <!-- ~/assist section -->
   <url>
-    <loc>https://docu.adenyrr.me/hassio/install/</loc>
+    <loc>https://docu.adenyrr.be/hassio/install/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/hassio/hacs/</loc>
+    <loc>https://docu.adenyrr.be/hassio/hacs/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/hassio/integrations/</loc>
+    <loc>https://docu.adenyrr.be/hassio/integrations/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/hassio/meteo/</loc>
+    <loc>https://docu.adenyrr.be/hassio/meteo/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -150,37 +150,37 @@
 
   <!-- ~/tools section -->
   <url>
-    <loc>https://docu.adenyrr.me/outils/template/</loc>
+    <loc>https://docu.adenyrr.be/outils/template/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/outils/commandes/</loc>
+    <loc>https://docu.adenyrr.be/outils/commandes/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/outils/softwares/</loc>
+    <loc>https://docu.adenyrr.be/outils/softwares/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/outils/links/</loc>
+    <loc>https://docu.adenyrr.be/outils/links/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/outils/ressources/</loc>
+    <loc>https://docu.adenyrr.be/outils/ressources/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/outils/youtube/</loc>
+    <loc>https://docu.adenyrr.be/outils/youtube/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -188,13 +188,13 @@
 
   <!-- ~/cheats section -->
   <url>
-    <loc>https://docu.adenyrr.me/cheats/cisco/</loc>
+    <loc>https://docu.adenyrr.be/cheats/cisco/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/cheats/linux/</loc>
+    <loc>https://docu.adenyrr.be/cheats/linux/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -202,25 +202,25 @@
 
   <!-- ~/non-free/aws section -->
   <url>
-    <loc>https://docu.adenyrr.me/non-oss/aws/bastion/</loc>
+    <loc>https://docu.adenyrr.be/non-oss/aws/bastion/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/non-oss/aws/endpoint/</loc>
+    <loc>https://docu.adenyrr.be/non-oss/aws/endpoint/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/non-oss/aws/load_balancer/</loc>
+    <loc>https://docu.adenyrr.be/non-oss/aws/load_balancer/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://docu.adenyrr.me/non-oss/aws/spin_instance/</loc>
+    <loc>https://docu.adenyrr.be/non-oss/aws/spin_instance/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -228,7 +228,7 @@
 
   <!-- ~/non-free/win_server section -->
   <url>
-    <loc>https://docu.adenyrr.me/non-oss/win_server/sysprep/</loc>
+    <loc>https://docu.adenyrr.be/non-oss/win_server/sysprep/</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
