@@ -61,7 +61,7 @@ deploy_cloudflare:
     - wrangler deploy
   environment:
     name: cloudflare-worker
-    url: https://docu.adenyrr.be
+    url: https://docu.adenyrr.me
   needs:
     - job: build_site
       artifacts: true
