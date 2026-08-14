@@ -103,7 +103,8 @@ des dépendances listées dans `requirements.txt`.
   Access Token) avec l'autorisation API. Stockez ce token dans les variables
   CI/CD sous le nom `PERSONAL_TOKEN`.
 - Le job `renovate` dans `.gitlab-ci.yml` invoque l'image officielle
-  `renovate/renovate` et lira `PERSONAL_TOKEN` via la variable `RENOVATE_TOKEN`.
+  `renovate/renovate`, utilise l'API GitLab de l'instance courante et lira
+  `PERSONAL_TOKEN` via la variable `RENOVATE_TOKEN`.
 
 Pour activer les mises à jour automatiques :
 

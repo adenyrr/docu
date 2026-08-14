@@ -16,7 +16,9 @@ renovate:
   image: renovate/renovate:latest
   variables:
     RENOVATE_TOKEN: "${PERSONAL_TOKEN}"
+    RENOVATE_ENDPOINT: "${CI_API_V4_URL}"
   script:
+    - test -n "$RENOVATE_TOKEN" || { echo "PERSONAL_TOKEN is not available to this pipeline."; exit 1; }
     - renovate --platform gitlab --autodiscover --autodiscover-filter="$CI_PROJECT_PATH"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
