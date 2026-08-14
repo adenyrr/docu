@@ -33,9 +33,11 @@ Je dispose actuellement de trois serveurs, ce qui me permet de bénéficier de t
 
 [Le réseau](reseau/intro.md) va nous permettre de connecter et discriminer efficacement nos services et machines. Il est primordial de comprendre les implications d'un port ouvert, un réseau mal configuré est une porte ouverte sur nos machines.
 
-#### Segmentation
+#### [Segmentation](reseau/vlan.md)
 
-#### DNS
+La segmentation du réseau consistera à créer les vlans, assigner ces derniers et définir les routes qui seront permises ou exclues. C'est ici que se retrouvent la plupart des règles édictées par l'ANSSI.
+
+#### [DNS](reseau/dns.md)
 
 Pour les DNS, j'utilise [Technitium](reseau/dns.md). Il dispose d'un exporter prometheus, laisse le choix de la base de données utilisée et accepte sans consommation des milliers de requêtes par heures. Il me permet de faire du DoT, DoH ou même du Split-DNS.
 

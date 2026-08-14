@@ -1,7 +1,7 @@
 ---
 title: "Tags"
 description: "Index des tags généré automatiquement"
-last_modified: 2026-08-14T10:50:50.632963Z
+last_modified: 2026-08-14T16:08:02.867383Z
 ---
 
 # Tags
@@ -16,10 +16,11 @@ Cette page est générée automatiquement.
 - [commandes](#commandes) (7) — [page tag](/tags/commandes.html)
 - [homelab](#homelab) (6) — [page tag](/tags/homelab.html)
 - [outils](#outils) (6) — [page tag](/tags/outils.html)
+- [infrastructure](#infrastructure) (4) — [page tag](/tags/infrastructure.html)
 - [automatisation](#automatisation) (3) — [page tag](/tags/automatisation.html)
 - [ressources](#ressources) (3) — [page tag](/tags/ressources.html)
 - [gitlab](#gitlab) (2) — [page tag](/tags/gitlab.html)
-- [infrastructure](#infrastructure) (2) — [page tag](/tags/infrastructure.html)
+- [installation](#installation) (2) — [page tag](/tags/installation.html)
 - [llm](#llm) (2) — [page tag](/tags/llm.html)
 - [médias](#medias) (2) — [page tag](/tags/medias.html)
 - [ollama](#ollama) (2) — [page tag](/tags/ollama.html)
@@ -33,7 +34,6 @@ Cette page est générée automatiquement.
 - [ec2](#ec2) (1) — [page tag](/tags/ec2.html)
 - [fichiers](#fichiers) (1) — [page tag](/tags/fichiers.html)
 - [git](#git) (1) — [page tag](/tags/git.html)
-- [installation](#installation) (1) — [page tag](/tags/installation.html)
 - [intégrations](#integrations) (1) — [page tag](/tags/integrations.html)
 - [jellyfin](#jellyfin) (1) — [page tag](/tags/jellyfin.html)
 - [logiciels](#logiciels) (1) — [page tag](/tags/logiciels.html)
@@ -42,6 +42,7 @@ Cette page est générée automatiquement.
 - [qbittorrent](#qbittorrent) (1) — [page tag](/tags/qbittorrent.html)
 - [regex](#regex) (1) — [page tag](/tags/regex.html)
 - [scripts](#scripts) (1) — [page tag](/tags/scripts.html)
+- [vm](#vm) (1) — [page tag](/tags/vm.html)
 - [windows](#windows) (1) — [page tag](/tags/windows.html)
 - [yaml](#yaml) (1) — [page tag](/tags/yaml.html)
 - [youtube](#youtube) (1) — [page tag](/tags/youtube.html)
@@ -52,8 +53,8 @@ Cette page est générée automatiquement.
 
 ### Conteneurs / Docker
 - [docker](#docker) (5) — [page tag](/tags/docker.html)
+- [lxc](#lxc) (2) — [page tag](/tags/lxc.html)
 - [docker-compose](#docker-compose) (1) — [page tag](/tags/docker-compose.html)
-- [lxc](#lxc) (1) — [page tag](/tags/lxc.html)
 
 ### Domotique
 - [domotique](#domotique) (4) — [page tag](/tags/domotique.html)
@@ -72,7 +73,7 @@ Cette page est générée automatiquement.
 
 ### Infrastructure
 - [linux](#linux) (10) — [page tag](/tags/linux.html)
-- [virtualisation](#virtualisation) (5) — [page tag](/tags/virtualisation.html)
+- [virtualisation](#virtualisation) (6) — [page tag](/tags/virtualisation.html)
 - [proxmox](#proxmox) (3) — [page tag](/tags/proxmox.html)
 - [shell](#shell) (3) — [page tag](/tags/shell.html)
 - [debian](#debian) (2) — [page tag](/tags/debian.html)
@@ -80,10 +81,11 @@ Cette page est générée automatiquement.
 - [systemd](#systemd) (1) — [page tag](/tags/systemd.html)
 
 ### Réseau
-- [réseau](#reseau) (7) — [page tag](/tags/reseau.html)
+- [réseau](#reseau) (8) — [page tag](/tags/reseau.html)
 - [aws](#aws) (2) — [page tag](/tags/aws.html)
 - [dns](#dns) (1) — [page tag](/tags/dns.html)
 - [load-balancer](#load-balancer) (1) — [page tag](/tags/load-balancer.html)
+- [network](#network) (1) — [page tag](/tags/network.html)
 - [reverse-proxy](#reverse-proxy) (1) — [page tag](/tags/reverse-proxy.html)
 - [vlan](#vlan) (1) — [page tag](/tags/vlan.html)
 
@@ -247,7 +249,7 @@ Cette page est générée automatiquement.
 
 <article class="tag-card">
   <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
-  <p class="card-excerpt"></p>
+  <p class="card-excerpt">La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN</p>
 </article>
 
 <article class="tag-card">
@@ -304,6 +306,33 @@ Cette page est générée automatiquement.
 
 <article class="tag-card">
   <h4 class="card-title"><a href="outils/youtube.md">Ressources vidéo YouTube</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="infrastructure" class="tag-section">
+<h3 class="tag-heading">infrastructure <small>(4)</small> — <a href="/tags/infrastructure.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
+  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/intro.md">Réseau : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
+  <p class="card-excerpt">mermaid</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/intro.md">Virtualisation : définitions et méthode</a></h4>
   <p class="card-excerpt"></p>
 </article>
 
@@ -371,8 +400,8 @@ Cette page est générée automatiquement.
 </div>
 </section>
 
-<section id="infrastructure" class="tag-section">
-<h3 class="tag-heading">infrastructure <small>(2)</small> — <a href="/tags/infrastructure.html">page tag</a></h3>
+<section id="installation" class="tag-section">
+<h3 class="tag-heading">installation <small>(2)</small> — <a href="/tags/installation.html">page tag</a></h3>
 <div class="tag-cards">
 
 <article class="tag-card">
@@ -381,8 +410,8 @@ Cette page est générée automatiquement.
 </article>
 
 <article class="tag-card">
-  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
-  <p class="card-excerpt">mermaid</p>
+  <h4 class="card-title"><a href="reseau/intro.md">Réseau : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
 </article>
 
 </div>
@@ -569,18 +598,6 @@ Cette page est générée automatiquement.
 </div>
 </section>
 
-<section id="installation" class="tag-section">
-<h3 class="tag-heading">installation <small>(1)</small> — <a href="/tags/installation.html">page tag</a></h3>
-<div class="tag-cards">
-
-<article class="tag-card">
-  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
-  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
-</article>
-
-</div>
-</section>
-
 <section id="integrations" class="tag-section">
 <h3 class="tag-heading">intégrations <small>(1)</small> — <a href="/tags/integrations.html">page tag</a></h3>
 <div class="tag-cards">
@@ -672,6 +689,18 @@ Cette page est générée automatiquement.
 <article class="tag-card">
   <h4 class="card-title"><a href="outils/links.md">Outils Windows ressources</a></h4>
   <p class="card-excerpt">Le script de massgrave permet d'activer une licence Windows ou Office.</p>
+</article>
+
+</div>
+</section>
+
+<section id="vm" class="tag-section">
+<h3 class="tag-heading">vm <small>(1)</small> — <a href="/tags/vm.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/intro.md">Virtualisation : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
 </article>
 
 </div>
@@ -775,6 +804,23 @@ Cette page est générée automatiquement.
 </div>
 </section>
 
+<section id="lxc" class="tag-section">
+<h3 class="tag-heading">lxc <small>(2)</small> — <a href="/tags/lxc.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
+  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/intro.md">Virtualisation : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
 <section id="docker-compose" class="tag-section">
 <h3 class="tag-heading">docker-compose <small>(1)</small> — <a href="/tags/docker-compose.html">page tag</a></h3>
 <div class="tag-cards">
@@ -782,18 +828,6 @@ Cette page est générée automatiquement.
 <article class="tag-card">
   <h4 class="card-title"><a href="outils/template.md">Template docker-compose</a></h4>
   <p class="card-excerpt">!!! warning "L'indentation est STRICTE"</p>
-</article>
-
-</div>
-</section>
-
-<section id="lxc" class="tag-section">
-<h3 class="tag-heading">lxc <small>(1)</small> — <a href="/tags/lxc.html">page tag</a></h3>
-<div class="tag-cards">
-
-<article class="tag-card">
-  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
-  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
 </article>
 
 </div>
@@ -1073,7 +1107,7 @@ Cette page est générée automatiquement.
 </section>
 
 <section id="virtualisation" class="tag-section">
-<h3 class="tag-heading">virtualisation <small>(5)</small> — <a href="/tags/virtualisation.html">page tag</a></h3>
+<h3 class="tag-heading">virtualisation <small>(6)</small> — <a href="/tags/virtualisation.html">page tag</a></h3>
 <div class="tag-cards">
 
 <article class="tag-card">
@@ -1099,6 +1133,11 @@ Cette page est générée automatiquement.
 <article class="tag-card">
   <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
   <p class="card-excerpt">mermaid</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/intro.md">Virtualisation : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
 </article>
 
 </div>
@@ -1193,7 +1232,7 @@ Cette page est générée automatiquement.
 ### Réseau
 
 <section id="reseau" class="tag-section">
-<h3 class="tag-heading">réseau <small>(7)</small> — <a href="/tags/reseau.html">page tag</a></h3>
+<h3 class="tag-heading">réseau <small>(8)</small> — <a href="/tags/reseau.html">page tag</a></h3>
 <div class="tag-cards">
 
 <article class="tag-card">
@@ -1203,7 +1242,7 @@ Cette page est générée automatiquement.
 
 <article class="tag-card">
   <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
-  <p class="card-excerpt"></p>
+  <p class="card-excerpt">La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN</p>
 </article>
 
 <article class="tag-card">
@@ -1219,6 +1258,11 @@ Cette page est générée automatiquement.
 <article class="tag-card">
   <h4 class="card-title"><a href="reseau/stepca.md">PKI autorité certification locale</a></h4>
   <p class="card-excerpt">Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/intro.md">Réseau : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
 </article>
 
 <article class="tag-card">
@@ -1275,6 +1319,18 @@ Cette page est générée automatiquement.
 </div>
 </section>
 
+<section id="network" class="tag-section">
+<h3 class="tag-heading">network <small>(1)</small> — <a href="/tags/network.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/intro.md">Réseau : définitions et méthode</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
 <section id="reverse-proxy" class="tag-section">
 <h3 class="tag-heading">reverse-proxy <small>(1)</small> — <a href="/tags/reverse-proxy.html">page tag</a></h3>
 <div class="tag-cards">
@@ -1293,7 +1349,7 @@ Cette page est générée automatiquement.
 
 <article class="tag-card">
   <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
-  <p class="card-excerpt"></p>
+  <p class="card-excerpt">La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN</p>
 </article>
 
 </div>
@@ -1308,7 +1364,7 @@ Cette page est générée automatiquement.
 
 <article class="tag-card">
   <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
-  <p class="card-excerpt"></p>
+  <p class="card-excerpt">La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN</p>
 </article>
 
 <article class="tag-card">

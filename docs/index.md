@@ -27,7 +27,7 @@ Parce qu'on peut adapter et vérifier les solutions opensources, elles sont souv
 
 Cette documentation, mes sites et la plupart de mes projets sont rédigés et bâtis depuis mon ordinateur fixe.
 
-- Système d'exploitation : [Debian GNU/Linux 13 *trixie*](https://www.debian.org/download.fr.html)
+- Système d'exploitation : [OpenSuse *Tumbleweed/Slowroll*](https://get.opensuse.org/tumbleweed/)
 - Environnement graphique : [Hyprland](https://hypr.land/) + [ROFI](https://github.com/davatorium/rofi)
 - Environnement de dev : [VSCodium](https://vscodium.com/)
 

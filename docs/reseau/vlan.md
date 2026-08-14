@@ -1,10 +1,500 @@
 ---
-title: "Configuration VLANs réseau"
-description: "Segmentation VLAN et isolation réseau homelab"
-last_modified: 2026-03-26
+title: Configuration VLANs réseau
+description: Segmentation VLAN et isolation réseau homelab
 tags:
   - réseau
   - vlan
   - sécurité
   - homelab
 ---
+
+# Configuration VLANs réseau
+
+La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN
+porte un rôle unique, et **tout flux inter-VLAN est interdit par défaut** : seules
+les autorisations explicitement déclarées sur le cœur de réseau sont routées.
+
+Le schéma ci-dessous est rendu en SVG dans la page (pas d'image) : il suit le thème
+clair/sombre du site, reste net à tout zoom et se sélectionne au texte.
+
+## Vue d'ensemble
+
+<style>
+/* ── Schéma de segmentation VLAN — jetons de couleur ───────────────────────
+   Les rôles paper / ink / muted sont branchés sur les variables Zensical,
+   donc le rendu suit automatiquement la palette et le basculement de thème.
+   Pour réutiliser ce bloc ailleurs, déplacez-le dans docs/assets/extra.css. */
+
+.vlan-map {
+  --dg-paper:   var(--md-default-bg-color);
+  --dg-ink:     var(--md-default-fg-color);
+  --dg-muted:   var(--md-default-fg-color--light);
+  --dg-surface: #ffffff;
+  --dg-accent:  #c0544c;   /* point de contrôle / flux privilégié */
+  --dg-link:    #3a7ca5;   /* flux autorisé et filtré */
+  --dg-obs:     #5a7d9a;   /* supervision   */
+  --dg-cold:    #8c6d3f;   /* sauvegarde    */
+  --dg-risk:    #b85450;   /* zone à risque */
+
+  margin: 1.2rem 0 1.6rem;
+  overflow-x: auto;
+}
+
+[data-md-color-scheme="slate"] .vlan-map {
+  --dg-surface: rgba(255, 255, 255, 0.05);
+  --dg-accent:  #e08c84;
+  --dg-link:    #79b0d4;
+  --dg-obs:     #8fb0c9;
+  --dg-cold:    #c0a173;
+  --dg-risk:    #d97a78;
+}
+
+.vlan-map svg {
+  display: block;
+  width: 100%;
+  min-width: 880px;   /* défilement horizontal sur mobile plutôt qu'illisible */
+  height: auto;
+  font-family: var(--md-text-font-family, sans-serif);
+}
+
+/* Ossature ---------------------------------------------------------------- */
+.vlan-map .bg      { fill: var(--dg-paper); }
+.vlan-map .zone    { fill: var(--dg-ink); fill-opacity: .022;
+                     stroke: var(--dg-ink); stroke-opacity: .12; stroke-width: .8; }
+.vlan-map .mask    { fill: var(--dg-paper); }
+.vlan-map .hair    { stroke: var(--dg-ink); stroke-opacity: .12; stroke-width: .8; }
+
+.vlan-map .eyebrow { fill: var(--dg-muted); font-size: 10px; letter-spacing: .14em;
+                     font-family: var(--md-code-font-family, monospace); }
+.vlan-map .h1      { fill: var(--dg-ink); font-size: 19px; font-weight: 700; }
+.vlan-map .h2      { fill: var(--dg-muted); font-size: 12px; }
+.vlan-map .zlbl    { fill: var(--dg-ink); fill-opacity: .45; font-size: 10px;
+                     letter-spacing: .14em; font-weight: 600;
+                     font-family: var(--md-code-font-family, monospace); }
+
+/* Composants -------------------------------------------------------------- */
+.vlan-map .node > rect { fill: var(--dg-surface);
+                         stroke: var(--dg-ink); stroke-opacity: .5; stroke-width: 1; }
+.vlan-map .nm  { fill: var(--dg-ink); font-size: 12px; font-weight: 600; }
+.vlan-map .sb  { fill: var(--dg-muted); font-size: 10px; }
+.vlan-map .ico { color: var(--dg-ink); opacity: .72; }
+
+.vlan-map .node--focal > rect { fill: var(--dg-accent); fill-opacity: .07;
+                                stroke: var(--dg-accent); stroke-opacity: 1; stroke-width: 1.4; }
+.vlan-map .node--focal .sb    { fill: var(--dg-accent); }
+.vlan-map .node--focal .ico   { color: var(--dg-accent); opacity: 1; }
+
+.vlan-map .node--ext > rect { stroke: var(--dg-muted); stroke-opacity: .8;
+                              stroke-dasharray: 4 3; }
+.vlan-map .node--ext .ico   { color: var(--dg-muted); }
+
+.vlan-map .node--custom > rect { fill: var(--dg-c); fill-opacity: .06;
+                                 stroke: var(--dg-c); stroke-opacity: .45; stroke-width: 1; }
+.vlan-map .node--custom .nm    { fill: var(--dg-c); }
+.vlan-map .tint-obs  { --dg-c: var(--dg-obs);  }
+.vlan-map .tint-cold { --dg-c: var(--dg-cold); }
+.vlan-map .tint-risk { --dg-c: var(--dg-risk); }
+
+/* Connecteurs ------------------------------------------------------------- */
+.vlan-map .edge          { fill: none; }
+.vlan-map .e-neutral     { stroke: var(--dg-muted);  stroke-width: 1;   }
+.vlan-map .e-link        { stroke: var(--dg-link);   stroke-width: 1.2; }
+.vlan-map .e-accent      { stroke: var(--dg-accent); stroke-width: 1.4; }
+.vlan-map .dash          { stroke-dasharray: 4 3; }
+.vlan-map .lbl           { font-size: 9px; font-weight: 600; letter-spacing: .08em;
+                           font-family: var(--md-code-font-family, monospace); }
+.vlan-map .l-neutral     { fill: var(--dg-muted);  }
+.vlan-map .l-link        { fill: var(--dg-link);   }
+.vlan-map .l-accent      { fill: var(--dg-accent); }
+.vlan-map .mk-neutral    { fill: var(--dg-muted);  }
+.vlan-map .mk-link       { fill: var(--dg-link);   }
+.vlan-map .mk-accent     { fill: var(--dg-accent); }
+
+/* Bandeaux transverses et légende ---------------------------------------- */
+.vlan-map .fbar  { fill: var(--dg-ink); fill-opacity: .03;
+                   stroke: var(--dg-ink); stroke-opacity: .2; stroke-width: .8; }
+.vlan-map .fnm   { fill: var(--dg-ink); font-size: 13px; font-weight: 600; }
+.vlan-map .fsb   { fill: var(--dg-muted); font-size: 11px; }
+.vlan-map .lgtxt { fill: var(--dg-muted); font-size: 10px; }
+.vlan-map .sw-focal { fill: var(--dg-accent); fill-opacity: .12;
+                      stroke: var(--dg-accent); stroke-width: 1.4; }
+.vlan-map .sw-ext   { fill: var(--dg-surface);
+                      stroke: var(--dg-muted); stroke-width: 1; stroke-dasharray: 4 3; }
+</style>
+
+<div class="vlan-map">
+<svg viewBox="0 0 1152 696" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-labelledby="vlanmap-t vlanmap-d">
+<title id="vlanmap-t">Segmentation VLAN de l'infrastructure</title>
+<desc id="vlanmap-d">Quatre zones de confiance : périmètre (Internet, pare-feu, DMZ VLAN 5),
+administration (cœur de réseau L3, VLAN 20 bastion), charges de travail
+(VLAN 40 forge, VLAN 50 services, VLAN 60 Kubernetes, VLAN 70 IoT) et socle
+(VLAN 10 infra, VLAN 30 stockage, VLAN 80 sauvegarde, VLAN 90 logs).</desc>
+
+<defs>
+  <marker id="ar-n" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" class="mk-neutral"/></marker>
+  <marker id="ar-l" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" class="mk-link"/></marker>
+  <marker id="ar-a" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 8 3, 0 6" class="mk-accent"/></marker>
+
+  <g id="i-globe" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><ellipse cx="12" cy="12" rx="4" ry="9"/>
+  </g>
+  <g id="i-shield" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M12 3l7.5 3v6.2c0 4.3-3.1 7.8-7.5 9.3-4.4-1.5-7.5-5-7.5-9.3V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>
+  </g>
+  <g id="i-cloud" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M7 18.5a4.2 4.2 0 0 1 .3-8.4 5.6 5.6 0 0 1 10.6 1.4 3.6 3.6 0 0 1-.4 7z"/>
+  </g>
+  <g id="i-switch" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <rect x="3" y="12.5" width="18" height="7.5" rx="1.8"/>
+    <path d="M6.5 16.2h.01M9.5 16.2h.01M12.5 16.2h.01"/>
+    <path d="M8.5 9V4.5m0 0L6 7m2.5-2.5L11 7M15.5 4.5V9m0 0L13 6.5M15.5 9L18 6.5"/>
+  </g>
+  <g id="i-term" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7.5 9.5l3 2.5-3 2.5M13 15h4"/>
+  </g>
+  <g id="i-git" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="6.5" cy="5.5" r="2.4"/><circle cx="6.5" cy="18.5" r="2.4"/><circle cx="17.5" cy="9" r="2.4"/>
+    <path d="M6.5 7.9v8.2M17.5 11.4c0 3.3-3.7 3.3-6.2 4.4"/>
+  </g>
+  <g id="i-apps" fill="none" stroke="currentColor" stroke-width="1.6">
+    <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.6"/><rect x="13" y="3.5" width="7.5" height="7.5" rx="1.6"/>
+    <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.6"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.6"/>
+  </g>
+  <g id="i-hex" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M12 2.8l8 4.6v9.2l-8 4.6-8-4.6V7.4z"/><path d="M12 8l4.2 2.4v4.8L12 17.6l-4.2-2.4v-4.8z"/>
+  </g>
+  <g id="i-chip" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <rect x="7" y="7" width="10" height="10" rx="1.6"/>
+    <path d="M10 3.2V7M14 3.2V7M10 17v3.8M14 17v3.8M3.2 10H7M3.2 14H7M17 10h3.8M17 14h3.8"/>
+  </g>
+  <g id="i-server" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <rect x="3" y="3.8" width="18" height="7" rx="1.6"/><rect x="3" y="13.2" width="18" height="7" rx="1.6"/>
+    <path d="M6.8 7.3h.01M6.8 16.7h.01"/>
+  </g>
+  <g id="i-db" fill="none" stroke="currentColor" stroke-width="1.6">
+    <ellipse cx="12" cy="5.8" rx="8" ry="3"/>
+    <path d="M4 5.8v12.4c0 1.7 3.6 3 8 3s8-1.3 8-3V5.8"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>
+  </g>
+  <g id="i-archive" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="4" width="18" height="5" rx="1.3"/><path d="M5.2 9v9a2 2 0 0 0 2 2h9.6a2 2 0 0 0 2-2V9"/><path d="M10 13.2h4"/>
+  </g>
+  <g id="i-chart" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7.5 15.8v-3.4M12 15.8v-6.2M16.5 15.8v-4.4"/>
+  </g>
+  <g id="i-check" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.5 6.8l2 2L9.5 5M3.5 16.8l2 2 4-3.8M13 7h7.5M13 17h7.5"/>
+  </g>
+</defs>
+
+<rect class="bg" x="0" y="0" width="1152" height="696"/>
+
+<text class="eyebrow" x="16" y="24">ANSSI · ZONES DE CONFIANCE</text>
+<text class="h1" x="16" y="46">Infrastructure — segmentation par VLAN</text>
+<text class="h2" x="16" y="64">Périmètre, administration, charges de travail et socle de données · interdiction par défaut</text>
+
+<!-- ── Zones ──────────────────────────────────────────────────────────── -->
+<rect class="zone" x="16"  y="88" width="260" height="400" rx="8"/>
+<rect class="mask" x="36"  y="80" width="82"  height="16"/>
+<text class="zlbl" x="40"  y="92">PÉRIMÈTRE</text>
+
+<rect class="zone" x="296" y="88" width="240" height="400" rx="8"/>
+<rect class="mask" x="316" y="80" width="122" height="16"/>
+<text class="zlbl" x="320" y="92">ADMINISTRATION</text>
+
+<rect class="zone" x="556" y="88" width="280" height="400" rx="8"/>
+<rect class="mask" x="576" y="80" width="70"  height="16"/>
+<text class="zlbl" x="580" y="92">CHARGES</text>
+
+<rect class="zone" x="856" y="88" width="280" height="400" rx="8"/>
+<rect class="mask" x="876" y="80" width="56"  height="16"/>
+<text class="zlbl" x="880" y="92">SOCLE</text>
+
+<!-- ── Connecteurs (avant les composants : les boîtes masquent les bouts) ── -->
+<g class="edge">
+  <line class="e-accent dash" x1="146" y1="176" x2="146" y2="208" marker-end="url(#ar-a)"/>
+  <line class="e-accent"      x1="146" y1="268" x2="146" y2="300" marker-end="url(#ar-a)"/>
+  <path class="e-accent" d="M 256,238 H 292 Q 300,238 300,230 V 154 Q 300,146 308,146 H 316" marker-end="url(#ar-a)"/>
+  <line class="e-link"   x1="256" y1="330" x2="576" y2="330" marker-end="url(#ar-l)"/>
+  <line class="e-link"   x1="516" y1="138" x2="576" y2="138" marker-end="url(#ar-l)"/>
+  <path class="e-accent" d="M 516,238 H 556 Q 564,238 564,230 V 162 Q 564,154 572,154 H 576" marker-end="url(#ar-a)"/>
+  <line class="e-link"   x1="696" y1="176" x2="696" y2="208" marker-end="url(#ar-l)"/>
+  <line class="e-link"    x1="816" y1="146" x2="876" y2="146" marker-end="url(#ar-l)"/>
+  <line class="e-link"    x1="816" y1="230" x2="876" y2="230" marker-end="url(#ar-l)"/>
+  <path class="e-neutral" d="M 816,330 H 852 Q 860,330 860,322 V 254 Q 860,246 868,246 H 876" marker-end="url(#ar-n)"/>
+  <line class="e-neutral" x1="996" y1="268" x2="996" y2="300" marker-end="url(#ar-n)"/>
+  <line class="e-neutral dash" x1="256" y1="422" x2="876" y2="422" marker-end="url(#ar-n)"/>
+</g>
+
+<!-- ── Étiquettes de connecteurs (au départ du lien, décalées du trait) ── -->
+<g class="lbl" text-anchor="middle">
+  <rect class="mask" x="152"  y="181" width="32" height="18" rx="3"/><text class="l-accent"  x="168"  y="193">WAN</text>
+  <rect class="mask" x="152"  y="273" width="46" height="18" rx="3"/><text class="l-accent"  x="175"  y="285">HTTPS</text>
+  <rect class="mask" x="262"  y="209" width="50" height="18" rx="3"/><text class="l-accent"  x="287"  y="221">FILTRÉ</text>
+  <rect class="mask" x="262"  y="307" width="57" height="18" rx="3"/><text class="l-link"    x="290"  y="319">INGRESS</text>
+  <rect class="mask" x="522"  y="115" width="32" height="18" rx="3"/><text class="l-link"    x="538"  y="127">ACL</text>
+  <rect class="mask" x="522"  y="215" width="32" height="18" rx="3"/><text class="l-accent"  x="538"  y="227">SSH</text>
+  <rect class="mask" x="702"  y="181" width="52" height="18" rx="3"/><text class="l-link"    x="728"  y="193">DEPLOY</text>
+  <rect class="mask" x="822"  y="123" width="32" height="18" rx="3"/><text class="l-link"    x="838"  y="135">API</text>
+  <rect class="mask" x="822"  y="207" width="50" height="18" rx="3"/><text class="l-link"    x="847"  y="219">NFS/S3</text>
+  <rect class="mask" x="822"  y="307" width="26" height="18" rx="3"/><text class="l-neutral" x="835"  y="319">PV</text>
+  <rect class="mask" x="1002" y="273" width="50" height="18" rx="3"/><text class="l-neutral" x="1027" y="285">RESTIC</text>
+  <rect class="mask" x="262"  y="399" width="52" height="18" rx="3"/><text class="l-neutral" x="288"  y="411">SYSLOG</text>
+</g>
+
+<!-- ── Zone 1 · PÉRIMÈTRE ─────────────────────────────────────────────── -->
+<g class="node node--ext">
+  <rect x="36" y="116" width="220" height="60" rx="6"/>
+  <g class="ico" transform="translate(48,134)"><use href="#i-globe"/></g>
+  <text class="nm" x="80" y="144">Internet</text>
+  <text class="sb" x="80" y="160">WAN · zone non fiable</text>
+</g>
+<g class="node node--focal">
+  <rect x="36" y="208" width="220" height="60" rx="6"/>
+  <g class="ico" transform="translate(48,226)"><use href="#i-shield"/></g>
+  <text class="nm" x="80" y="236">FW-Périmètre</text>
+  <text class="sb" x="80" y="252">HA · NAT · IDS/IPS · anti-DDoS</text>
+</g>
+<g class="node">
+  <rect x="36" y="300" width="220" height="60" rx="6"/>
+  <g class="ico" transform="translate(48,318)"><use href="#i-cloud"/></g>
+  <text class="nm" x="80" y="328">VLAN 5 — DMZ</text>
+  <text class="sb" x="80" y="344">Reverse proxy · exposition web</text>
+</g>
+
+<g class="node node--custom tint-risk">
+  <rect x="36" y="392" width="220" height="60" rx="6"/>
+  <g class="ico" transform="translate(48,410)"><use href="#i-chip"/></g>
+  <text class="nm" x="80" y="420">VLAN 70 — IoT</text>
+  <text class="sb" x="80" y="436">Home Assistant · caméras · TV</text>
+</g>
+
+<!-- ── Zone 2 · ADMINISTRATION ────────────────────────────────────────── -->
+<g class="node">
+  <rect x="316" y="116" width="200" height="60" rx="6"/>
+  <g class="ico" transform="translate(328,134)"><use href="#i-switch"/></g>
+  <text class="nm" x="360" y="144">Cœur de réseau</text>
+  <text class="sb" x="360" y="160">L3 · ACL · QoS · DHCP relay</text>
+</g>
+<g class="node node--focal">
+  <rect x="316" y="208" width="200" height="60" rx="6"/>
+  <g class="ico" transform="translate(328,226)"><use href="#i-term"/></g>
+  <text class="nm" x="360" y="236">VLAN 20 — Admin</text>
+  <text class="sb" x="360" y="252">Bastion · Ansible · SSH/WinRM</text>
+</g>
+
+<!-- ── Zone 3 · CHARGES DE TRAVAIL ────────────────────────────────────── -->
+<g class="node">
+  <rect x="576" y="116" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(588,134)"><use href="#i-git"/></g>
+  <text class="nm" x="620" y="144">VLAN 40 — Forge</text>
+  <text class="sb" x="620" y="160">Git · runners CI · registry</text>
+</g>
+<g class="node">
+  <rect x="576" y="208" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(588,226)"><use href="#i-apps"/></g>
+  <text class="nm" x="620" y="236">VLAN 50 — Services</text>
+  <text class="sb" x="620" y="252">Authentik · Jellyfin · Immich</text>
+</g>
+<g class="node">
+  <rect x="576" y="300" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(588,318)"><use href="#i-hex"/></g>
+  <text class="nm" x="620" y="328">VLAN 60 — Kube</text>
+  <text class="sb" x="620" y="344">K8s · MetalLB · Ingress</text>
+</g>
+
+<!-- ── Zone 4 · SOCLE ─────────────────────────────────────────────────── -->
+<g class="node">
+  <rect x="876" y="116" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(888,134)"><use href="#i-server"/></g>
+  <text class="nm" x="920" y="144">VLAN 10 — Infra</text>
+  <text class="sb" x="920" y="160">Proxmox/KVM · DNS interne</text>
+</g>
+<g class="node">
+  <rect x="876" y="208" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(888,226)"><use href="#i-db"/></g>
+  <text class="nm" x="920" y="236">VLAN 30 — Stockage</text>
+  <text class="sb" x="920" y="252">Ceph · SMB/NFS · OpenMediaVault</text>
+</g>
+<g class="node node--custom tint-cold">
+  <rect x="876" y="300" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(888,318)"><use href="#i-archive"/></g>
+  <text class="nm" x="920" y="328">VLAN 80 — Sauvegarde</text>
+  <text class="sb" x="920" y="344">Restic · MinIO · dépôts immuables</text>
+</g>
+<g class="node node--custom tint-obs">
+  <rect x="876" y="392" width="240" height="60" rx="6"/>
+  <g class="ico" transform="translate(888,410)"><use href="#i-chart"/></g>
+  <text class="nm" x="920" y="420">VLAN 90 — Logs</text>
+  <text class="sb" x="920" y="436">SIEM · Prometheus · Grafana</text>
+</g>
+
+<!-- ── Bandeaux transverses ───────────────────────────────────────────── -->
+<rect class="fbar" x="16" y="512" width="1120" height="56" rx="8"/>
+<g class="ico" transform="translate(36,528)"><use href="#i-shield"/></g>
+<text class="fnm" x="72" y="536">Points de contrôle</text>
+<text class="fsb" x="72" y="552">Pare-feu périmétrique · ACL inter-VLAN sur le cœur · bastion d'administration · TLS/SSH sur les flux sensibles</text>
+
+<rect class="fbar" x="16" y="576" width="1120" height="56" rx="8"/>
+<g class="ico" transform="translate(36,592)"><use href="#i-check"/></g>
+<text class="fnm" x="72" y="600">Bonnes pratiques ANSSI</text>
+<text class="fsb" x="72" y="616">Deny all par défaut · moindre privilège · sauvegardes isolées et immuables · journalisation centralisée · revues de règles régulières</text>
+
+<!-- ── Légende ────────────────────────────────────────────────────────── -->
+<line class="hair" x1="16" y1="648" x2="1136" y2="648"/>
+<g class="lgtxt">
+  <rect class="sw-focal" x="16"  y="661" width="20" height="14" rx="3"/><text x="42"  y="672">point de contrôle</text>
+  <rect class="sw-ext"   x="152" y="661" width="20" height="14" rx="3"/><text x="178" y="672">hors périmètre</text>
+  <line class="e-accent"  x1="273" y1="668" x2="293" y2="668" marker-end="url(#ar-a)"/><text x="299" y="672">flux privilégié (admin)</text>
+  <line class="e-link"    x1="437" y1="668" x2="457" y2="668" marker-end="url(#ar-l)"/><text x="463" y="672">flux autorisé (filtré)</text>
+  <line class="e-neutral" x1="597" y1="668" x2="617" y2="668" marker-end="url(#ar-n)"/><text x="623" y="672">flux interne</text>
+  <line class="e-neutral dash" x1="709" y1="668" x2="729" y2="668" marker-end="url(#ar-n)"/><text x="735" y="672">flux limité / restreint</text>
+</g>
+</svg>
+</div>
+
+!!! tip "Lecture du schéma"
+
+    Les flèches ne représentent que les flux **structurants**. La matrice
+    complète autorisation par autorisation est plus bas, et c'est elle qui fait
+    foi pour la configuration des ACL.
+
+## Plan d'adressage
+
+| VLAN | Sous-réseau | Rôle | Contenu | Criticité |
+| --- | --- | --- | --- | --- |
+| 5 | `10.10.5.0/24` | DMZ publique | Reverse proxy (Nginx/HAProxy), services exposés | Élevée |
+| 10 | `10.10.10.0/24` | Infrastructure | Proxmox/KVM, contrôleurs, DNS autoritaire interne | **Critique** |
+| 20 | `10.10.20.0/24` | Administration | Bastion, postes d'admin, Ansible | **Critique** |
+| 30 | `10.10.30.0/24` | Stockage | OpenMediaVault, Ceph, partages SMB/NFS | **Critique** |
+| 40 | `10.10.40.0/24` | Forge / DevOps | Git, runners CI, registry, artefacts | Moyenne |
+| 50 | `10.10.50.0/24` | Services | Authentik, Jellyfin, Immich, bases applicatives | Moyenne |
+| 60 | `10.10.60.0/24` | Conteneurs | Cluster Kubernetes, MetalLB, Ingress | Moyenne |
+| 70 | `10.10.70.0/24` | IoT | Home Assistant, caméras, imprimantes, TV | Faible (non fiable) |
+| 80 | `10.10.80.0/24` | Sauvegarde | Restic, MinIO, dépôts immuables, réplication | **Critique** |
+| 90 | `10.10.90.0/24` | Logs / supervision | SIEM, Syslog, Prometheus, Grafana, Alertmanager | Élevée |
+
+## Politique de communication
+
+Ligne = source, colonne = destination. Tout ce qui n'est pas explicitement
+autorisé est refusé par la règle finale `deny all`.
+
+| Source \ Destination | INT | V5 | V10 | V20 | V30 | V40 | V50 | V60 | V70 | V80 | V90 |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| **Internet** | — | ◐ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ |
+| **V5 DMZ** | ✔ | — | ✘ | ✘ | ✘ | ✘ | ◐ | ◐ | ✘ | ✘ | ✔ |
+| **V10 Infra** | ◐ | ✘ | — | ✘ | ✔ | ✘ | ✘ | ✘ | ✘ | ✔ | ✔ |
+| **V20 Admin** | ◐ | ✔ | ✔ | — | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| **V30 Stockage** | ✘ | ✘ | ✔ | ✘ | — | ✘ | ✘ | ✘ | ✘ | ✔ | ✔ |
+| **V40 Forge** | ◐ | ✘ | ◐ | ✘ | ✔ | — | ✘ | ◐ | ✘ | ✘ | ✔ |
+| **V50 Services** | ◐ | ✘ | ✘ | ✘ | ✔ | ✘ | — | ✘ | ✘ | ✘ | ✔ |
+| **V60 Kube** | ◐ | ✘ | ✘ | ✘ | ✔ | ✘ | ◐ | — | ✘ | ✘ | ✔ |
+| **V70 IoT** | ◐ | ✘ | ✘ | ✘ | ✘ | ✘ | ◐ | ✘ | — | ✘ | ✔ |
+| **V80 Backup** | ✘ | ✘ | ✔ | ✘ | ✔ | ✘ | ✘ | ✘ | ✘ | — | ✔ |
+| **V90 Logs** | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | — |
+
+**✔** autorisé · **◐** limité ou contrôlé · **✘** interdit · **—** sans objet
+
+Détail des flux `◐` :
+
+- `Internet → V5` : uniquement 443 via le reverse proxy.
+- `V10 → Internet`, `V40 → Internet`, `V50 → Internet`, `V60 → Internet` : sortie 443 pour les mises à jour et paquets.
+- `V70 → Internet` : DNS, NTP et mises à jour firmware seulement.
+- `V40 → V10` : API et SSH restreints aux hôtes de déploiement.
+- `V70 → V50` : accès NVR / Home Assistant uniquement.
+- `V5 → V60` : entrée Ingress du cluster, terminaison TLS sur le reverse proxy.
+- `V20 → Internet` : sortie restreinte, poste d'admin non navigateur généraliste.
+
+!!! warning "VLAN 70 — IoT"
+
+    Les objets connectés sont traités comme une zone non fiable au même titre
+    qu'Internet : aucun accès aux VLAN critiques, pas de résolution DNS interne,
+    et journalisation systématique vers le VLAN 90.
+
+## Bonnes pratiques ANSSI appliquées
+
+- **Séparation stricte des rôles et des usages** — un VLAN, un usage, pas de service mutualisé entre zones de confiance.
+- **Interdiction par défaut** — la dernière règle de chaque ACL est `deny all`, les autorisations sont explicites et documentées.
+- **Moindre privilège** — seuls les ports et protocoles nécessaires sont ouverts, jamais des plages entières.
+- **Administration centralisée et tracée** — tout accès d'administration passe par le bastion du VLAN 20, en SSH ou WinRM.
+- **Sauvegardes isolées et immuables** — le VLAN 80 n'est joignable que depuis l'infra et le stockage, et les dépôts sont en append-only.
+- **Supervision et corrélation** — collecte Syslog et agents vers le VLAN 90, qui n'accepte aucune écriture depuis les autres zones hors flux de collecte.
+- **Revues régulières** — audit des règles, tests de cloisonnement et mise à jour de la documentation à chaque changement.
+
+## Paramètres du schéma
+
+??? note "Contrat d'entrée (`type-it-state`)"
+
+    Le SVG ci-dessus est généré à partir de ces paramètres. Modifier une valeur
+    ici et recalculer la géométrie suffit à faire évoluer le schéma.
+
+    ```yaml
+    title:    "Infrastructure — segmentation par VLAN"
+    subtitle: "Périmètre, administration, charges de travail et socle de données"
+    eyebrow:  "ANSSI · ZONES DE CONFIANCE"
+    orientation: horizontal
+
+    zones:
+      - name: "PÉRIMÈTRE"
+        components:
+          - { id: internet, name: "Internet",       sub: "WAN · zone non fiable",           icon: globe,  kind: external }
+          - { id: fw,       name: "FW-Périmètre",   sub: "HA · NAT · IDS/IPS · anti-DDoS",  icon: shield, kind: focal }
+          - { id: dmz,      name: "VLAN 5 — DMZ",   sub: "Reverse proxy · exposition web",  icon: cloud }
+          - { id: iot,      name: "VLAN 70 — IoT",  sub: "Home Assistant · caméras · TV",   icon: chip, color: "#b85450" }
+      - name: "ADMINISTRATION"
+        components:
+          - { id: core,  name: "Cœur de réseau",   sub: "L3 · ACL · QoS · DHCP relay",   icon: switch }
+          - { id: admin, name: "VLAN 20 — Admin",  sub: "Bastion · Ansible · SSH/WinRM", icon: terminal, kind: focal }
+      - name: "CHARGES"
+        components:
+          - { id: forge,    name: "VLAN 40 — Forge",    sub: "Git · runners CI · registry",   icon: git }
+          - { id: services, name: "VLAN 50 — Services", sub: "Authentik · Jellyfin · Immich", icon: apps }
+          - { id: kube,     name: "VLAN 60 — Kube",     sub: "K8s · MetalLB · Ingress",       icon: hexagon }
+      - name: "SOCLE"
+        components:
+          - { id: infra,    name: "VLAN 10 — Infra",      sub: "Proxmox/KVM · DNS interne",          icon: server }
+          - { id: stockage, name: "VLAN 30 — Stockage",   sub: "Ceph · SMB/NFS · OpenMediaVault",    icon: database }
+          - { id: backup,   name: "VLAN 80 — Sauvegarde", sub: "Restic · MinIO · dépôts immuables",  icon: archive, color: "#8c6d3f" }
+          - { id: logs,     name: "VLAN 90 — Logs",       sub: "SIEM · Prometheus · Grafana",        icon: chart,   color: "#5a7d9a" }
+
+    connectors:
+      - { from: internet, to: fw,       label: "WAN",     style: accent,  dashed: true }
+      - { from: fw,       to: dmz,      label: "HTTPS",   style: accent }
+      - { from: fw,       to: core,     label: "FILTRÉ",  style: accent }
+      - { from: dmz,      to: kube,     label: "INGRESS", style: link }
+      - { from: core,     to: forge,    label: "ACL",     style: link }
+      - { from: admin,    to: forge,    label: "SSH",     style: accent }
+      - { from: forge,    to: services, label: "DEPLOY",  style: link }
+      - { from: forge,    to: infra,    label: "API",     style: link }
+      - { from: services, to: stockage, label: "NFS/S3",  style: link }
+      - { from: kube,     to: stockage, label: "PV",      style: neutral }
+      - { from: stockage, to: backup,   label: "RESTIC",  style: neutral }
+      - { from: iot,      to: logs,     label: "SYSLOG",  style: neutral, dashed: true }
+
+    footer:
+      - { name: "Points de contrôle",      sub: "Pare-feu · ACL inter-VLAN · bastion · TLS/SSH", icon: shield }
+      - { name: "Bonnes pratiques ANSSI",  sub: "Deny all · moindre privilège · sauvegardes immuables · journalisation", icon: check }
+    ```
+
+    Géométrie : `viewBox = 1152 × 696`, `zone_y = 88`, `zone_h = 400`,
+    `comp_h = 60`, `comp_gap = 32`, `zone_gap = 20`, marges 16.
+    Largeurs de zones : 260 / 240 / 280 / 280. Composants par zone : 4 / 2 / 3 / 4,
+    soit 13 au total — sous le plafond de 16 fixé par le type.
+
+??? note "Déplacer les styles dans une feuille globale"
+
+    Si le schéma est réutilisé sur plusieurs pages, sortez le bloc `<style>`
+    vers `docs/assets/stylesheets/extra.css` et déclarez-le dans la
+    configuration Zensical :
+
+    ```toml
+    [project.theme]
+    extra_css = ["assets/stylesheets/extra.css"]
+    ```
+
+    Les couleurs `--dg-paper`, `--dg-ink` et `--dg-muted` sont branchées sur
+    `--md-default-bg-color`, `--md-default-fg-color` et
+    `--md-default-fg-color--light` : le schéma suit donc n'importe quelle
+    palette, y compris un schéma personnalisé. Seuls l'accent et les quatre
+    teintes métier ont une valeur explicite par mode, redéfinie sous
+    `[data-md-color-scheme="slate"]`.
