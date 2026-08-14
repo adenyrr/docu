@@ -1,7 +1,7 @@
 ---
 title: "Tag: opentofu"
 description: "Pages marquées "opentofu""
-last_modified: 2026-08-14T10:48:33.365699Z
+last_modified: 2026-08-14T10:50:50.626109Z
 ---
 
 # opentofu

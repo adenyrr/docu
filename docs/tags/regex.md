@@ -1,7 +1,7 @@
 ---
 title: "Tag: regex"
 description: "Pages marquées "regex""
-last_modified: 2026-08-14T10:48:33.366342Z
+last_modified: 2026-08-14T10:50:50.626552Z
 ---
 
 # regex

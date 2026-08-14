@@ -1,7 +1,7 @@
 ---
 title: "Tag: shell"
 description: "Pages marquées "shell""
-last_modified: 2026-08-14T10:48:33.364974Z
+last_modified: 2026-08-14T10:50:50.625215Z
 ---
 
 # shell

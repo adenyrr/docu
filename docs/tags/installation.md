@@ -1,7 +1,7 @@
 ---
 title: "Tag: installation"
 description: "Pages marquées "installation""
-last_modified: 2026-08-14T10:48:33.361062Z
+last_modified: 2026-08-14T10:50:50.623224Z
 ---
 
 # installation

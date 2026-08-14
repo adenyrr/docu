@@ -1,7 +1,7 @@
 ---
 title: "Tag: infrastructure"
 description: "Pages marquées "infrastructure""
-last_modified: 2026-08-14T10:48:33.361775Z
+last_modified: 2026-08-14T10:50:50.623697Z
 ---
 
 # infrastructure

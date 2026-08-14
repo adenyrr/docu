@@ -1,7 +1,7 @@
 ---
 title: "Tag: dns"
 description: "Pages marquées "dns""
-last_modified: 2026-08-14T10:48:33.371680Z
+last_modified: 2026-08-14T10:50:50.630479Z
 ---
 
 # dns

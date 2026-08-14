@@ -1,7 +1,7 @@
 ---
 title: "Tag: windows"
 description: "Pages marquées "windows""
-last_modified: 2026-08-14T10:48:33.369409Z
+last_modified: 2026-08-14T10:50:50.628424Z
 ---
 
 # windows

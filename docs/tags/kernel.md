@@ -1,7 +1,7 @@
 ---
 title: "Tag: kernel"
 description: "Pages marquées "kernel""
-last_modified: 2026-08-14T10:48:33.365235Z
+last_modified: 2026-08-14T10:50:50.625582Z
 ---
 
 # kernel

@@ -1,7 +1,7 @@
 ---
 title: "Tag: git"
 description: "Pages marquées "git""
-last_modified: 2026-08-14T10:48:33.371951Z
+last_modified: 2026-08-14T10:50:50.630720Z
 ---
 
 # git

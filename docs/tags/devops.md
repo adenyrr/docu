@@ -1,7 +1,7 @@
 ---
 title: "Tag: devops"
 description: "Pages marquées "devops""
-last_modified: 2026-08-14T10:48:33.372076Z
+last_modified: 2026-08-14T10:50:50.630853Z
 ---
 
 # devops

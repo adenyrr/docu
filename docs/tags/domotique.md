@@ -1,7 +1,7 @@
 ---
 title: "Tag: domotique"
 description: "Pages marquées "domotique""
-last_modified: 2026-08-14T10:48:33.367665Z
+last_modified: 2026-08-14T10:50:50.627193Z
 ---
 
 # domotique

@@ -1,7 +1,7 @@
 ---
 title: "Tag: base-de-données"
 description: "Pages marquées "base-de-données""
-last_modified: 2026-08-14T10:48:33.366959Z
+last_modified: 2026-08-14T10:50:50.626916Z
 ---
 
 # base-de-données

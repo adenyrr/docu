@@ -1,7 +1,7 @@
 ---
 title: "Tag: debian"
 description: "Pages marquées "debian""
-last_modified: 2026-08-14T10:48:33.373417Z
+last_modified: 2026-08-14T10:50:50.632720Z
 ---
 
 # debian

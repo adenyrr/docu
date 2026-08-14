@@ -1,7 +1,7 @@
 ---
 title: "Tag: cloud-init"
 description: "Pages marquées "cloud-init""
-last_modified: 2026-08-14T10:48:33.373042Z
+last_modified: 2026-08-14T10:50:50.631817Z
 ---
 
 # cloud-init

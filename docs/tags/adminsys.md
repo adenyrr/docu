@@ -1,7 +1,7 @@
 ---
 title: "Tag: adminsys"
 description: "Pages marquées "adminsys""
-last_modified: 2026-08-14T10:48:33.363638Z
+last_modified: 2026-08-14T10:50:50.624827Z
 ---
 
 # adminsys

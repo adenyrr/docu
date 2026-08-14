@@ -1,7 +1,7 @@
 ---
 title: "Tag: outils"
 description: "Pages marquées "outils""
-last_modified: 2026-08-14T10:48:33.366525Z
+last_modified: 2026-08-14T10:50:50.626665Z
 ---
 
 # outils

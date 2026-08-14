@@ -1,7 +1,7 @@
 ---
 title: "Tag: self-hosting"
 description: "Pages marquées "self-hosting""
-last_modified: 2026-08-14T10:48:33.361990Z
+last_modified: 2026-08-14T10:50:50.623889Z
 ---
 
 # self-hosting

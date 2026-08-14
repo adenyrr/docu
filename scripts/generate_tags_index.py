@@ -212,13 +212,20 @@ def render_main(tag_map):
         for t in sorted(categories[cat], key=lambda s: (-counts[s], s.lower())):
             slug = slugify(t)
             entries = tag_map[t]
-            lines.append(f"<details id=\"{slug}\">\n<summary>{t} ({len(entries)})</summary>\n\n")
+            # Section header with link to per-tag page
+            lines.append(f"<section id=\"{slug}\" class=\"tag-section\">\n<h3 class=\"tag-heading\">{t} <small>({len(entries)})</small> — <a href=\"/tags/{slug}.html\">page tag</a></h3>\n<div class=\"tag-cards\">\n")
             for e in sorted(entries, key=lambda x: x["title"].lower()):
                 excerpt = e.get("excerpt", "") or ""
                 if len(excerpt) > 180:
                     excerpt = excerpt[:177] + "..."
-                lines.append(f"- [{e['title']}]({e['path']}) — {excerpt}")
-            lines.append("\n</details>\n")
+                # card markup
+                lines.append(
+                    "<article class=\"tag-card\">\n"
+                    f"  <h4 class=\"card-title\"><a href=\"{e['path']}\">{e['title']}</a></h4>\n"
+                    f"  <p class=\"card-excerpt\">{excerpt}</p>\n"
+                    "</article>\n"
+                )
+            lines.append("</div>\n</section>\n")
     content = "\n".join(lines) + "\n"
     out = os.path.join(DOCS_DIR, "tags.md")
     with open(out, "w", encoding="utf-8") as f:

@@ -1,7 +1,7 @@
 ---
 title: "Tag: yaml"
 description: "Pages marquées "yaml""
-last_modified: 2026-08-14T10:48:33.370724Z
+last_modified: 2026-08-14T10:50:50.629672Z
 ---
 
 # yaml

@@ -117,6 +117,38 @@ body { min-height: 100vh; }
   padding: 0 !important;
 }
 
+/* ── Tag cards layout for tags index */
+.tag-section {
+  margin: 1rem 0 2rem 0;
+}
+.tag-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.tag-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+.tag-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 0.9rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.tag-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+}
+.card-title { margin: 0 0 0.4rem 0; font-size: 0.95rem; }
+.card-title a { color: var(--md-typeset-a-color); text-decoration: none; }
+.card-excerpt { margin: 0; color: var(--md-default-fg-color--light); font-size: 0.9rem; }
+
+
 /* ── Kitty terminal title bar ─────────────────────────────── */
 .ktty-bar {
   display: flex;

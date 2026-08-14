@@ -1,7 +1,7 @@
 ---
 title: "Tag: automatisation"
 description: "Pages marquées "automatisation""
-last_modified: 2026-08-14T10:48:33.363523Z
+last_modified: 2026-08-14T10:50:50.624713Z
 ---
 
 # automatisation

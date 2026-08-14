@@ -1,7 +1,7 @@
 ---
 title: "Tags"
 description: "Index des tags généré automatiquement"
-last_modified: 2026-08-14T10:48:33.373554Z
+last_modified: 2026-08-14T10:50:50.632963Z
 ---
 
 # Tags
@@ -95,643 +95,1271 @@ Cette page est générée automatiquement.
 
 ### Autres
 
-<details id="adminsys">
-<summary>adminsys (9)</summary>
-
-
-- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
-- [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
-- [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
-
-</details>
-
-<details id="self-hosting">
-<summary>self-hosting (8)</summary>
-
-
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
-- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
-- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
-- [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
-- [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
-
-</details>
-
-<details id="commandes">
-<summary>commandes (7)</summary>
-
-
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
-- [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
-- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
-- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
-
-</details>
-
-<details id="homelab">
-<summary>homelab (6)</summary>
-
-
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
-- [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
-- [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Schéma infrastructure homelab](infra.md) — mermaid
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
-
-</details>
-
-<details id="outils">
-<summary>outils (6)</summary>
-
-
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
-- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
-- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
-- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
-- [Ressources vidéo YouTube](outils/youtube.md) — 
-
-</details>
-
-<details id="automatisation">
-<summary>automatisation (3)</summary>
-
-
-- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
-- [Cloud-init automatisation instances](virtu/cloudinit.md) — 
-- [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-
-</details>
-
-<details id="ressources">
-<summary>ressources (3)</summary>
-
-
-- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
-- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
-- [Ressources vidéo YouTube](outils/youtube.md) — 
-
-</details>
-
-<details id="gitlab">
-<summary>gitlab (2)</summary>
-
-
-- [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
-
-</details>
-
-<details id="infrastructure">
-<summary>infrastructure (2)</summary>
-
-
-- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
-- [Schéma infrastructure homelab](infra.md) — mermaid
-
-</details>
-
-<details id="llm">
-<summary>llm (2)</summary>
-
-
-- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
-
-</details>
-
-<details id="medias">
-<summary>médias (2)</summary>
-
-
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
-- [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
-
-</details>
-
-<details id="ollama">
-<summary>ollama (2)</summary>
-
-
-- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
-
-</details>
-
-<details id="opensource">
-<summary>opensource (2)</summary>
-
-
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
-
-</details>
-
-<details id="veille">
-<summary>veille (2)</summary>
-
-
-- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
-- [Ressources vidéo YouTube](outils/youtube.md) — 
-
-</details>
-
-<details id="ci-cd">
-<summary>ci-cd (1)</summary>
-
-
-- [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-
-</details>
-
-<details id="cisco">
-<summary>cisco (1)</summary>
-
-
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
-
-</details>
-
-<details id="communautes">
-<summary>communautés (1)</summary>
-
-
-- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...
-
-</details>
-
-<details id="conteneurs">
-<summary>conteneurs (1)</summary>
-
-
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
-
-</details>
-
-<details id="documentation">
-<summary>documentation (1)</summary>
-
-
-- [Bienvenue](index.md) — Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...
-
-</details>
-
-<details id="ec2">
-<summary>ec2 (1)</summary>
-
-
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
-
-</details>
-
-<details id="fichiers">
-<summary>fichiers (1)</summary>
-
-
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
-
-</details>
-
-<details id="git">
-<summary>git (1)</summary>
-
-
-- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
-
-</details>
-
-<details id="installation">
-<summary>installation (1)</summary>
-
-
-- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
-
-</details>
-
-<details id="integrations">
-<summary>intégrations (1)</summary>
-
-
-- [Intégrations Home Assistant](hassio/integrations.md) — 
-
-</details>
-
-<details id="jellyfin">
-<summary>jellyfin (1)</summary>
-
-
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
-
-</details>
-
-<details id="logiciels">
-<summary>logiciels (1)</summary>
-
-
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
-
-</details>
-
-<details id="mcp">
-<summary>mcp (1)</summary>
-
-
-- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
-
-</details>
-
-<details id="meteo">
-<summary>météo (1)</summary>
-
-
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
-
-</details>
-
-<details id="qbittorrent">
-<summary>qbittorrent (1)</summary>
-
-
-- [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
-
-</details>
-
-<details id="regex">
-<summary>regex (1)</summary>
-
-
-- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-
-</details>
-
-<details id="scripts">
-<summary>scripts (1)</summary>
-
-
-- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
-
-</details>
-
-<details id="windows">
-<summary>windows (1)</summary>
-
-
-- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
-
-</details>
-
-<details id="yaml">
-<summary>yaml (1)</summary>
-
-
-- [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
-
-</details>
-
-<details id="youtube">
-<summary>youtube (1)</summary>
-
-
-- [Ressources vidéo YouTube](outils/youtube.md) — 
-
-</details>
+<section id="adminsys" class="tag-section">
+<h3 class="tag-heading">adminsys <small>(9)</small> — <a href="/tags/adminsys.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/ansible.md">Ansible — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/cisco.md">Cisco IOS — Cheat Sheet : Commandes usuelles</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_user.md">Commandes Linux</a></h4>
+  <p class="card-excerpt">---</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_base.md">Linux — Cheat Sheet : Commandes de base</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_kernel.md">Linux — Cheat Sheet : Kernel & Système</a></h4>
+  <p class="card-excerpt">Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/pve.md">Proxmox VE hyperviseur</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/commandes.md">Quelques commandes utiles</a></h4>
+  <p class="card-excerpt">La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/sql.md">SQL — Cheat Sheet : Manipulation de données</a></h4>
+  <p class="card-excerpt">Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/serverconfig.md">Sécuriser serveur Debian</a></h4>
+  <p class="card-excerpt">Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...</p>
+</article>
+
+</div>
+</section>
+
+<section id="self-hosting" class="tag-section">
+<h3 class="tag-heading">self-hosting <small>(8)</small> — <a href="/tags/self-hosting.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="index.md">Bienvenue</a></h4>
+  <p class="card-excerpt">Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/install.md">Installation GitLab self-hosted</a></h4>
+  <p class="card-excerpt">GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/install.md">Installer Home Assistant</a></h4>
+  <p class="card-excerpt">Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/jellyfin.md">Jellyfin streaming personnel</a></h4>
+  <p class="card-excerpt">Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/mcpo.md">Model Context Protocol Ollama</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/openwebui.md">Ollama Open-WebUI local</a></h4>
+  <p class="card-excerpt">Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/qbit.md">qBittorrent peer-to-peer sharing</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/template.md">Template docker-compose</a></h4>
+  <p class="card-excerpt">!!! warning "L'indentation est STRICTE"</p>
+</article>
+
+</div>
+</section>
+
+<section id="commandes" class="tag-section">
+<h3 class="tag-heading">commandes <small>(7)</small> — <a href="/tags/commandes.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/cisco.md">Cisco IOS — Cheat Sheet : Commandes usuelles</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_user.md">Commandes Linux</a></h4>
+  <p class="card-excerpt">---</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_base.md">Linux — Cheat Sheet : Commandes de base</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_files.md">Linux — Cheat Sheet : Opérations sur les fichiers</a></h4>
+  <p class="card-excerpt">Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/commandes.md">Quelques commandes utiles</a></h4>
+  <p class="card-excerpt">La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/regex.md">Regex — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/sql.md">SQL — Cheat Sheet : Manipulation de données</a></h4>
+  <p class="card-excerpt">Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.</p>
+</article>
+
+</div>
+</section>
+
+<section id="homelab" class="tag-section">
+<h3 class="tag-heading">homelab <small>(6)</small> — <a href="/tags/homelab.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="index.md">Bienvenue</a></h4>
+  <p class="card-excerpt">Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
+  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/pve.md">Proxmox VE hyperviseur</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
+  <p class="card-excerpt">mermaid</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/dns.md">Serveur DNS autoritaire</a></h4>
+  <p class="card-excerpt">L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...</p>
+</article>
+
+</div>
+</section>
+
+<section id="outils" class="tag-section">
+<h3 class="tag-heading">outils <small>(6)</small> — <a href="/tags/outils.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/softwares.md">Logiciels Linux personnels</a></h4>
+  <p class="card-excerpt">Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/links.md">Outils Windows ressources</a></h4>
+  <p class="card-excerpt">Le script de massgrave permet d'activer une licence Windows ou Office.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/commandes.md">Quelques commandes utiles</a></h4>
+  <p class="card-excerpt">La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/regex.md">Regex — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/ressources.md">Ressources communautés tech</a></h4>
+  <p class="card-excerpt">Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/youtube.md">Ressources vidéo YouTube</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="automatisation" class="tag-section">
+<h3 class="tag-heading">automatisation <small>(3)</small> — <a href="/tags/automatisation.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/ansible.md">Ansible — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/cloudinit.md">Cloud-init automatisation instances</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/runner.md">GitLab CI/CD Runner configuration</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="ressources" class="tag-section">
+<h3 class="tag-heading">ressources <small>(3)</small> — <a href="/tags/ressources.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/links.md">Outils Windows ressources</a></h4>
+  <p class="card-excerpt">Le script de massgrave permet d'activer une licence Windows ou Office.</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/ressources.md">Ressources communautés tech</a></h4>
+  <p class="card-excerpt">Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/youtube.md">Ressources vidéo YouTube</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="gitlab" class="tag-section">
+<h3 class="tag-heading">gitlab <small>(2)</small> — <a href="/tags/gitlab.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/runner.md">GitLab CI/CD Runner configuration</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/install.md">Installation GitLab self-hosted</a></h4>
+  <p class="card-excerpt">GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...</p>
+</article>
+
+</div>
+</section>
+
+<section id="infrastructure" class="tag-section">
+<h3 class="tag-heading">infrastructure <small>(2)</small> — <a href="/tags/infrastructure.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
+  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
+  <p class="card-excerpt">mermaid</p>
+</article>
+
+</div>
+</section>
+
+<section id="llm" class="tag-section">
+<h3 class="tag-heading">llm <small>(2)</small> — <a href="/tags/llm.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/mcpo.md">Model Context Protocol Ollama</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/openwebui.md">Ollama Open-WebUI local</a></h4>
+  <p class="card-excerpt">Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...</p>
+</article>
+
+</div>
+</section>
+
+<section id="medias" class="tag-section">
+<h3 class="tag-heading">médias <small>(2)</small> — <a href="/tags/medias.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/jellyfin.md">Jellyfin streaming personnel</a></h4>
+  <p class="card-excerpt">Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/qbit.md">qBittorrent peer-to-peer sharing</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="ollama" class="tag-section">
+<h3 class="tag-heading">ollama <small>(2)</small> — <a href="/tags/ollama.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/mcpo.md">Model Context Protocol Ollama</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/openwebui.md">Ollama Open-WebUI local</a></h4>
+  <p class="card-excerpt">Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...</p>
+</article>
+
+</div>
+</section>
+
+<section id="opensource" class="tag-section">
+<h3 class="tag-heading">opensource <small>(2)</small> — <a href="/tags/opensource.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="index.md">Bienvenue</a></h4>
+  <p class="card-excerpt">Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/softwares.md">Logiciels Linux personnels</a></h4>
+  <p class="card-excerpt">Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...</p>
+</article>
+
+</div>
+</section>
+
+<section id="veille" class="tag-section">
+<h3 class="tag-heading">veille <small>(2)</small> — <a href="/tags/veille.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/ressources.md">Ressources communautés tech</a></h4>
+  <p class="card-excerpt">Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/youtube.md">Ressources vidéo YouTube</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="ci-cd" class="tag-section">
+<h3 class="tag-heading">ci-cd <small>(1)</small> — <a href="/tags/ci-cd.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/runner.md">GitLab CI/CD Runner configuration</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="cisco" class="tag-section">
+<h3 class="tag-heading">cisco <small>(1)</small> — <a href="/tags/cisco.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/cisco.md">Cisco IOS — Cheat Sheet : Commandes usuelles</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.</p>
+</article>
+
+</div>
+</section>
+
+<section id="communautes" class="tag-section">
+<h3 class="tag-heading">communautés <small>(1)</small> — <a href="/tags/communautes.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/ressources.md">Ressources communautés tech</a></h4>
+  <p class="card-excerpt">Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ai...</p>
+</article>
+
+</div>
+</section>
+
+<section id="conteneurs" class="tag-section">
+<h3 class="tag-heading">conteneurs <small>(1)</small> — <a href="/tags/conteneurs.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
+  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
+</article>
+
+</div>
+</section>
+
+<section id="documentation" class="tag-section">
+<h3 class="tag-heading">documentation <small>(1)</small> — <a href="/tags/documentation.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="index.md">Bienvenue</a></h4>
+  <p class="card-excerpt">Le but de cette documentation est de regrouper des informations, tutoriels et ressources utiles à propos du self-hosting et de l'informatique en général, en français et le plus ...</p>
+</article>
+
+</div>
+</section>
+
+<section id="ec2" class="tag-section">
+<h3 class="tag-heading">ec2 <small>(1)</small> — <a href="/tags/ec2.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/spin_instance.md">Spiner une instance AWS EC2</a></h4>
+  <p class="card-excerpt">L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).</p>
+</article>
+
+</div>
+</section>
+
+<section id="fichiers" class="tag-section">
+<h3 class="tag-heading">fichiers <small>(1)</small> — <a href="/tags/fichiers.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_files.md">Linux — Cheat Sheet : Opérations sur les fichiers</a></h4>
+  <p class="card-excerpt">Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.</p>
+</article>
+
+</div>
+</section>
+
+<section id="git" class="tag-section">
+<h3 class="tag-heading">git <small>(1)</small> — <a href="/tags/git.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/install.md">Installation GitLab self-hosted</a></h4>
+  <p class="card-excerpt">GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...</p>
+</article>
+
+</div>
+</section>
+
+<section id="installation" class="tag-section">
+<h3 class="tag-heading">installation <small>(1)</small> — <a href="/tags/installation.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
+  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
+</article>
+
+</div>
+</section>
+
+<section id="integrations" class="tag-section">
+<h3 class="tag-heading">intégrations <small>(1)</small> — <a href="/tags/integrations.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/integrations.md">Intégrations Home Assistant</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="jellyfin" class="tag-section">
+<h3 class="tag-heading">jellyfin <small>(1)</small> — <a href="/tags/jellyfin.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/jellyfin.md">Jellyfin streaming personnel</a></h4>
+  <p class="card-excerpt">Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...</p>
+</article>
+
+</div>
+</section>
+
+<section id="logiciels" class="tag-section">
+<h3 class="tag-heading">logiciels <small>(1)</small> — <a href="/tags/logiciels.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/softwares.md">Logiciels Linux personnels</a></h4>
+  <p class="card-excerpt">Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...</p>
+</article>
+
+</div>
+</section>
+
+<section id="mcp" class="tag-section">
+<h3 class="tag-heading">mcp <small>(1)</small> — <a href="/tags/mcp.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/mcpo.md">Model Context Protocol Ollama</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="meteo" class="tag-section">
+<h3 class="tag-heading">météo <small>(1)</small> — <a href="/tags/meteo.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/meteo.md">Interface météo allergie HA</a></h4>
+  <p class="card-excerpt">J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...</p>
+</article>
+
+</div>
+</section>
+
+<section id="qbittorrent" class="tag-section">
+<h3 class="tag-heading">qbittorrent <small>(1)</small> — <a href="/tags/qbittorrent.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/qbit.md">qBittorrent peer-to-peer sharing</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="regex" class="tag-section">
+<h3 class="tag-heading">regex <small>(1)</small> — <a href="/tags/regex.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/regex.md">Regex — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.</p>
+</article>
+
+</div>
+</section>
+
+<section id="scripts" class="tag-section">
+<h3 class="tag-heading">scripts <small>(1)</small> — <a href="/tags/scripts.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/links.md">Outils Windows ressources</a></h4>
+  <p class="card-excerpt">Le script de massgrave permet d'activer une licence Windows ou Office.</p>
+</article>
+
+</div>
+</section>
+
+<section id="windows" class="tag-section">
+<h3 class="tag-heading">windows <small>(1)</small> — <a href="/tags/windows.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/links.md">Outils Windows ressources</a></h4>
+  <p class="card-excerpt">Le script de massgrave permet d'activer une licence Windows ou Office.</p>
+</article>
+
+</div>
+</section>
+
+<section id="yaml" class="tag-section">
+<h3 class="tag-heading">yaml <small>(1)</small> — <a href="/tags/yaml.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/template.md">Template docker-compose</a></h4>
+  <p class="card-excerpt">!!! warning "L'indentation est STRICTE"</p>
+</article>
+
+</div>
+</section>
+
+<section id="youtube" class="tag-section">
+<h3 class="tag-heading">youtube <small>(1)</small> — <a href="/tags/youtube.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/youtube.md">Ressources vidéo YouTube</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
 
 
 ### Bases de données
 
-<details id="base-de-donnees">
-<summary>base-de-données (1)</summary>
+<section id="base-de-donnees" class="tag-section">
+<h3 class="tag-heading">base-de-données <small>(1)</small> — <a href="/tags/base-de-donnees.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/sql.md">SQL — Cheat Sheet : Manipulation de données</a></h4>
+  <p class="card-excerpt">Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.</p>
+</article>
 
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
+</div>
+</section>
 
-</details>
+<section id="sql" class="tag-section">
+<h3 class="tag-heading">sql <small>(1)</small> — <a href="/tags/sql.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="sql">
-<summary>sql (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/sql.md">SQL — Cheat Sheet : Manipulation de données</a></h4>
+  <p class="card-excerpt">Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.</p>
+</article>
 
-
-- [SQL — Cheat Sheet : Manipulation de données](cheats/sql.md) — Référence rapide pour les opérations DML (Data Manipulation Language) et les requêtes courantes.
-
-</details>
+</div>
+</section>
 
 
 ### Conteneurs / Docker
 
-<details id="docker">
-<summary>docker (5)</summary>
+<section id="docker" class="tag-section">
+<h3 class="tag-heading">docker <small>(5)</small> — <a href="/tags/docker.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/swag.md">Gateway sécurisé reverse-proxy</a></h4>
+  <p class="card-excerpt">Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.</p>
+</article>
 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
-- [Jellyfin streaming personnel](services/medias/jellyfin.md) — Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...
-- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...
-- [qBittorrent peer-to-peer sharing](services/medias/qbit.md) — 
-- [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/jellyfin.md">Jellyfin streaming personnel</a></h4>
+  <p class="card-excerpt">Jellyfin est une application de streaming multimédia. Elle permet de scanner une bibliothèque de fichiers vidéos, l'organiser dans une interface propre et soignée, reconnaitre e...</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/llm/openwebui.md">Ollama Open-WebUI local</a></h4>
+  <p class="card-excerpt">Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissa...</p>
+</article>
 
-<details id="docker-compose">
-<summary>docker-compose (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/medias/qbit.md">qBittorrent peer-to-peer sharing</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/template.md">Template docker-compose</a></h4>
+  <p class="card-excerpt">!!! warning "L'indentation est STRICTE"</p>
+</article>
 
-- [Template docker-compose](outils/template.md) — !!! warning "L'indentation est STRICTE"
+</div>
+</section>
 
-</details>
+<section id="docker-compose" class="tag-section">
+<h3 class="tag-heading">docker-compose <small>(1)</small> — <a href="/tags/docker-compose.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="lxc">
-<summary>lxc (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/template.md">Template docker-compose</a></h4>
+  <p class="card-excerpt">!!! warning "L'indentation est STRICTE"</p>
+</article>
 
+</div>
+</section>
 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
+<section id="lxc" class="tag-section">
+<h3 class="tag-heading">lxc <small>(1)</small> — <a href="/tags/lxc.html">page tag</a></h3>
+<div class="tag-cards">
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
+  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
+</article>
+
+</div>
+</section>
 
 
 ### Domotique
 
-<details id="domotique">
-<summary>domotique (4)</summary>
+<section id="domotique" class="tag-section">
+<h3 class="tag-heading">domotique <small>(4)</small> — <a href="/tags/domotique.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/hacs.md">HACS Home Assistant Community Store</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-- [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
-- [Intégrations Home Assistant](hassio/integrations.md) — 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/install.md">Installer Home Assistant</a></h4>
+  <p class="card-excerpt">Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/meteo.md">Interface météo allergie HA</a></h4>
+  <p class="card-excerpt">J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...</p>
+</article>
 
-<details id="home-assistant">
-<summary>home-assistant (4)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/integrations.md">Intégrations Home Assistant</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
+</div>
+</section>
 
-- [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
-- [Intégrations Home Assistant](hassio/integrations.md) — 
+<section id="home-assistant" class="tag-section">
+<h3 class="tag-heading">home-assistant <small>(4)</small> — <a href="/tags/home-assistant.html">page tag</a></h3>
+<div class="tag-cards">
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/hacs.md">HACS Home Assistant Community Store</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-<details id="iot">
-<summary>iot (4)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/install.md">Installer Home Assistant</a></h4>
+  <p class="card-excerpt">Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/meteo.md">Interface météo allergie HA</a></h4>
+  <p class="card-excerpt">J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...</p>
+</article>
 
-- [HACS Home Assistant Community Store](hassio/hacs.md) — 
-- [Installer Home Assistant](hassio/install.md) — Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...
-- [Interface météo allergie HA](hassio/meteo.md) — J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...
-- [Intégrations Home Assistant](hassio/integrations.md) — 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/integrations.md">Intégrations Home Assistant</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="hacs">
-<summary>hacs (1)</summary>
+<section id="iot" class="tag-section">
+<h3 class="tag-heading">iot <small>(4)</small> — <a href="/tags/iot.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/hacs.md">HACS Home Assistant Community Store</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-- [HACS Home Assistant Community Store](hassio/hacs.md) — 
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/install.md">Installer Home Assistant</a></h4>
+  <p class="card-excerpt">Qui n'a jamais rêvé d'avoir son propre Jarvis ? De contrôler les lumières chez soi, d'un claquement de doigts ou d'une simple phrase ? Home Assistant est probablement ce qui s'e...</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/meteo.md">Interface météo allergie HA</a></h4>
+  <p class="card-excerpt">J'utilise le mode "sections" avec 4 colonnes et l'en-tête. Dans les faits, la troisième colonne est en fait double : il s'agit de cartes météo qui gagnent à prendre un peu plus ...</p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/integrations.md">Intégrations Home Assistant</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
+
+<section id="hacs" class="tag-section">
+<h3 class="tag-heading">hacs <small>(1)</small> — <a href="/tags/hacs.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="hassio/hacs.md">HACS Home Assistant Community Store</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
 
 
 ### IaC / DevOps
 
-<details id="iac">
-<summary>iac (4)</summary>
+<section id="iac" class="tag-section">
+<h3 class="tag-heading">iac <small>(4)</small> — <a href="/tags/iac.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/ansible.md">Ansible — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.</p>
+</article>
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
-- [Cloud-init automatisation instances](virtu/cloudinit.md) — 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/cloudinit.md">Cloud-init automatisation instances</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/opentofu.md">OpenTofu — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).</p>
+</article>
 
-<details id="cloud">
-<summary>cloud (3)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/spin_instance.md">Spiner une instance AWS EC2</a></h4>
+  <p class="card-excerpt">L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).</p>
+</article>
 
+</div>
+</section>
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
+<section id="cloud" class="tag-section">
+<h3 class="tag-heading">cloud <small>(3)</small> — <a href="/tags/cloud.html">page tag</a></h3>
+<div class="tag-cards">
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/load_balancer.md">Le load-balancer</a></h4>
+  <p class="card-excerpt">On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.</p>
+</article>
 
-<details id="devops">
-<summary>devops (2)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/opentofu.md">OpenTofu — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/spin_instance.md">Spiner une instance AWS EC2</a></h4>
+  <p class="card-excerpt">L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).</p>
+</article>
 
-- [GitLab CI/CD Runner configuration](services/gitlab/runner.md) — 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...
+</div>
+</section>
 
-</details>
+<section id="devops" class="tag-section">
+<h3 class="tag-heading">devops <small>(2)</small> — <a href="/tags/devops.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="ansible">
-<summary>ansible (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/runner.md">GitLab CI/CD Runner configuration</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="services/gitlab/install.md">Installation GitLab self-hosted</a></h4>
+  <p class="card-excerpt">GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-héberg...</p>
+</article>
 
-- [Ansible — Cheat Sheet](cheats/ansible.md) — Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.
+</div>
+</section>
 
-</details>
+<section id="ansible" class="tag-section">
+<h3 class="tag-heading">ansible <small>(1)</small> — <a href="/tags/ansible.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="cloud-init">
-<summary>cloud-init (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/ansible.md">Ansible — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'automatisation avec Ansible : inventaires, playbooks, modules courants, variables et Vault.</p>
+</article>
 
+</div>
+</section>
 
-- [Cloud-init automatisation instances](virtu/cloudinit.md) — 
+<section id="cloud-init" class="tag-section">
+<h3 class="tag-heading">cloud-init <small>(1)</small> — <a href="/tags/cloud-init.html">page tag</a></h3>
+<div class="tag-cards">
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/cloudinit.md">Cloud-init automatisation instances</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-<details id="opentofu">
-<summary>opentofu (1)</summary>
+</div>
+</section>
 
+<section id="opentofu" class="tag-section">
+<h3 class="tag-heading">opentofu <small>(1)</small> — <a href="/tags/opentofu.html">page tag</a></h3>
+<div class="tag-cards">
 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/opentofu.md">OpenTofu — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).</p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="terraform">
-<summary>terraform (1)</summary>
+<section id="terraform" class="tag-section">
+<h3 class="tag-heading">terraform <small>(1)</small> — <a href="/tags/terraform.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/opentofu.md">OpenTofu — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).</p>
+</article>
 
-- [OpenTofu — Cheat Sheet](cheats/opentofu.md) — Référence rapide pour l'infrastructure as code avec OpenTofu (fork open-source de Terraform).
-
-</details>
+</div>
+</section>
 
 
 ### Infrastructure
 
-<details id="linux">
-<summary>linux (10)</summary>
+<section id="linux" class="tag-section">
+<h3 class="tag-heading">linux <small>(10)</small> — <a href="/tags/linux.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_user.md">Commandes Linux</a></h4>
+  <p class="card-excerpt">---</p>
+</article>
 
-- [Commandes Linux](cheats/linux_user.md) — ---
-- [Guide d'installation homelab](calamares.md) — Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...
-- [Installer une VM Debian](virtu/vminstall.md) — 
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...
-- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...
-- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
+<article class="tag-card">
+  <h4 class="card-title"><a href="calamares.md">Guide d'installation homelab</a></h4>
+  <p class="card-excerpt">Calamares c'est quoi ? C'est l'installateur de la plupart des distributions basées Linux. Cette page, tel l'installateur, sera une sorte de guide, mis à jour au fur et à mesure ...</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/vminstall.md">Installer une VM Debian</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-<details id="virtualisation">
-<summary>virtualisation (5)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_base.md">Linux — Cheat Sheet : Commandes de base</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_kernel.md">Linux — Cheat Sheet : Kernel & Système</a></h4>
+  <p class="card-excerpt">Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.</p>
+</article>
 
-- [Cloud-init automatisation instances](virtu/cloudinit.md) — 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
-- [Installer une VM Debian](virtu/vminstall.md) — 
-- [Proxmox VE hyperviseur](virtu/pve.md) — 
-- [Schéma infrastructure homelab](infra.md) — mermaid
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_files.md">Linux — Cheat Sheet : Opérations sur les fichiers</a></h4>
+  <p class="card-excerpt">Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/softwares.md">Logiciels Linux personnels</a></h4>
+  <p class="card-excerpt">Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes s...</p>
+</article>
 
-<details id="proxmox">
-<summary>proxmox (3)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="outils/commandes.md">Quelques commandes utiles</a></h4>
+  <p class="card-excerpt">La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de not...</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/regex.md">Regex — Cheat Sheet</a></h4>
+  <p class="card-excerpt">Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.</p>
+</article>
 
-- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...
-- [Installer une VM Debian](virtu/vminstall.md) — 
-- [Proxmox VE hyperviseur](virtu/pve.md) — 
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/serverconfig.md">Sécuriser serveur Debian</a></h4>
+  <p class="card-excerpt">Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...</p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="shell">
-<summary>shell (3)</summary>
+<section id="virtualisation" class="tag-section">
+<h3 class="tag-heading">virtualisation <small>(5)</small> — <a href="/tags/virtualisation.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/cloudinit.md">Cloud-init automatisation instances</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-- [Commandes Linux](cheats/linux_user.md) — ---
-- [Linux — Cheat Sheet : Commandes de base](cheats/linux_base.md) — Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.
-- [Linux — Cheat Sheet : Opérations sur les fichiers](cheats/linux_files.md) — Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
+  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/vminstall.md">Installer une VM Debian</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-<details id="debian">
-<summary>debian (2)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/pve.md">Proxmox VE hyperviseur</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
+  <p class="card-excerpt">mermaid</p>
+</article>
 
-- [Installer une VM Debian](virtu/vminstall.md) — 
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
+</div>
+</section>
 
-</details>
+<section id="proxmox" class="tag-section">
+<h3 class="tag-heading">proxmox <small>(3)</small> — <a href="/tags/proxmox.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="kernel">
-<summary>kernel (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/lxcinstall.md">Créer conteneur LXC Proxmox</a></h4>
+  <p class="card-excerpt">Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut téléchar...</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/vminstall.md">Installer une VM Debian</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/pve.md">Proxmox VE hyperviseur</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="systemd">
-<summary>systemd (1)</summary>
+<section id="shell" class="tag-section">
+<h3 class="tag-heading">shell <small>(3)</small> — <a href="/tags/shell.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_user.md">Commandes Linux</a></h4>
+  <p class="card-excerpt">---</p>
+</article>
 
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_base.md">Linux — Cheat Sheet : Commandes de base</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes shell essentielles — navigation, utilisateurs, réseau, processus, archives.</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_files.md">Linux — Cheat Sheet : Opérations sur les fichiers</a></h4>
+  <p class="card-excerpt">Référence rapide pour la création, copie, déplacement, visualisation et manipulation des fichiers et répertoires.</p>
+</article>
+
+</div>
+</section>
+
+<section id="debian" class="tag-section">
+<h3 class="tag-heading">debian <small>(2)</small> — <a href="/tags/debian.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/vminstall.md">Installer une VM Debian</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/serverconfig.md">Sécuriser serveur Debian</a></h4>
+  <p class="card-excerpt">Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...</p>
+</article>
+
+</div>
+</section>
+
+<section id="kernel" class="tag-section">
+<h3 class="tag-heading">kernel <small>(1)</small> — <a href="/tags/kernel.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_kernel.md">Linux — Cheat Sheet : Kernel & Système</a></h4>
+  <p class="card-excerpt">Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.</p>
+</article>
+
+</div>
+</section>
+
+<section id="systemd" class="tag-section">
+<h3 class="tag-heading">systemd <small>(1)</small> — <a href="/tags/systemd.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_kernel.md">Linux — Cheat Sheet : Kernel & Système</a></h4>
+  <p class="card-excerpt">Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.</p>
+</article>
+
+</div>
+</section>
 
 
 ### Réseau
 
-<details id="reseau">
-<summary>réseau (7)</summary>
+<section id="reseau" class="tag-section">
+<h3 class="tag-heading">réseau <small>(7)</small> — <a href="/tags/reseau.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/cisco.md">Cisco IOS — Cheat Sheet : Commandes usuelles</a></h4>
+  <p class="card-excerpt">Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.</p>
+</article>
 
-- [Cisco IOS — Cheat Sheet : Commandes usuelles](cheats/cisco.md) — Référence rapide des commandes Cisco IOS pour la configuration et le diagnostic de routeurs et commutateurs.
-- [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
-- [Schéma infrastructure homelab](infra.md) — mermaid
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/swag.md">Gateway sécurisé reverse-proxy</a></h4>
+  <p class="card-excerpt">Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.</p>
+</article>
 
-<details id="aws">
-<summary>aws (2)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/load_balancer.md">Le load-balancer</a></h4>
+  <p class="card-excerpt">On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/stepca.md">PKI autorité certification locale</a></h4>
+  <p class="card-excerpt">Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...</p>
+</article>
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
-- [Spiner une instance AWS EC2](non-oss/aws/spin_instance.md) — L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).
+<article class="tag-card">
+  <h4 class="card-title"><a href="infra.md">Schéma infrastructure homelab</a></h4>
+  <p class="card-excerpt">mermaid</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/dns.md">Serveur DNS autoritaire</a></h4>
+  <p class="card-excerpt">L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...</p>
+</article>
 
-<details id="dns">
-<summary>dns (1)</summary>
+</div>
+</section>
 
+<section id="aws" class="tag-section">
+<h3 class="tag-heading">aws <small>(2)</small> — <a href="/tags/aws.html">page tag</a></h3>
+<div class="tag-cards">
 
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/load_balancer.md">Le load-balancer</a></h4>
+  <p class="card-excerpt">On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/spin_instance.md">Spiner une instance AWS EC2</a></h4>
+  <p class="card-excerpt">L'une des plus grande force d'AWS est son offre de serveurs cloud à la demande, entièrement automatisée et facturés à l'usage : EC2 (Elastic Compute Cloud).</p>
+</article>
 
-<details id="load-balancer">
-<summary>load-balancer (1)</summary>
+</div>
+</section>
 
+<section id="dns" class="tag-section">
+<h3 class="tag-heading">dns <small>(1)</small> — <a href="/tags/dns.html">page tag</a></h3>
+<div class="tag-cards">
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/dns.md">Serveur DNS autoritaire</a></h4>
+  <p class="card-excerpt">L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...</p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="reverse-proxy">
-<summary>reverse-proxy (1)</summary>
+<section id="load-balancer" class="tag-section">
+<h3 class="tag-heading">load-balancer <small>(1)</small> — <a href="/tags/load-balancer.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="non-oss/aws/load_balancer.md">Le load-balancer</a></h4>
+  <p class="card-excerpt">On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.</p>
+</article>
 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
+</div>
+</section>
 
-</details>
+<section id="reverse-proxy" class="tag-section">
+<h3 class="tag-heading">reverse-proxy <small>(1)</small> — <a href="/tags/reverse-proxy.html">page tag</a></h3>
+<div class="tag-cards">
 
-<details id="vlan">
-<summary>vlan (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/swag.md">Gateway sécurisé reverse-proxy</a></h4>
+  <p class="card-excerpt">Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.</p>
+</article>
 
+</div>
+</section>
 
-- [Configuration VLANs réseau](reseau/vlan.md) — 
+<section id="vlan" class="tag-section">
+<h3 class="tag-heading">vlan <small>(1)</small> — <a href="/tags/vlan.html">page tag</a></h3>
+<div class="tag-cards">
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
+  <p class="card-excerpt"></p>
+</article>
+
+</div>
+</section>
 
 
 ### Sécurité
 
-<details id="securite">
-<summary>sécurité (6)</summary>
+<section id="securite" class="tag-section">
+<h3 class="tag-heading">sécurité <small>(6)</small> — <a href="/tags/securite.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/vlan.md">Configuration VLANs réseau</a></h4>
+  <p class="card-excerpt"></p>
+</article>
 
-- [Configuration VLANs réseau](reseau/vlan.md) — 
-- [Gateway sécurisé reverse-proxy](reseau/swag.md) — Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.
-- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
-- [Serveur DNS autoritaire](reseau/dns.md) — L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...
-- [Sécuriser serveur Debian](virtu/serverconfig.md) — Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/swag.md">Gateway sécurisé reverse-proxy</a></h4>
+  <p class="card-excerpt">Si certains services comme Ollama peuvent rester uniquement en local, d'autres comme Home Assistant gagnent à être exposés, afin de pouvoir etre utilisés en déplacement.</p>
+</article>
 
-</details>
+<article class="tag-card">
+  <h4 class="card-title"><a href="cheats/linux_kernel.md">Linux — Cheat Sheet : Kernel & Système</a></h4>
+  <p class="card-excerpt">Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.</p>
+</article>
 
-<details id="pki">
-<summary>pki (1)</summary>
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/stepca.md">PKI autorité certification locale</a></h4>
+  <p class="card-excerpt">Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...</p>
+</article>
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/dns.md">Serveur DNS autoritaire</a></h4>
+  <p class="card-excerpt">L'une des premières choses à mettre en place dans un réseau est un serveur DNS, pour Domain Name Server ou *serveur de nom de domaine*. Ce service servira à *traduire* les noms ...</p>
+</article>
 
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
+<article class="tag-card">
+  <h4 class="card-title"><a href="virtu/serverconfig.md">Sécuriser serveur Debian</a></h4>
+  <p class="card-excerpt">Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en p...</p>
+</article>
 
-</details>
+</div>
+</section>
 
-<details id="tls">
-<summary>tls (1)</summary>
+<section id="pki" class="tag-section">
+<h3 class="tag-heading">pki <small>(1)</small> — <a href="/tags/pki.html">page tag</a></h3>
+<div class="tag-cards">
 
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/stepca.md">PKI autorité certification locale</a></h4>
+  <p class="card-excerpt">Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...</p>
+</article>
 
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...
+</div>
+</section>
 
-</details>
+<section id="tls" class="tag-section">
+<h3 class="tag-heading">tls <small>(1)</small> — <a href="/tags/tls.html">page tag</a></h3>
+<div class="tag-cards">
+
+<article class="tag-card">
+  <h4 class="card-title"><a href="reseau/stepca.md">PKI autorité certification locale</a></h4>
+  <p class="card-excerpt">Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du princip...</p>
+</article>
+
+</div>
+</section>
 

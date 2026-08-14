@@ -1,7 +1,7 @@
 ---
 title: "Tag: sécurité"
 description: "Pages marquées "sécurité""
-last_modified: 2026-08-14T10:48:33.365517Z
+last_modified: 2026-08-14T10:50:50.625908Z
 ---
 
 # sécurité

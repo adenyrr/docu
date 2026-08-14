@@ -1,7 +1,7 @@
 ---
 title: "Tag: logiciels"
 description: "Pages marquées "logiciels""
-last_modified: 2026-08-14T10:48:33.370316Z
+last_modified: 2026-08-14T10:50:50.629218Z
 ---
 
 # logiciels

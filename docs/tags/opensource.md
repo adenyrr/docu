@@ -1,7 +1,7 @@
 ---
 title: "Tag: opensource"
 description: "Pages marquées "opensource""
-last_modified: 2026-08-14T10:48:33.362624Z
+last_modified: 2026-08-14T10:50:50.623985Z
 ---
 
 # opensource
