@@ -41,6 +41,8 @@ La segmentation du réseau consistera à créer les vlans, assigner ces derniers
 
 Pour les DNS, j'utilise [Technitium](reseau/dns.md). Il dispose d'un exporter prometheus, laisse le choix de la base de données utilisée et accepte sans consommation des milliers de requêtes par heures. Il me permet de faire du DoT, DoH ou même du Split-DNS.
 
+#### Exposer ses services : WAF et reverse-proxy
+
 ## [Virtualisation](virtu/intro.md)
 
 ### Proxmox

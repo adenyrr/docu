@@ -22,13 +22,15 @@ nav = [
       {"calamares.sh" = "calamares.md"},
   ]},
   {"~/network" = [
-      {"dns.sh" = "reseau/dns.md"},
+      {"intro.sh" = "reseau/intro.md"},
       {"segmentation.sh" = "reseau/vlan.md"},
+      {"dns.sh" = "reseau/dns.md"},
       {"pki.sh" = "reseau/stepca.md"},
       {"traefik.sh" = "reseau/traefik.md"},
       {"swag-proxy.sh" = "reseau/swag.md"},
   ]},
     {"~/virtu" = [
+      {"intro.sh" = "virtu/intro.md"},
       {"proxmox.sh" = "virtu/pve.md"},
       {"vm_install.sh" = "virtu/vminstall.md"},
       {"lxc_install.sh" = "virtu/lxcinstall.md"},
