@@ -10,7 +10,9 @@ tags:
 ---
 # Linux - Commandes de base
 
----
+> Une commande par fiche : cherchez un mot-clé, choisissez une rubrique, puis copiez l'exemple adapté. Les options listées sont les plus utiles au quotidien.
+
+## Se repérer et naviguer
 
 ### Naviguer dans les répertoires
 
@@ -28,7 +30,6 @@ Change le répertoire courant.
     - `/` : Racine du système de fichiers
     - Aucun argument : Va au répertoire personnel
 
----
 
 ### Lister le contenu d'un répertoire
 
@@ -47,7 +48,6 @@ Affiche les fichiers et dossiers.
     - `-t` : Trie par date de modification
     - `-S` : Trie par taille
 
----
 
 ### Afficher le répertoire courant
 
@@ -63,7 +63,6 @@ Affiche le chemin absolu du répertoire de travail actuel (*Print Working Direct
     - `-L` : Affiche les liens symboliques sous forme de liens
     - `-P` : Affiche le chemin physique (résout les liens)
 
----
 
 ### Créer un répertoire
 
@@ -79,15 +78,18 @@ Crée un ou plusieurs répertoires.
     - `-v` : Mode verbeux, affiche chaque répertoire créé
     - `-m 755` : Définit les permissions à la création
 
----
+## Manipuler les fichiers
 
 ### Supprimer fichiers et répertoires
 
 ```sh
-rm -rf /chemin/cible
+rm -ri /chemin/cible
 ```
 
-Supprime fichiers et répertoires. ⚠️ Irréversible — à utiliser avec précaution.
+Supprime fichiers et répertoires. Commencez par le mode interactif ; ne passez à `-f` qu'après avoir validé le chemin.
+
+!!! warning "Suppression irréversible"
+    Vérifiez la cible avec `ls /chemin/cible` avant un `rm -rf`. Ne lancez jamais cette commande avec une variable ou un chemin incomplet.
 
 !!! tip "Arguments principaux"
 
@@ -96,7 +98,6 @@ Supprime fichiers et répertoires. ⚠️ Irréversible — à utiliser avec pr�
     - `-i` : Mode interactif, demande confirmation pour chaque fichier
     - `-v` : Mode verbeux, affiche les fichiers supprimés
 
----
 
 ### Copier fichiers et répertoires
 
@@ -114,7 +115,6 @@ Copie un fichier ou un répertoire.
     - `-i` : Mode interactif, demande confirmation avant d'écraser
     - `-p` : Préserve les permissions et timestamps
 
----
 
 ### Déplacer ou renommer
 
@@ -131,7 +131,6 @@ Déplace un fichier ou répertoire vers une autre destination. Sert également �
     - `-v` : Mode verbeux, affiche les fichiers déplacés
     - `-u` : Ne remplace que les fichiers plus anciens
 
----
 
 ### Afficher le contenu d'un fichier
 
@@ -148,7 +147,6 @@ Concatenè et affiche le contenu d'un ou plusieurs fichiers dans le terminal.
     - `-A` : Affiche les caractères non imprimables
     - `-s` : Sépare les lignes vides consécutives par une seule
 
----
 
 ### Parcourir un fichier long
 
@@ -167,7 +165,6 @@ Affiche le contenu d'un fichier de manière paginée et navigable.
     - `/pattern` : Recherche
     - `q` : Quitter
 
----
 
 ### Afficher les dernières lignes d'un fichier
 
@@ -185,7 +182,6 @@ Affiche les dernières lignes d'un fichier.
     - `-c 1000` : Affiche les 1000 derniers bytes
     - `+100` : Affiche à partir de la 100e ligne
 
----
 
 ### Rechercher dans des fichiers
 
@@ -204,7 +200,7 @@ Recherche un motif (texte ou regex) dans des fichiers.
     - `-l` : Affiche uniquement les noms de fichiers
     - `-c` : Compte le nombre de lignes correspondantes
 
----
+## Chercher et filtrer
 
 ### Trouver des fichiers
 
@@ -223,7 +219,8 @@ Recherche des fichiers selon leur nom, type, taille, date de modification, permi
     - `-executable` : Fichiers exécutables
     - `-exec commande {} \;` : Exécute une commande sur les résultats
 
----
+
+## Administrer les accès
 
 ### Droits d'administration
 
@@ -241,8 +238,6 @@ Exécute une commande avec les privilèges superutilisateur.
     - `-S` : Lit le mot de passe depuis stdin
     - `NOPASSWD` : Permet d'exécuter sans mot de passe (sudoers)
 
----
-
 ### Changer les permissions d'un fichier
 
 ```sh
@@ -259,7 +254,6 @@ Modifie les permissions d'accès (lecture, écriture, exécution) pour le propri
     - `u=rw,g=r,o=r` : Définit explicitement les permissions
     - `-R` : Applique récursivement aux répertoires et contenu
 
----
 
 ### Changer le propriétaire d'un fichier
 
@@ -277,7 +271,8 @@ Change le propriétaire et/ou le groupe d'un fichier ou répertoire.
     - `-R` : Applique récursivement aux répertoires
     - `-v` : Mode verbeux
 
----
+
+## Observer et gérer les processus
 
 ### Gestion des processus
 
@@ -296,7 +291,6 @@ Liste les processus en cours d'exécution.
     - `-f` : Format complet avec arboresence
     - `--sort=-%cpu` : Trie par CPU descendant
 
----
 
 ### Moniteur de processus interactif
 
@@ -315,15 +309,17 @@ Affiche les processus en temps réel avec utilisation CPU/RAM.
     - `F8` ou `.` : Diminue la priorité
     - `F9` : Tue un processus
 
----
 
 ### Terminer un processus
 
 ```sh
-kill -9 PID
+kill PID
 ```
 
-Envoie un signal à un processus.
+Envoie un signal à un processus. Commencez toujours par le signal par défaut (`SIGTERM`) avant d'utiliser `SIGKILL`.
+
+!!! warning "Dernier recours"
+    `kill -9 PID` interrompt immédiatement le processus : ses fichiers temporaires et ses données non enregistrées peuvent ne pas être nettoyés.
 
 !!! tip "Arguments principaux"
 
@@ -334,7 +330,7 @@ Envoie un signal à un processus.
     - `-CONT` : Reprend l'exécution
     - `killall nom` : Cible par nom de processus
 
----
+## Contrôler l'espace disque
 
 ### Espace disque utilisé
 
@@ -352,7 +348,6 @@ Affiche l'utilisation de l'espace disque par partition.
     - `--total` : Affiche un total
     - `-B M` : Affiche en mégabytes
 
----
 
 ### Taille d'un répertoire
 
@@ -370,7 +365,7 @@ Calcule l'espace disque occupé par un fichier ou répertoire.
     - `-d 1` : Profondeur 1 (1 niveau de détail)
     - `--max-depth=2` : Limite la profondeur d'affichage
 
----
+## Transférer et accéder à distance
 
 ### Télécharger un fichier
 
@@ -387,8 +382,6 @@ Télécharge un fichier depuis une URL HTTP/HTTPS/FTP.
     - `-q` : Mode silencieux (pas d'affichage de progression)
     - `--limit-rate=500k` : Limite la bande passante
     - `-P chemin/` : Définit le répertoire de sortie
-
----
 
 ### Requêtes HTTP en ligne de commande
 
@@ -407,7 +400,6 @@ Transfère des données vers ou depuis un serveur. Supp orte HTTP, HTTPS, FTP, S
     - `-H 'Header: value'` : Ajoute un entête
     - `-o fichier` : Sauvegarde la réponse dans un fichier
 
----
 
 ### Connexion distante sécurisée
 
@@ -426,7 +418,6 @@ ssh user@host -p 22
     - `-R 8080:localhost:8080` : Port forwarding distant
     - `-X` : Active le X11 forwarding (GUI distante)
 
----
 
 ### Copie distante sécurisée
 
@@ -444,7 +435,6 @@ Copie des fichiers entre machines via SSH.
     - `-v` : Mode verbeux
     - Syntaxe : `scp [source] [destination]` (local ou distant)
 
----
 
 ### Synchronisation incrémentale de fichiers
 
@@ -463,7 +453,8 @@ Synchronise des fichiers localement ou à distance, ne transférant que les diff
     - `--delete` : Supprime les fichiers absents de la source
     - `-e ssh` : Utilise SSH comme transport
 
----
+
+## Maintenir le système
 
 ### Gestionnaire de paquets (Debian/Ubuntu)
 
@@ -482,8 +473,6 @@ Met à jour la liste des paquets puis installe les mises à jour disponibles.
     - `-y` : Répond "oui" automatiquement
     - `search terme` : Cherche un paquet
 
----
-
 ### Gestion des services systemd
 
 ```sh
@@ -501,7 +490,6 @@ Contrôle les services système avec systemd.
     - `enable` : Active au démarrage
     - `disable` : Désactive au démarrage
 
----
 
 ### Voir les logs système
 
@@ -520,7 +508,8 @@ Consulte les journaux systemd.
     - `-n 50` : Affiche les 50 dernières lignes
     - `-p err` : Filtre par niveau (err, warning, info, debug)
 
----
+
+## Personnaliser le shell
 
 ### Variables d'environnement et alias
 
@@ -538,8 +527,6 @@ Définit ou exporte une variable d'environnement pour le shell courant et ses pr
     - `alias` : Liste tous les alias
     - `unalias nom` : Supprime un alias
     - `env` : Liste toutes les variables d'environnement
-
----
 
 ### Historique des commandes
 

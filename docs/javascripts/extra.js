@@ -230,6 +230,137 @@ if (typeof document$ !== 'undefined') {
   }
 }
 
+/* ── Cheat sheets — browse and filter commands locally ───── */
+(function () {
+  function isCheatPage() {
+    return /\/cheats\//.test(window.location.pathname);
+  }
+
+  function createElement(tag, className, text) {
+    var element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text) element.textContent = text;
+    return element;
+  }
+
+  function wrapSections(container) {
+    var headings = Array.prototype.slice.call(container.querySelectorAll(':scope > h2'));
+    if (!headings.length) headings = Array.prototype.slice.call(container.querySelectorAll(':scope > h3'));
+    headings.forEach(function (heading) {
+      if (heading.parentElement.classList.contains('cheat-section')) return;
+      var section = createElement('section', 'cheat-section');
+      if (heading.tagName === 'H3') section.classList.add('cheat-command');
+      var headingId = heading.id || ('cheat-section-' + Math.random().toString(36).slice(2));
+      heading.id = headingId;
+      section.setAttribute('aria-labelledby', headingId);
+      heading.parentNode.insertBefore(section, heading);
+      section.appendChild(heading);
+      while (section.nextSibling && !(section.nextSibling.nodeType === 1 && section.nextSibling.matches(heading.tagName.toLowerCase()))) {
+        section.appendChild(section.nextSibling);
+      }
+    });
+  }
+
+  function wrapCards(container) {
+    container.querySelectorAll('.cheat-section').forEach(function (section) {
+      if (section.classList.contains('cheat-command')) return;
+      var headings = Array.prototype.slice.call(section.querySelectorAll(':scope > h3'));
+      headings.forEach(function (heading) {
+        var card = createElement('article', 'cheat-card');
+        heading.parentNode.insertBefore(card, heading);
+        card.appendChild(heading);
+        while (card.nextSibling && !(card.nextSibling.nodeType === 1 && card.nextSibling.matches('h3'))) {
+          card.appendChild(card.nextSibling);
+        }
+        if (/\b(rm|kill|delete|destroy|truncate|drop|shutdown|reboot|poweroff|clear)\b/i.test(card.textContent)) {
+          card.dataset.risk = 'true';
+        }
+      });
+    });
+  }
+
+  function enhanceCheatSheet() {
+    if (!isCheatPage()) return;
+    var container = document.querySelector('.md-content__inner');
+    if (!container || container.dataset.cheatsEnhanced === 'true') return;
+    var title = container.querySelector(':scope > h1');
+    if (!title) return;
+    container.dataset.cheatsEnhanced = 'true';
+    container.classList.add('cheats-page');
+
+    var intro = title.nextElementSibling;
+    if (intro && intro.tagName === 'BLOCKQUOTE') intro.classList.add('cheat-intro');
+
+    wrapSections(container);
+    wrapCards(container);
+
+    var sections = Array.prototype.slice.call(container.querySelectorAll('.cheat-section'));
+    sections.forEach(function (section) {
+      if (/\b(rm|kill|delete|destroy|truncate|drop|shutdown|reboot|poweroff|clear)\b/i.test(section.textContent)) {
+        section.dataset.risk = 'true';
+      }
+    });
+    var tools = createElement('div', 'cheat-tools');
+    tools.setAttribute('role', 'search');
+    tools.setAttribute('aria-label', 'Filtrer cette cheat sheet');
+    var searchWrap = createElement('div', 'cheat-search-wrap');
+    var search = createElement('input', 'cheat-search');
+    search.type = 'search';
+    search.placeholder = 'Filtrer une commande, une option, un sujet…';
+    search.setAttribute('aria-label', 'Filtrer les commandes');
+    search.setAttribute('autocomplete', 'off');
+    var count = createElement('output', 'cheat-count');
+    count.setAttribute('aria-live', 'polite');
+    searchWrap.appendChild(search);
+    tools.appendChild(searchWrap);
+    tools.appendChild(count);
+
+    var index = createElement('nav', 'cheat-index');
+    index.setAttribute('aria-label', 'Rubriques de la cheat sheet');
+    sections.forEach(function (section) {
+      var heading = section.querySelector(':scope > h2, :scope > h3');
+      if (!heading) return;
+      var link = document.createElement('a');
+      link.href = '#' + heading.id;
+      link.textContent = heading.textContent.replace(/^##\s*/, '').trim();
+      index.appendChild(link);
+    });
+    title.insertAdjacentElement('afterend', tools);
+    tools.insertAdjacentElement('afterend', index);
+
+    function filter() {
+      var term = search.value.trim().toLocaleLowerCase('fr');
+      var visible = 0;
+      sections.forEach(function (section) {
+        var cards = Array.prototype.slice.call(section.querySelectorAll(':scope > .cheat-card'));
+        if (cards.length) {
+          var anyVisible = false;
+          cards.forEach(function (card) {
+            var matches = !term || card.textContent.toLocaleLowerCase('fr').indexOf(term) !== -1;
+            card.hidden = !matches;
+            anyVisible = anyVisible || matches;
+            if (matches) visible += 1;
+          });
+          section.hidden = !anyVisible;
+        } else {
+          var matchesSection = !term || section.textContent.toLocaleLowerCase('fr').indexOf(term) !== -1;
+          section.hidden = !matchesSection;
+          if (matchesSection) visible += 1;
+        }
+      });
+      count.textContent = term ? visible + ' résultat' + (visible > 1 ? 's' : '') : sections.length + ' rubriques';
+    }
+    search.addEventListener('input', filter);
+    filter();
+  }
+
+  if (typeof document$ !== 'undefined') {
+    document$.subscribe(enhanceCheatSheet);
+  } else {
+    document.addEventListener('DOMContentLoaded', enhanceCheatSheet);
+  }
+})();
+
 /* ── Scroll reveal — IntersectionObserver ────────────────── */
 (function () {
   var SELECTOR = [
