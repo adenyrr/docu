@@ -81,16 +81,23 @@ scan_node_deps:
     - npm audit --audit-level=high
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
+      exists:
+        - package-lock.json
   allow_failure: true
 
 accessibility_audit:
-  stage: test
-  image: node:24
+  stage: deploy
+  image: mcr.microsoft.com/playwright:v1.62.1-noble
+  variables:
+    AXE_MAX_VIOLATIONS: "3"
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
   script:
-    - npm install -g @axe-core/cli
-    - axe https://docu.adenyrr.be --exit --threshold 3
+    - npm ci --ignore-scripts
+    - npm run audit:a11y -- https://docu.adenyrr.me
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  needs:
+    - job: deploy_cloudflare
   allow_failure: true
 
 
@@ -158,10 +165,10 @@ deploy_cloudflare:
   script:
     - npm install --global wrangler@4
     - wrangler deploy
-    - curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/
+    - curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.me/
   environment:
     name: cloudflare-worker
-    url: https://docu.adenyrr.be
+    url: https://docu.adenyrr.me
   needs:
     - job: build_site
       artifacts: true
@@ -176,7 +183,7 @@ deploy_preview:
     - wrangler deploy --branch "$CI_COMMIT_BRANCH"
   environment:
     name: review/$CI_COMMIT_REF_SLUG
-    url: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.be
+    url: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.me
     auto_stop_in: 7 days
   needs:
     - job: build_preview
@@ -189,7 +196,7 @@ lighthouse_audit:
   image: node:24
   script:
     - npm install -g @lhci/cli
-    - lhci autorun --collect.url=https://docu.adenyrr.be --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report
+    - lhci autorun --collect.url=https://docu.adenyrr.me --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report
   artifacts:
     paths:
       - lighthouse-report

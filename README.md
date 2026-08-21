@@ -4,7 +4,7 @@ Ce dépôt contient la documentation personnelle d'**Adenyrr**. La pile
 technologique est légère et tournée autour de générateurs de sites statiques
 pour produire des pages HTML à partir de fichiers Markdown.
 
-Le site est disponible sur https://docu.adenyrr.be
+Le site est disponible sur https://docu.adenyrr.me
 ---
 
 ## Stack utilisée
@@ -124,7 +124,7 @@ Le pipeline GitLab (`.gitlab-ci.yml`) est organisé en 5 stages :
 
 1. **update** – Renovate (mises à jour automatiques des dépendances)
 2. **lint** – markdownlint, validation des dates frontmatter
-3. **test** – vérification des liens, scan de vulnérabilités (safety, npm audit), audit accessibilité (axe)
+3. **test** – vérification des liens, scan des dépendances Python et, si un lockfile existe, Node, audit accessibilité (axe)
 4. **build** – génération du site statique + preview sur MR
 5. **deploy** – déploiement Cloudflare + health check
 

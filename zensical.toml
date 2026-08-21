@@ -4,7 +4,7 @@
 site_name = "Adenyrr's docu"
 site_description = "mkdir /dev/docs"
 site_author = "adenyrr"
-site_url = "https://docu.adenyrr.be"
+site_url = "https://docu.adenyrr.me"
 copyright = 'Creative Commons BY - NC : adenyrr'
 site_dir = "public"
 

@@ -361,6 +361,90 @@ if (typeof document$ !== 'undefined') {
   }
 })();
 
+/* ── Accessibility fixes for Zensical's dynamic interface ────── */
+(function () {
+  function repairThemeElements() {
+    document.querySelectorAll('.md-progress').forEach(function (progress) {
+      progress.removeAttribute('role');
+      progress.setAttribute('aria-hidden', 'true');
+    });
+
+    document.querySelectorAll('.md-overlay').forEach(function (overlay) {
+      overlay.removeAttribute('aria-label');
+      overlay.setAttribute('aria-hidden', 'true');
+    });
+
+    document.querySelectorAll('nav[aria-labelledby]').forEach(function (navigation) {
+      var title = navigation.querySelector(':scope > .md-nav__title');
+      var label = title ? title.textContent.replace(/\s+/g, ' ').trim() : 'Navigation secondaire';
+      navigation.removeAttribute('aria-labelledby');
+      navigation.setAttribute('aria-label', 'Navigation : ' + (label || 'rubrique secondaire'));
+    });
+  }
+
+  function repairSearchShadow(host) {
+    var shadow = host.shadowRoot;
+    if (!shadow || host.dataset.a11yRepaired === 'true') return;
+
+    var root = shadow.querySelector('.e');
+    var dialog = shadow.querySelector('.l');
+    var input = shadow.querySelector('input[role="combobox"]');
+    var buttons = shadow.querySelectorAll('button');
+    var results = shadow.querySelector('.b');
+    var filters = shadow.querySelector('.a');
+    var backdrop = shadow.querySelector('.p');
+    if (!root || !dialog || !input || buttons.length < 2 || !results || !filters) return;
+
+    host.dataset.a11yRepaired = 'true';
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-label', 'Recherche dans la documentation');
+    dialog.setAttribute('aria-modal', 'true');
+
+    results.id = 'docu-search-results';
+    input.setAttribute('aria-label', 'Rechercher dans la documentation');
+    input.setAttribute('aria-controls', results.id);
+    input.setAttribute('aria-autocomplete', 'list');
+    buttons[0].setAttribute('aria-label', 'Lancer la recherche');
+    buttons[1].setAttribute('aria-label', 'Afficher les filtres');
+
+    filters.setAttribute('role', 'region');
+    filters.setAttribute('aria-label', 'Filtres de recherche');
+    filters.setAttribute('tabindex', '0');
+    if (backdrop) backdrop.setAttribute('aria-hidden', 'true');
+
+    function syncVisibility() {
+      var hidden = dialog.classList.contains('d');
+      root.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+      input.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+    }
+
+    syncVisibility();
+    new MutationObserver(syncVisibility).observe(dialog, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+
+  function repairDynamicInterface() {
+    repairThemeElements();
+    document.body.querySelectorAll('*').forEach(repairSearchShadow);
+  }
+
+  function startAccessibilityObserver() {
+    repairDynamicInterface();
+    new MutationObserver(repairDynamicInterface).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startAccessibilityObserver);
+  } else {
+    startAccessibilityObserver();
+  }
+})();
+
 /* ── Scroll reveal — IntersectionObserver ────────────────── */
 (function () {
   var SELECTOR = [

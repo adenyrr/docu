@@ -1,7 +1,7 @@
 /* ============================================================
    adenyrr docs — Hyprland glassmorphism theme
    Palette  dark : #141416 bg · #d4845a orange · #5ecfba teal
-            light: #f3ece6 bg · #c06a3a orange · #1a8a7a teal
+            light: #f3ece6 bg · #c06a3a orange · #0f6f63 teal
    Font     body : Inclusive Sans  · code: JetBrains Mono
    ============================================================ */
 
@@ -35,7 +35,7 @@
   --accent:       #c06a3a;
   --accent2:      #d4845a;
   --accent3:      #a85a30;
-  --link:         #1a8a7a;
+  --link:         #0f6f63;
   --glow:         rgba(192,106,58,0.09);
   --glow-hover:   rgba(192,106,58,0.18);
   --text:         #18181b;
@@ -487,7 +487,7 @@ body { min-height: 100vh; }
 }
 
 /* Signale les liens qui quittent le site, sans marquer les URL absolues internes. */
-.md-typeset a[href^="http"]:not([href*="//docu.adenyrr.be"])::after {
+.md-typeset a[href^="http"]:not([href*="//docu.adenyrr.me"])::after {
   content: "↗";
   display: inline-block;
   margin-left: 0.2em;

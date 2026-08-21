@@ -1,0 +1,12 @@
+{
+  "name": "docu-ci-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audit:a11y": "node scripts/audit_accessibility.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "playwright": "1.62.1"
+  }
+}

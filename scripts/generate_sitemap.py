@@ -15,7 +15,7 @@ DOCS_DIR = ROOT / "docs"
 CONFIG = ROOT / "zensical.toml"
 OUTPUT = ROOT / "sitemap.xml"
 
-SITE_URL = "https://docu.adenyrr.be"
+SITE_URL = "https://docu.adenyrr.me"
 
 PRIORITY_MAP: dict[str, float] = {
     "index": 1.0,
