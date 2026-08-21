@@ -42,6 +42,15 @@ Les polices sont :
 Ces choix garantissent une apparence cohérente et confortable sur toutes les
 pages.
 
+> **Note technique** : Zensical est un wrapper autour de MkDocs Material. Le site
+> utilise des fonctionnalités spécifiques à Zensical (thème `modern`, plugin
+> offline, extensions d'emoji/glightbox). Une migration vers MkDocs Material
+> directement est possible mais nécessiterait :
+> - Remplacer le thème `modern` par Material (avec personnalisation CSS équivalente)
+> - Remplacer le plugin offline par un service worker manuel
+> - Adapter les imports d'emoji et glightbox vers leurs équivalents PyPI
+> - Convertir `zensical.toml` en `mkdocs.yml`
+
 
 ---
 
@@ -90,6 +99,38 @@ la branche par défaut.
 > La chaîne CI (GitLab) installe Zensical et les plugins listés
 > ci‑dessus avant de lancer `zensical build --clean`.
 
+### Scripts de pre‑build
+
+Plusieurs scripts Python sont exécutés avant la génération du site :
+
+| Script | Rôle |
+|--------|------|
+| `scripts/generate_tags_index.py` | Génère `docs/tags.md` et les pages par tag dans `docs/tags/` |
+| `scripts/generate_revision_dates.py` | Génère `docs/assets/revision-dates.json` avec les dates git |
+| `scripts/generate_sitemap.py` | Génère `sitemap.xml` dynamique depuis la navigation |
+| `scripts/validate_dates.py` | Vérifie la cohérence des dates `last_modified` dans le frontmatter |
+| `scripts/validate_internal_links.py` | Vérifie que les liens internes pointent vers des fichiers existants |
+
+Pour exécuter un script manuellement :
+```bash
+python scripts/<nom_du_script>.py
+```
+
+---
+
+## Pipeline CI/CD
+
+Le pipeline GitLab (`.gitlab-ci.yml`) est organisé en 5 stages :
+
+1. **update** – Renovate (mises à jour automatiques des dépendances)
+2. **lint** – markdownlint, validation des dates frontmatter
+3. **test** – vérification des liens, scan de vulnérabilités (safety, npm audit), audit accessibilité (axe)
+4. **build** – génération du site statique + preview sur MR
+5. **deploy** – déploiement Cloudflare + health check
+
+Les jobs de test sont en `allow_failure: true` pour ne pas bloquer le pipeline
+sur des problèmes non-critiques.
+
 ---
 
 ## Mises à jour automatiques des dépendances
@@ -110,6 +151,15 @@ Pour activer les mises à jour automatiques :
 1. Ajouter la variable CI `PERSONAL_TOKEN` (scope `api`) via *Settings → CI/CD → Variables*.
 2. Créer un Schedule (CI/CD → Schedules) pour déclencher périodiquement le job `renovate` (hebdomadaire ou quotidien). La fréquence du Schedule GitLab pilote les vérifications de Renovate.
 3. Renovate ouvrira des Merge Requests pour les nouvelles versions; testez et mergez.
+
+### Token requis
+
+Pour que Renovate fonctionne, vous devez définir une variable CI/CD nommée
+`PERSONAL_TOKEN` (ou `RENOVATE_TOKEN`) avec un Personal Access Token GitLab
+ayant les permissions `api`. Sans ce token, le job `renovate` échouera.
+
+→ *Settings → CI/CD → Variables → Ajouter `PERSONAL_TOKEN`*
+
 ---
 
 ## Licences et contributions

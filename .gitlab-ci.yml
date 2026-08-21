@@ -1,13 +1,17 @@
 stages:
   - update
   - lint
+  - test
   - build
   - deploy
 
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PIP_NO_INPUT: "1"
 
 cache:
+  key: "${CI_JOB_NAME}"
   paths:
     - .cache/pip
 
@@ -22,35 +26,132 @@ renovate:
     - renovate --platform gitlab --autodiscover --autodiscover-filter="$CI_PROJECT_PATH"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
-  
+
+
+# ── Lint stage ───────────────────────────────────────────
 
 lint_markdown:
   stage: lint
   image: node:24
   script:
     - npm i -g markdownlint-cli
-    - markdownlint "docs/**/*.md" --config .markdownlint.json || true
+    - markdownlint "docs/**/*.md" --config .markdownlint.json --ignore "venv/**"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+
+validate_frontmatter_dates:
+  stage: lint
+  image: python:3.14
+  script:
+    - python scripts/validate_dates.py
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+
+
+# ── Test stage ───────────────────────────────────────────
+
+check_links:
+  stage: test
+  image: node:24
+  script:
+    - npm install -g markdown-link-check
+    - find docs -name '*.md' ! -path '*/venv/*' -exec markdown-link-check {} \; || true
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   allow_failure: true
 
+scan_python_deps:
+  stage: test
+  image: python:3.14
+  script:
+    - pip install safety
+    - safety check -r requirements.txt --full-report
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+  allow_failure: true
+
+scan_node_deps:
+  stage: test
+  image: node:24
+  script:
+    - npm audit --audit-level=high || true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+  allow_failure: true
+
+accessibility_audit:
+  stage: test
+  image: node:24
+  script:
+    - npm install -g @axe-core/cli
+    - axe https://docu.adenyrr.be --exit --threshold 3
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  allow_failure: true
+
+
+# ── Build stage ──────────────────────────────────────────
+
+optimize_images:
+  stage: build
+  image: python:3.14
+  script:
+    - pip install pillow
+    - python -c "import os,PIL.Image as I; [I.open(os.path.join(d,f)).save(os.path.join(d,f),optimize=True,quality=85) for d,_,fs in os.walk('docs/assets') for f in fs if f.lower().endswith(('.png','.jpg','.jpeg'))]" && echo "Images optimized"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
 build_site:
   stage: build
   image: python:3.14
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .cache/pip
   script:
     - python -m pip install --upgrade pip
     - pip install -r requirements.txt
     - python scripts/generate_tags_index.py
     - python scripts/generate_revision_dates.py
+    - python scripts/generate_sitemap.py
     - zensical build --clean
-    - if [ -f "$CI_PROJECT_DIR/sitemap.xml" ]; then cp -v "$CI_PROJECT_DIR/sitemap.xml" public/; else echo "sitemap.xml not found in repo root"; fi
-    - if [ -f "$CI_PROJECT_DIR/robots.txt" ]; then cp -v "$CI_PROJECT_DIR/robots.txt" public/; else echo "robots.txt not found in repo root"; fi
+    - if [ -f sitemap.xml ]; then cp -v sitemap.xml public/; else echo "sitemap.xml not found in repo root"; fi
+    - if [ -f robots.txt ]; then cp -v robots.txt public/; else echo "robots.txt not found in repo root"; fi
   artifacts:
     paths:
       - public
     expire_in: 1 week
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+build_preview:
+  stage: build
+  image: python:3.14
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .cache/pip
+  script:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+    - python scripts/generate_tags_index.py
+    - python scripts/generate_revision_dates.py
+    - python scripts/generate_sitemap.py
+    - zensical build --clean
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 day
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+
+
+# ── Deploy stage ─────────────────────────────────────────
 
 deploy_cloudflare:
   stage: deploy
@@ -60,11 +161,51 @@ deploy_cloudflare:
     - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
     - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
     - wrangler deploy
+    - echo "Health check: $(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)"
+    - test "$(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)" = "200" && echo "OK" || echo "WARNING: non-200 response"
   environment:
     name: cloudflare-worker
-    url: https://docu.adenyrr.me
+    url: https://docu.adenyrr.be
   needs:
     - job: build_site
       artifacts: true
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+deploy_preview:
+  stage: deploy
+  image: node:24
+  script:
+    - npm install --global wrangler@4
+    - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
+    - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
+    - wrangler deploy --branch "$CI_COMMIT_BRANCH"
+    - echo "Preview URL: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.be"
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    url: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.be
+    auto_stop_in: 7 days
+  needs:
+    - job: build_preview
+      artifacts: true
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: never
+
+lighthouse_audit:
+  stage: deploy
+  image: node:24
+  script:
+    - npm install -g @lhci/cli
+    - lhci autorun --collect.url=https://docu.adenyrr.be --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report || true
+  artifacts:
+    paths:
+      - lighthouse-report
+    expire_in: 30 days
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  needs:
+    - job: deploy_cloudflare
+  allow_failure: true

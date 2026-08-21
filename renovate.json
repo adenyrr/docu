@@ -8,13 +8,26 @@
     ]
   },
   "automerge": false,
+  "schedule": [
+    "every weekend"
+  ],
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "minor"
-      ],
+      "matchUpdateTypes": ["minor"],
       "automerge": true,
       "automergeType": "pr"
+    },
+    {
+      "matchPackagePrefixes": ["mkdocs-", "mkdocs"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "MkDocs plugins",
+      "automerge": true
+    },
+    {
+      "matchPackagePrefixes": ["zensical"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Zensical",
+      "automerge": false
     }
   ]
 }
