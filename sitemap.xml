@@ -265,6 +265,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://docu.adenyrr.be/tags/</loc>
+    <lastmod>2026-08-19T19:09:37+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://docu.adenyrr.be/virtu/cloudinit/</loc>
     <lastmod>2026-08-14T12:42:18+02:00</lastmod>
     <changefreq>monthly</changefreq>

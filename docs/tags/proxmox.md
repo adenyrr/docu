@@ -1,0 +1,13 @@
+---
+title: "Tag: proxmox"
+description: "Pages marquées "proxmox""
+last_modified: 2026-08-21T17:47:32.023876Z
+---
+
+# proxmox
+
+Nombre de pages : 3
+
+- [Créer conteneur LXC Proxmox](virtu/lxcinstall.md) — Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut télécharger l'image. Pour une première LXC, Debian 13 est un bon choix et présent dans les templates de base.
+- [Installer une VM Debian](virtu/vminstall.md) — 
+- [Proxmox VE hyperviseur](virtu/pve.md) — 

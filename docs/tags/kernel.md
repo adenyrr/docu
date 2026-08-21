@@ -1,0 +1,11 @@
+---
+title: "Tag: kernel"
+description: "Pages marquées "kernel""
+last_modified: 2026-08-21T17:47:32.019629Z
+---
+
+# kernel
+
+Nombre de pages : 1
+
+- [Linux — Cheat Sheet : Kernel & Système](cheats/linux_kernel.md) — Référence rapide pour systemd, journald, dmesg, modules noyau, performances et sécurité système.

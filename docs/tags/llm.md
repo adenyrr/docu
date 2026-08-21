@@ -1,0 +1,12 @@
+---
+title: "Tag: llm"
+description: "Pages marquées "llm""
+last_modified: 2026-08-21T17:47:32.023390Z
+---
+
+# llm
+
+Nombre de pages : 2
+
+- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
+- [Ollama Open-WebUI local](services/llm/openwebui.md) — Ollama est une application qui permet de faire tourner et de manipuler une IA (en fait, des *modèles de langage*) sur son propre matériel. Open-WebUI est l'application fournissant une interface web pour intéragir avec Ollama, ainsi qu'avec les LLM.
