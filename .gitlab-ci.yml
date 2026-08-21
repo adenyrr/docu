@@ -161,8 +161,10 @@ deploy_cloudflare:
     - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
     - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
     - wrangler deploy
-    - echo "Health check: $(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)"
-    - test "$(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)" = "200" && echo "OK" || echo "WARNING: non-200 response"
+    - echo "Health check in progress..."
+    - HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)
+    - 'echo "Health check: $HTTP_CODE"'
+    - 'if [ "$HTTP_CODE" = "200" ]; then echo "OK"; else echo "WARNING: non-200 response"; fi'
   environment:
     name: cloudflare-worker
     url: https://docu.adenyrr.be
