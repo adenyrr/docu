@@ -15,6 +15,9 @@ cache:
   paths:
     - .cache/pip
 
+
+# ── Update stage ──────────────────────────────────────────
+
 renovate:
   stage: update
   image: renovate/renovate:latest
@@ -22,7 +25,6 @@ renovate:
     RENOVATE_TOKEN: "${PERSONAL_TOKEN}"
     RENOVATE_ENDPOINT: "${CI_API_V4_URL}"
   script:
-    - test -n "$RENOVATE_TOKEN" || { echo "PERSONAL_TOKEN is not available to this pipeline."; exit 1; }
     - renovate --platform gitlab --autodiscover --autodiscover-filter="$CI_PROJECT_PATH"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
@@ -55,7 +57,7 @@ check_links:
   image: node:24
   script:
     - npm install -g markdown-link-check
-    - find docs -name '*.md' ! -path '*/venv/*' -exec markdown-link-check {} \; || true
+    - find docs -name '*.md' ! -path '*/venv/*' -exec markdown-link-check {} \;
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   allow_failure: true
@@ -74,7 +76,7 @@ scan_node_deps:
   stage: test
   image: node:24
   script:
-    - npm audit --audit-level=high || true
+    - npm audit --audit-level=high
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
   allow_failure: true
@@ -97,9 +99,7 @@ optimize_images:
   image: python:3.14
   script:
     - pip install pillow
-    - python -c "import os,PIL.Image as I; [I.open(os.path.join(d,f)).save(os.path.join(d,f),optimize=True,quality=85) for d,_,fs in os.walk('docs/assets') for f in fs if f.lower().endswith(('.png','.jpg','.jpeg'))]" && echo "Images optimized"
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - python -c "import os,PIL.Image as I; [I.open(os.path.join(d,f)).save(os.path.join(d,f),optimize=True,quality=85) for d,_,fs in os.walk('docs/assets') for f in fs if f.lower().endswith(('.png','.jpg','.jpeg'))]"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
@@ -117,8 +117,8 @@ build_site:
     - python scripts/generate_revision_dates.py
     - python scripts/generate_sitemap.py
     - zensical build --clean
-    - if [ -f sitemap.xml ]; then cp -v sitemap.xml public/; else echo "sitemap.xml not found in repo root"; fi
-    - if [ -f robots.txt ]; then cp -v robots.txt public/; else echo "robots.txt not found in repo root"; fi
+    - cp sitemap.xml public/ || echo "sitemap.xml not found in repo root"
+    - cp robots.txt public/ || echo "robots.txt not found in repo root"
   artifacts:
     paths:
       - public
@@ -146,9 +146,6 @@ build_preview:
     expire_in: 1 day
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: always
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: never
 
 
 # ── Deploy stage ─────────────────────────────────────────
@@ -158,13 +155,8 @@ deploy_cloudflare:
   image: node:24
   script:
     - npm install --global wrangler@4
-    - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
-    - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
     - wrangler deploy
-    - echo "Health check in progress..."
-    - HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/)
-    - 'echo "Health check: $HTTP_CODE"'
-    - 'if [ "$HTTP_CODE" = "200" ]; then echo "OK"; else echo "WARNING: non-200 response"; fi'
+    - curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.be/
   environment:
     name: cloudflare-worker
     url: https://docu.adenyrr.be
@@ -179,10 +171,7 @@ deploy_preview:
   image: node:24
   script:
     - npm install --global wrangler@4
-    - test -n "$CLOUDFLARE_API_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not available to this pipeline."; exit 1; }
-    - test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "CLOUDFLARE_ACCOUNT_ID is not available to this pipeline."; exit 1; }
     - wrangler deploy --branch "$CI_COMMIT_BRANCH"
-    - echo "Preview URL: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.be"
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.be
@@ -192,16 +181,13 @@ deploy_preview:
       artifacts: true
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: always
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: never
 
 lighthouse_audit:
   stage: deploy
   image: node:24
   script:
     - npm install -g @lhci/cli
-    - lhci autorun --collect.url=https://docu.adenyrr.be --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report || true
+    - lhci autorun --collect.url=https://docu.adenyrr.be --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report
   artifacts:
     paths:
       - lighthouse-report
