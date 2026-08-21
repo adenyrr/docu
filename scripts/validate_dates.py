@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-"""Validate that last_modified frontmatter dates are consistent with git history."""
+"""Validate that last_modified dates match meaningful changes in git history."""
 
 import datetime as dt
 import re
@@ -19,22 +19,82 @@ WARN_THRESHOLD_DAYS = 7
 ERROR_THRESHOLD_DAYS = 30
 
 
-def git_last_modified(path: Path) -> tuple[str | None, str | None]:
-    """Returns (iso_date, short_date) or (None, None)."""
-    cmd = ["git", "log", "-1", "--date=iso-strict", "--format=%H|%ad", "--", str(path)]
+def git_file_at_revision(revision: str, path: Path) -> str | None:
+    """Return a file as it existed at a revision, or None if it did not exist."""
+    rel = path.relative_to(ROOT).as_posix()
+    result = subprocess.run(
+        ["git", "show", f"{revision}:{rel}"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def semantic_content(text: str) -> str:
+    """Remove generated metadata that must not change a page revision date."""
+    match = FRONT_MATTER_RE.search(text)
+    if not match:
+        return text
+
+    kept_lines: list[str] = []
+    skipping_tags = False
+    for line in match.group(1).splitlines():
+        if line.startswith("last_modified:"):
+            continue
+        if line.startswith("tags:"):
+            skipping_tags = True
+            continue
+        if skipping_tags and (not line or line[0].isspace()):
+            continue
+        skipping_tags = False
+        kept_lines.append(line)
+
+    body = text[match.end():]
+    return ("\n".join(kept_lines) + body).rstrip() + "\n"
+
+
+def git_last_content_modified(path: Path) -> tuple[str | None, str | None]:
+    """Return the most recent commit that changed user-facing page content."""
+    head = git_file_at_revision("HEAD", path)
+    try:
+        working_tree = path.read_text(encoding="utf-8")
+    except OSError:
+        working_tree = None
+    if working_tree is not None and (
+        head is None or semantic_content(working_tree) != semantic_content(head)
+    ):
+        return "WORKTREE", dt.datetime.now().astimezone().isoformat()
+
+    cmd = ["git", "log", "--date=iso-strict", "--format=%H|%ad", "--", str(path)]
     result = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False)
-    line = result.stdout.strip()
-    if result.returncode != 0 or not line or "|" not in line:
+    if result.returncode != 0:
         return None, None
-    commit_hash, iso_date = line.split("|", 1)
-    return commit_hash.strip(), iso_date.strip()
+
+    for line in result.stdout.splitlines():
+        if "|" not in line:
+            continue
+        commit_hash, iso_date = line.split("|", 1)
+        current = git_file_at_revision(commit_hash, path)
+        if current is None:
+            continue
+        previous = git_file_at_revision(f"{commit_hash}^", path)
+        if previous is None or semantic_content(current) != semantic_content(previous):
+            return commit_hash.strip(), iso_date.strip()
+
+    return None, None
 
 
 def parse_date(date_str: str) -> dt.date | None:
     """Try to parse a date string into a date object."""
     date_str = date_str.strip().strip('"').strip("'")
-    for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M:%S%z",
-                "%d/%m/%Y", "%d/%m/%Y %H:%M"):
+    try:
+        return dt.datetime.fromisoformat(date_str.replace("Z", "+00:00")).date()
+    except ValueError:
+        pass
+
+    for fmt in ("%d/%m/%Y", "%d/%m/%Y %H:%M"):
         try:
             dt_obj = dt.datetime.strptime(date_str, fmt)
             return dt_obj.date()
@@ -74,9 +134,9 @@ def main() -> int:
             warnings += 1
             continue
 
-        _, git_iso = git_last_modified(md_file)
+        _, git_iso = git_last_content_modified(md_file)
         if git_iso is None:
-            print(f"ℹ [{rel}] No git history for this file, skipping validation")
+            print(f"ℹ [{rel}] No content change in available git history, skipping validation")
             continue
 
         git_date = parse_date(git_iso)

@@ -1,7 +1,7 @@
 ---
 title: "Outils Windows ressources"
 description: "Scripts Windows, tweaks et listes d'outils"
-last_modified: 2026-03-26
+last_modified: 2026-08-21
 tags:
   - windows
   - outils
@@ -33,6 +33,6 @@ irm "https://christitus.com/win" | iex
 
 [BCU](https://www.bcuninstaller.com/) permet de désinstaller tous les programmes par défaut installés avec Windows. La dernière version est à récupérer sur [leur github](https://github.com/Klocman/Bulk-Crap-Uninstaller/releases/latest).
 
-# Awesome Lists
+## Awesome Lists
 
 - [Awwesome](https://awweso.me/) : une liste de services et applications à auto-héberger, catégorisé.e.s et classé.e.s par popularité.

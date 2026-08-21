@@ -13,7 +13,7 @@ tags:
 
 ## Modes de l'IOS
 
-```
+```text
 Router>          # Mode utilisateur (User EXEC) — lecture seule
 Router#          # Mode privilégié (Privileged EXEC) — diagnostic
 Router(config)#  # Mode configuration globale

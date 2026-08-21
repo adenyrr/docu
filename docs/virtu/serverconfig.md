@@ -1,7 +1,7 @@
 ---
 title: "Sécuriser serveur Debian"
 description: "Bonnes pratiques essentielles configuration serveur"
-last_modified: 2026-03-26
+last_modified: 2026-08-21
 tags:
   - sécurité
   - debian
@@ -9,7 +9,7 @@ tags:
   - adminsys
 ---
 
-# Introduction
+## Introduction
 
 Un serveur a beau être extrêmement léger, et surtout debian sans aucun composant graphique, mais il n'en reste pas moins 'nu', et donc sans aucune mesure de protection mise en place. Voici une liste non-exhaustive de commandes ayant pour but d'augmenter la sécurité et la résilience des serveurs debian.
 
@@ -30,7 +30,7 @@ apt autoremove --purge -y
 reboot
 ```
 
-# Configuration
+## Configuration
 
 ### users et sudo
 
@@ -136,4 +136,3 @@ chronyc tracking
 Le fichier de configuration (avec les serveurs NTP à contacter) est `/etc/chrony/chrony.conf`.
 
 J'utilise `pool.ntp.org` comme serveur NTP principal.
-

@@ -154,7 +154,7 @@ cat|dog            # alternance : cat OU dog
 
 Les caractères suivants ont une signification spéciale et doivent être échappés avec `\` :
 
-```
+```text
 . * + ? ^ $ { } [ ] | ( ) \
 ```
 

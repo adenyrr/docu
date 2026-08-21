@@ -98,7 +98,7 @@ Après avoir selectionné son [VPC](vpc.md), on va créer les Security Groups :
 
 ### Récapitulatif des flux
 
-```
+```text
 Internet
    │ HTTPS:443
    ▼
@@ -113,4 +113,3 @@ Les SGs des machines cibles n'autorisent aucun accès direct depuis Internet. To
 ### Création des EC2
 
 On crée alors, au minimum, [2 instances EC2](spin_instance.md) : le guacamole, et la machine cible.
-

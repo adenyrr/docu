@@ -1,7 +1,7 @@
 ---
 title: "Bienvenue"
 description: "Documentation sur le self-hosting et ressources utiles en français."
-last_modified: 2026-01-12
+last_modified: 2026-08-14
 tags:
   - homelab
   - self-hosting

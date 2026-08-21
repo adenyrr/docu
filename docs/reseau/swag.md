@@ -1,7 +1,7 @@
 ---
 title: "Gateway sécurisé reverse-proxy"
 description: "Reverse-proxy SWAG nginx certificats SSL"
-last_modified: 2026-03-26
+last_modified: 2026-08-21
 tags:
   - réseau
   - reverse-proxy
@@ -128,7 +128,7 @@ Et là, ça échoue. Pas de panique, c'est normal : on ne lui a pas donné les a
 
 On vérifie tout d'abord sur le tableau de bord de son domaine que ce dernier pointe bien sur son adresse IP publique. On peut trouver celle-ci sur [des sites dédiés](https://monip.com). Normalement, on devrait avoir un enregistrement dit *"A"* pour une adresse IPv4. Ensuite, on se rend sur [le site API d'OVH](https://eu.api.ovh.com/createToken/) et on entre les autorisations suivantes :
 
-```
+```text
 GET /domain/zone/*
 PUT /domain/zone/*
 POST /domain/zone/*

@@ -1,7 +1,7 @@
 ---
 title: "Serveur DNS autoritaire"
 description: "DNS autoritaire local avec blackhole et logging"
-last_modified: 2026-08-14
+last_modified: 2026-08-21
 tags:
   - réseau
   - dns
@@ -129,7 +129,7 @@ Une fois le certificat créé, il suffit d'ajouter le chemin `/etc/technitium/ce
 
 ### Activer le logging
 
-Pour activer les logs et naviguer dedans, on installe l'application SQlite (`Apps > New App`). On peut modifier les valeurs en changeant le fichier de configuration (`Config `) :
+Pour activer les logs et naviguer dedans, on installe l'application SQlite (`Apps > New App`). On peut modifier les valeurs en changeant le fichier de configuration (`Config`) :
 
 ```json
 {
@@ -194,4 +194,3 @@ sudo apt install libmsquic
 ```
 
 Quic est alors installé et on peut se rendre sur la console d'administration de Technitium, puis activer QUIC et HTTP/3, respectivement sur les ports 853 et 443. Il suffira ensuite de les configurer et de les activer dans le reverse-proxy qui va fournir les terminaisons.
-

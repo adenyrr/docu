@@ -360,7 +360,7 @@ crontab -u alice -l                # crons d'alice (root)
 ```bash
 history                            # historique des commandes
 history | grep ssh                 # filtrer l'historique
-!! 	                               # répéter la dernière commande
+!!                                  # répéter la dernière commande
 !ssh                               # répéter la dernière commande ssh
 
 Ctrl+R                             # recherche inversée dans l'historique

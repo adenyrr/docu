@@ -1,7 +1,7 @@
 ---
 title: "Virtualisation : définitions et méthode"
 description: "Configuration et mise en place des machines virtualles acceuillant les services"
-last_modified: 2026-08-14
+last_modified: 2026-08-21
 tags:
   - vm
   - lxc
@@ -9,8 +9,8 @@ tags:
   - infrastructure
 ---
 
-# Définitions
+## Définitions
 
-# Buts recherchés
+## Buts recherchés
 
-# Navigation
+## Navigation

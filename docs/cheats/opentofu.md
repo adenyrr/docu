@@ -92,7 +92,7 @@ tofu workspace delete staging      # supprimer (doit être vide)
 
 ## Structure de projet
 
-```
+```text
 infra/
 ├── main.tf           # ressources principales
 ├── variables.tf      # déclarations des variables

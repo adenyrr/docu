@@ -1,7 +1,7 @@
 ---
 title: "Réseau : définitions et méthode"
 description: "Configuration et exposition de services via un réseau contrôlé et segmenté"
-last_modified: 2026-08-14
+last_modified: 2026-08-21
 tags:
   - network
   - installation
@@ -9,8 +9,8 @@ tags:
   - infrastructure
 ---
 
-# Définitions
+## Définitions
 
-# Buts recherchés
+## Buts recherchés
 
-# Navigation
+## Navigation

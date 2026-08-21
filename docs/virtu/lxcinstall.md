@@ -1,7 +1,7 @@
 ---
 title: "Créer conteneur LXC Proxmox"
 description: "Guide création configuration conteneurs LXC"
-last_modified: 2026-03-26
+last_modified: 2026-08-21
 tags:
   - virtualisation
   - proxmox
@@ -9,11 +9,11 @@ tags:
   - conteneurs
 ---
 
-# Introduction
+## Introduction
 
-# Créer une LXC
+## Créer une LXC
 
-## Télécharger une image
+### Télécharger une image
 
 Sous proxmox, on commence par selectionner un stockage compatible (par exemple : local) sur le node où l'on va créer la LXC. Ensuite, on choisi par quel méthode on veut télécharger l'image. Pour une première LXC, Debian 13 est un bon choix et présent dans les templates de base.
 
@@ -23,7 +23,7 @@ Sous proxmox, on commence par selectionner un stockage compatible (par exemple :
 
 Une fois téléchargé, on peut créer une LXC.
 
-# Créer une CT
+## Créer une CT
 
 En haut à droit, `Créer CT` et on arrive sur un formulaire :
 
@@ -55,7 +55,7 @@ Dans la partie réseau, attention à renseigner le Vlan et une IP au besoin. Les
 
 Enfin, on vérifie et on confirme la création de la LXC. Après quelques dizaines de secondes elle devrait être configurée et apparaitre avec les autres machines sur Proxmox.
 
-## Configuration de Debian
+### Configuration de Debian
 
 !!! warning "Bonnes pratiques"
 

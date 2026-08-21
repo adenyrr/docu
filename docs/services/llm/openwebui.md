@@ -1,7 +1,7 @@
 ---
 title: "Ollama Open-WebUI local"
 description: "Configuration LLM modèles langage locaux"
-last_modified: 2026-03-26
+last_modified: 2026-08-21
 tags:
   - llm
   - ollama
@@ -227,7 +227,7 @@ open-webui serve
 ### Vérifications et compte administrateur
 
 Une fois que tout s'est installé, on peut vérifier qu'Ollama tourne bien sur http://IP:11434. Il devrait renvoyer une simple ligne :
-```
+```text
 Ollama is running
 ```
 Ollama est donc bien exposé sur le port `11434`. On va ensuite sur http://IP:3000 où on devrait voir une image du Vatican, signe qu'OpenWebUI s'est bien installé. On clique en bas sur "Commencer" et on renseigne les champs requis. Le compte créé sera administrateur, on valide et on se connecte sur ce compte.

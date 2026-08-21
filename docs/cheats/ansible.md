@@ -113,7 +113,7 @@ all:
 
 ### Variables d'inventaire
 
-```
+```text
 inventory/
 ├── hosts.yml
 ├── group_vars/
@@ -400,7 +400,7 @@ inventory/
 
 ### Structure d'un rôle
 
-```
+```text
 roles/
 └── nginx/
     ├── defaults/

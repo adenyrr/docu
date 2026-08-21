@@ -37,13 +37,15 @@ lint_markdown:
   image: node:24
   script:
     - npm i -g markdownlint-cli
-    - markdownlint "docs/**/*.md" --config .markdownlint.json --ignore "venv/**"
+    - markdownlint "docs/**/*.md" --config .markdownlint.json --ignore "venv/**" --ignore "docs/tags.md" --ignore "docs/tags/**"
   rules:
     - if: '$CI_PIPELINE_SOURCE == "push"'
 
 validate_frontmatter_dates:
   stage: lint
   image: python:3.14
+  variables:
+    GIT_DEPTH: "0"
   script:
     - python scripts/validate_dates.py
   rules:

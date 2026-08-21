@@ -1,7 +1,7 @@
 ---
 title: "Spiner une instance AWS EC2"
 description: "Créer et configuration une EC2 dans la console amazon"
-last_modified: 2026-04-01
+last_modified: 2026-04-30
 tags:
   - aws
   - ec2
@@ -147,5 +147,4 @@ ssh -i /path/key_pair.pem $USER@$IP
     === "Windows"
 
         `Administrator` sauf si connecté à un AD
-
 
