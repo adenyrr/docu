@@ -1,11 +1,15 @@
 ---
-title: "Tag: load-balancer"
-description: "Pages marquées "load-balancer""
-last_modified: 2026-08-21T17:47:32.021482Z
+title: "Tag : load-balancer"
+description: "Les 1 pages marquées load-balancer."
+last_modified: 2026-08-22T08:40:20+00:00
 ---
 
 # load-balancer
 
-Nombre de pages : 1
+1 page. [Revenir à l'explorateur](../tags.html#load-balancer)
 
-- [Le load-balancer](non-oss/aws/load_balancer.md) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+- [Le load-balancer](/non-oss/aws/load_balancer.html) — On commence par créer un Security Group LB-SG pour l'ALB avec comme règle entrante HTTP, n'importe quelle source 0.0.0.0/0.
+
+## Tags associés
+
+[aws](aws.html) (1) · [cloud](cloud.html) (1) · [réseau](reseau.html) (1)

@@ -1,16 +1,20 @@
 ---
-title: "Tag: outils"
-description: "Pages marquées "outils""
-last_modified: 2026-08-21T17:47:32.020364Z
+title: "Tag : outils"
+description: "Les 6 pages marquées outils."
+last_modified: 2026-08-22T08:40:20+00:00
 ---
 
 # outils
 
-Nombre de pages : 6
+6 pages. [Revenir à l'explorateur](../tags.html#outils)
 
-- [Logiciels Linux personnels](outils/softwares.md) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème *glassmorphism*. Mon terminal est un simple kitty avec zsh. Mes serveurs sont sous Debian Trixie.
-- [Outils Windows ressources](outils/links.md) — Le script de massgrave permet d'activer une licence Windows ou Office.
-- [Quelques commandes utiles](outils/commandes.md) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à chaque ligne de notre fichier /etc/apt/sources.list. Pour vérifier que la commande a bien édité les lignes, on peut utiliser la commande cat /etc/apt/sources.list. Enfin, on actualise les dépots.
-- [Regex — Cheat Sheet](cheats/regex.md) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
-- [Ressources communautés tech](outils/ressources.md) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone consacré à HA, ainsi qu'un github.
-- [Ressources vidéo YouTube](outils/youtube.md) — 
+- [Logiciels Linux personnels](/outils/softwares.html) — Mes ordinateurs tournent sous OpenSuse Tumbleweed. Sur ceux-ci, j'utilise principalement hyprland avec un thème glassmorphism. Mon terminal est un simple kitty…
+- [Outils Windows ressources](/outils/links.html) — Le script de massgrave permet d'activer une licence Windows ou Office.
+- [Quelques commandes utiles](/outils/commandes.html) — La commande sed permet de modifier ou d'ajouter une chaine de caractères dans un fichier. Ici, on l'utilise pour ajouter les dépots 'contrib' et 'non-free' à…
+- [Regex — Cheat Sheet](/cheats/regex.html) — Référence rapide des expressions régulières — syntaxe universelle, PCRE, et usages dans les outils Linux courants.
+- [Ressources communautés tech](/outils/ressources.html) — Home Assistant Communauté Francophone est une association Loi 1901 qui publie des news en rapport avec Home Assistant et dispose du plus gros forum francophone…
+- [Ressources vidéo YouTube](/outils/youtube.html)
+
+## Tags associés
+
+[veille](veille.html) (4) · [linux](linux.html) (3) · [commandes](commandes.html) (2) · [windows](windows.html) (1) · [shell](shell.html) (1) · [adminsys](adminsys.html) (1) · [regex](regex.html) (1)

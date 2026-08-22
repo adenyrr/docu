@@ -74,7 +74,10 @@ nav = [
      {"ansible.sh" = "cheats/ansible.md"},
      {"opentofu.sh" = "cheats/opentofu.md"},
      {"sql_cheats.sh" = "cheats/sql.md"},
-     {"cisco_cheats.sh" = "cheats/cisco.md"},
+      {"cisco_cheats.sh" = "cheats/cisco.md"},
+  ]},
+  {"~/tags" = [
+      {"tags.sh" = "tags.md"},
   ]},
   {"~/non-free" = [
      {"/aws" = [
@@ -91,8 +94,8 @@ nav = [
 
 # Extras files
 
-extra_css = ["stylesheets/extra.css"]
-extra_javascript = ["javascripts/extra.js"]
+extra_css = ["stylesheets/extra.css", "stylesheets/tags-explorer.css"]
+extra_javascript = ["javascripts/extra.js", "javascripts/tags-explorer.js"]
 
 # Thème 
 
@@ -275,14 +278,14 @@ code = "Jetbrains Mono"
 
 # Tag identifiers (display name -> identifier)
 [project.extra.tags]
-"Linux" = "linux"
-"Réseau" = "reseau"
-"Sécurité" = "securite"
-"IaC" = "iac"
-"Docker" = "docker"
-"Homelab" = "homelab"
-"Domotique" = "domotique"
-"SQL" = "sql"
+"linux" = "linux"
+"réseau" = "reseau"
+"sécurité" = "securite"
+"iac" = "iac"
+"docker" = "docker"
+"homelab" = "homelab"
+"domotique" = "domotique"
+"sql" = "sql"
 
 [project.theme.icon.tag]
 default = "lucide/tag"
@@ -330,10 +333,6 @@ minify_html = true
 
 # Reusable variables/macros in Markdown
 [project.plugins.macros]
-
-# Built-in tags plugin — add `tags: [keyword]` in page front matter
-# then navigate to /tags/ for the auto-generated tag index
-[project.plugins.tags]
 
 # URL redirects — map old paths to new ones after renaming pages
 # Usage: add redirect_maps under this section, e.g.:

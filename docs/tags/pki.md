@@ -1,11 +1,15 @@
 ---
-title: "Tag: pki"
-description: "Pages marquées "pki""
-last_modified: 2026-08-21T17:47:32.022673Z
+title: "Tag : pki"
+description: "Les 1 pages marquées pki."
+last_modified: 2026-08-22T08:40:20+00:00
 ---
 
 # pki
 
-Nombre de pages : 1
+1 page. [Revenir à l'explorateur](../tags.html#pki)
 
-- [PKI autorité certification locale](reseau/stepca.md) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust part du principe que la menace peut être partout, y compris à l'intérieur du réseau. Dans cette optique, si un attaquant est *déjà* dans le réseau, il serait de bon ton que tout le traffic interne soit chiffré, y compris entre le proxy et les conteneurs: c'est ici que *step-ca* intervient en nous permettant de déployer une *Private Key Infrastruture* - PKI - avec renouvellement des certificats automatique et chiffrement mTLS entre les points d'exposition.
+- [PKI autorité certification locale](/reseau/stepca.html) — Contrairement aux approches traditionnelles qui sécurisent principalement les entrées (pare-feu) et font confiance à tout ce qui est à l'intérieur, le Zero Trust…
+
+## Tags associés
+
+[réseau](reseau.html) (1) · [sécurité](securite.html) (1) · [tls](tls.html) (1)

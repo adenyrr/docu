@@ -1,0 +1,355 @@
+/* ============================================================
+   Explorateur de tags — réutilise les tokens de extra.css
+   (--card-bg, --card-border, --accent, --link, --text2, --muted)
+   ============================================================ */
+
+#tags-explorer {
+  --tx-gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+#tags-explorer[aria-busy="true"] {
+  min-height: 40vh;
+}
+
+.tx-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── Barre de commande ────────────────────────────────────── */
+
+.tx-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  margin-bottom: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+
+.tx-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1 1 16rem;
+  min-width: 0;
+}
+
+.tx-prompt {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  color: var(--accent);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+#tx-q {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline-offset: 3px;
+  color: var(--md-default-fg-color);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+
+#tx-q::placeholder {
+  color: var(--text2);
+}
+
+#tx-q::-webkit-search-cancel-button {
+  filter: grayscale(1) opacity(0.6);
+}
+
+.tx-mode {
+  display: flex;
+  border: 1px solid var(--card-border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.tx-modebtn {
+  background: transparent;
+  border: 0;
+  color: var(--text2);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+
+.tx-modebtn[aria-pressed="true"] {
+  background: var(--link);
+  color: var(--bg);
+}
+
+.tx-reset {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 7px;
+  color: var(--text2);
+  font-size: 0.72rem;
+  padding: 0.32rem 0.7rem;
+  cursor: pointer;
+}
+
+.tx-reset:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Facettes ─────────────────────────────────────────────── */
+
+.tx-facet {
+  margin-bottom: 1.4rem;
+}
+
+.tx-facet-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin: 0 0 0.6rem !important;
+  padding: 0;
+  border: 0;
+}
+
+.tx-facet-hint {
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--text2);
+}
+
+.tx-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tx-gap);
+  align-items: center;
+}
+
+.tx-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.65rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  color: var(--text2);
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease,
+              background 0.16s ease, color 0.16s ease;
+}
+
+/* La taille varie avec la fréquence, mais reste toujours lisible :
+   le compteur porte l'information exacte, la taille n'est qu'un indice. */
+.tx-tag[data-weight="1"] { font-size: 0.78rem; }
+.tx-tag[data-weight="2"] { font-size: 0.84rem; }
+.tx-tag[data-weight="3"] { font-size: 0.92rem; }
+.tx-tag[data-weight="4"] { font-size: 1.02rem; }
+.tx-tag[data-weight="5"] { font-size: 1.14rem; font-weight: 600; }
+
+.tx-icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+  opacity: 0.75;
+}
+
+.tx-tag-count {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.68em;
+  color: var(--text2);
+  padding-left: 0.1rem;
+}
+
+.tx-tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--md-default-fg-color);
+}
+
+.tx-tag[aria-pressed="true"] {
+  background: var(--link);
+  border-color: var(--link);
+  color: var(--bg);
+  box-shadow: 0 4px 14px var(--glow-hover);
+}
+
+.tx-tag[aria-pressed="true"] .tx-icon,
+.tx-tag[aria-pressed="true"] .tx-tag-count {
+  color: inherit;
+  opacity: 1;
+}
+
+/* Combinaison sans résultat : atténué mais toujours focusable et cliquable */
+.tx-tag.is-dead {
+  background: transparent;
+  border-style: dashed;
+  transform: none;
+}
+
+.tx-tag.is-dead:hover {
+  transform: none;
+  border-color: var(--card-border);
+}
+
+/* ── Compteur + résultats ─────────────────────────────────── */
+
+.tx-count {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.74rem;
+  color: var(--text2);
+  padding: 0.7rem 0;
+  margin-top: 0.4rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.tx-empty {
+  color: var(--text2);
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+.tx-results {
+  list-style: none !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  gap: 0.85rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.tx-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 !important;
+  padding: 0.85rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.tx-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+.tx-card-section {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--link);
+}
+
+.tx-card-title {
+  margin: 0 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.3;
+}
+
+.tx-card-title a {
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+}
+
+.tx-card-title a:hover {
+  color: var(--link);
+}
+
+.tx-card-excerpt {
+  margin: 0 !important;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--text2);
+}
+
+.tx-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.25rem 0 0 !important;
+}
+
+.tx-chip {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  color: var(--text2);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.66rem;
+  padding: 0.12rem 0.4rem;
+  cursor: pointer;
+}
+
+.tx-chip:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.tx-chip[aria-pressed="true"] {
+  color: var(--bg);
+  border-color: var(--link);
+  background: var(--link);
+}
+
+/* ── Focus visible (audit axe) ────────────────────────────── */
+
+#tags-explorer button:focus-visible,
+#tags-explorer input:focus-visible,
+#tags-explorer a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+/* ── Préférences utilisateur ──────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  #tags-explorer * {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .tx-tag,
+  .tx-card,
+  .tx-chip {
+    border-color: currentColor;
+  }
+}
+
+@media (max-width: 44em) {
+  .tx-bar {
+    align-items: stretch;
+  }
+  .tx-search {
+    flex: 1 1 100%;
+  }
+  .tx-results {
+    grid-template-columns: 1fr;
+  }
+}

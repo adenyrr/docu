@@ -105,7 +105,7 @@ Plusieurs scripts Python sont exécutés avant la génération du site :
 
 | Script | Rôle |
 |--------|------|
-| `scripts/generate_tags_index.py` | Génère `docs/tags.md` et les pages par tag dans `docs/tags/` |
+| `scripts/generate_tags_data.py` | Normalise les tags et génère `docs/assets/tags.json`, l’explorateur `docs/tags.md` et les pages par tag |
 | `scripts/generate_revision_dates.py` | Génère `docs/assets/revision-dates.json` avec les dates git |
 | `scripts/generate_sitemap.py` | Génère `sitemap.xml` dynamique depuis la navigation |
 | `scripts/validate_dates.py` | Compare `last_modified` à la dernière modification éditoriale, hors tags générés |

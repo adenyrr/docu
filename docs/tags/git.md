@@ -1,11 +1,15 @@
 ---
-title: "Tag: git"
-description: "Pages marquées "git""
-last_modified: 2026-08-21T17:47:32.023201Z
+title: "Tag : git"
+description: "Les 1 pages marquées git."
+last_modified: 2026-08-22T08:40:20+00:00
 ---
 
 # git
 
-Nombre de pages : 1
+1 page. [Revenir à l'explorateur](../tags.html#git)
 
-- [Installation GitLab self-hosted](services/gitlab/install.md) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition communautaire auto-hébergeable.
+- [Installation GitLab self-hosted](/services/gitlab/install.html) — GitLab est un dépôt Git, particulièrement utilisé pour le DevOps et les CI/CD. Il dispose de nombreuses intégrations et runners, et propose une édition…
+
+## Tags associés
+
+[gitlab](gitlab.html) (1) · [devops](devops.html) (1) · [self-hosting](self-hosting.html) (1)

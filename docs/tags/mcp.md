@@ -1,11 +1,15 @@
 ---
-title: "Tag: mcp"
-description: "Pages marquées "mcp""
-last_modified: 2026-08-21T17:47:32.023540Z
+title: "Tag : mcp"
+description: "Les 1 pages marquées mcp."
+last_modified: 2026-08-22T08:40:20+00:00
 ---
 
 # mcp
 
-Nombre de pages : 1
+1 page. [Revenir à l'explorateur](../tags.html#mcp)
 
-- [Model Context Protocol Ollama](services/llm/mcpo.md) — 
+- [Model Context Protocol Ollama](/services/llm/mcpo.html)
+
+## Tags associés
+
+[llm](llm.html) (1) · [self-hosting](self-hosting.html) (1)
