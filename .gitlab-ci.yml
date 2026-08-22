@@ -32,7 +32,6 @@ test_browser:
   stage: test
   image: mcr.microsoft.com/playwright:v1.62.1-noble
   script:
-    - npm ci
     - npm test
 
 audit_dependencies:

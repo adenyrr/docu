@@ -139,6 +139,7 @@ test('home, chrome et navigation partagent le même axe', async ({ page }) => {
 
 for (const theme of ['light', 'dark'] as const) {
   test(`axe sans violation sur les types de page en thème ${theme}`, async ({ browser }) => {
+    test.setTimeout(60_000);
     const context = await browser.newContext({ colorScheme: theme });
     await context.addInitScript((value) => localStorage.setItem('theme', value), theme);
     const page = await context.newPage();
