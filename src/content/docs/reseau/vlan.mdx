@@ -1,0 +1,170 @@
+---
+last_modified: 2026-08-22
+title: Configuration VLANs réseau
+description: Segmentation VLAN et isolation réseau homelab
+tags:
+  - réseau
+  - vlan
+  - sécurité
+  - homelab
+---
+
+import Admonition from '@components/content/Admonition.astro';
+import Disclosure from '@components/content/Disclosure.astro';
+
+La segmentation découpe le réseau en zones de confiance distinctes. Chaque VLAN
+porte un rôle unique, et **tout flux inter-VLAN est interdit par défaut** : seules
+les autorisations explicitement déclarées sur le cœur de réseau sont routées.
+
+Le schéma ci-dessous est rendu en SVG dans la page (pas d'image) : il suit le thème
+clair/sombre du site, reste net à tout zoom et se sélectionne au texte.
+
+## Vue d'ensemble
+
+
+
+<figure class="vlan-map-embed"><object data="/assets/reseau/vlan-map.svg" type="image/svg+xml" aria-label="Schéma de segmentation VLAN"><a href="/assets/reseau/vlan-map.svg">Ouvrir le schéma VLAN</a></object></figure>
+
+<Admonition type="tip" title="Lecture du schéma">
+
+
+Les flèches ne représentent que les flux **structurants**. La matrice
+complète autorisation par autorisation est plus bas, et c'est elle qui fait
+foi pour la configuration des ACL.
+
+</Admonition>
+## Plan d'adressage
+
+| VLAN | Sous-réseau | Rôle | Contenu | Criticité |
+| --- | --- | --- | --- | --- |
+| 5 | `10.10.5.0/24` | DMZ publique | Reverse proxy (Nginx/HAProxy), services exposés | Élevée |
+| 10 | `10.10.10.0/24` | Infrastructure | Proxmox/KVM, contrôleurs, DNS autoritaire interne | **Critique** |
+| 20 | `10.10.20.0/24` | Administration | Bastion, postes d'admin, Ansible | **Critique** |
+| 30 | `10.10.30.0/24` | Stockage | OpenMediaVault, Ceph, partages SMB/NFS | **Critique** |
+| 40 | `10.10.40.0/24` | Forge / DevOps | Git, runners CI, registry, artefacts | Moyenne |
+| 50 | `10.10.50.0/24` | Services | Authentik, Jellyfin, Immich, bases applicatives | Moyenne |
+| 60 | `10.10.60.0/24` | Conteneurs | Cluster Kubernetes, MetalLB, Ingress | Moyenne |
+| 70 | `10.10.70.0/24` | IoT | Home Assistant, caméras, imprimantes, TV | Faible (non fiable) |
+| 80 | `10.10.80.0/24` | Sauvegarde | Restic, MinIO, dépôts immuables, réplication | **Critique** |
+| 90 | `10.10.90.0/24` | Logs / supervision | SIEM, Syslog, Prometheus, Grafana, Alertmanager | Élevée |
+
+## Politique de communication
+
+Ligne = source, colonne = destination. Tout ce qui n'est pas explicitement
+autorisé est refusé par la règle finale `deny all`.
+
+| Source \ Destination | INT | V5 | V10 | V20 | V30 | V40 | V50 | V60 | V70 | V80 | V90 |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| **Internet** | — | ◐ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ |
+| **V5 DMZ** | ✔ | — | ✘ | ✘ | ✘ | ✘ | ◐ | ◐ | ✘ | ✘ | ✔ |
+| **V10 Infra** | ◐ | ✘ | — | ✘ | ✔ | ✘ | ✘ | ✘ | ✘ | ✔ | ✔ |
+| **V20 Admin** | ◐ | ✔ | ✔ | — | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
+| **V30 Stockage** | ✘ | ✘ | ✔ | ✘ | — | ✘ | ✘ | ✘ | ✘ | ✔ | ✔ |
+| **V40 Forge** | ◐ | ✘ | ◐ | ✘ | ✔ | — | ✘ | ◐ | ✘ | ✘ | ✔ |
+| **V50 Services** | ◐ | ✘ | ✘ | ✘ | ✔ | ✘ | — | ✘ | ✘ | ✘ | ✔ |
+| **V60 Kube** | ◐ | ✘ | ✘ | ✘ | ✔ | ✘ | ◐ | — | ✘ | ✘ | ✔ |
+| **V70 IoT** | ◐ | ✘ | ✘ | ✘ | ✘ | ✘ | ◐ | ✘ | — | ✘ | ✔ |
+| **V80 Backup** | ✘ | ✘ | ✔ | ✘ | ✔ | ✘ | ✘ | ✘ | ✘ | — | ✔ |
+| **V90 Logs** | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | ✘ | — |
+
+**✔** autorisé · **◐** limité ou contrôlé · **✘** interdit · **—** sans objet
+
+Détail des flux `◐` :
+
+- `Internet → V5` : uniquement 443 via le reverse proxy.
+- `V10 → Internet`, `V40 → Internet`, `V50 → Internet`, `V60 → Internet` : sortie 443 pour les mises à jour et paquets.
+- `V70 → Internet` : DNS, NTP et mises à jour firmware seulement.
+- `V40 → V10` : API et SSH restreints aux hôtes de déploiement.
+- `V70 → V50` : accès NVR / Home Assistant uniquement.
+- `V5 → V60` : entrée Ingress du cluster, terminaison TLS sur le reverse proxy.
+- `V20 → Internet` : sortie restreinte, poste d'admin non navigateur généraliste.
+
+<Admonition type="warning" title="VLAN 70 — IoT">
+
+
+Les objets connectés sont traités comme une zone non fiable au même titre
+qu'Internet : aucun accès aux VLAN critiques, pas de résolution DNS interne,
+et journalisation systématique vers le VLAN 90.
+
+</Admonition>
+## Bonnes pratiques ANSSI appliquées
+
+- **Séparation stricte des rôles et des usages** — un VLAN, un usage, pas de service mutualisé entre zones de confiance.
+- **Interdiction par défaut** — la dernière règle de chaque ACL est `deny all`, les autorisations sont explicites et documentées.
+- **Moindre privilège** — seuls les ports et protocoles nécessaires sont ouverts, jamais des plages entières.
+- **Administration centralisée et tracée** — tout accès d'administration passe par le bastion du VLAN 20, en SSH ou WinRM.
+- **Sauvegardes isolées et immuables** — le VLAN 80 n'est joignable que depuis l'infra et le stockage, et les dépôts sont en append-only.
+- **Supervision et corrélation** — collecte Syslog et agents vers le VLAN 90, qui n'accepte aucune écriture depuis les autres zones hors flux de collecte.
+- **Revues régulières** — audit des règles, tests de cloisonnement et mise à jour de la documentation à chaque changement.
+
+## Paramètres du schéma
+
+<Disclosure type="note" title="Contrat d'entrée (`type-it-state`)">
+
+
+Le SVG ci-dessus est généré à partir de ces paramètres. Modifier une valeur
+ici et recalculer la géométrie suffit à faire évoluer le schéma.
+
+```yaml
+title:    "Infrastructure — segmentation par VLAN"
+subtitle: "Périmètre, administration, charges de travail et socle de données"
+eyebrow:  "ANSSI · ZONES DE CONFIANCE"
+orientation: horizontal
+
+zones:
+  - name: "PÉRIMÈTRE"
+    components:
+      - { id: internet, name: "Internet",       sub: "WAN · zone non fiable",           icon: globe,  kind: external }
+      - { id: fw,       name: "FW-Périmètre",   sub: "HA · NAT · IDS/IPS · anti-DDoS",  icon: shield, kind: focal }
+      - { id: dmz,      name: "VLAN 5 — DMZ",   sub: "Reverse proxy · exposition web",  icon: cloud }
+      - { id: iot,      name: "VLAN 70 — IoT",  sub: "Home Assistant · caméras · TV",   icon: chip, color: "#b85450" }
+  - name: "ADMINISTRATION"
+    components:
+      - { id: core,  name: "Cœur de réseau",   sub: "L3 · ACL · QoS · DHCP relay",   icon: switch }
+      - { id: admin, name: "VLAN 20 — Admin",  sub: "Bastion · Ansible · SSH/WinRM", icon: terminal, kind: focal }
+  - name: "CHARGES"
+    components:
+      - { id: forge,    name: "VLAN 40 — Forge",    sub: "Git · runners CI · registry",   icon: git }
+      - { id: services, name: "VLAN 50 — Services", sub: "Authentik · Jellyfin · Immich", icon: apps }
+      - { id: kube,     name: "VLAN 60 — Kube",     sub: "K8s · MetalLB · Ingress",       icon: hexagon }
+  - name: "SOCLE"
+    components:
+      - { id: infra,    name: "VLAN 10 — Infra",      sub: "Proxmox/KVM · DNS interne",          icon: server }
+      - { id: stockage, name: "VLAN 30 — Stockage",   sub: "Ceph · SMB/NFS · OpenMediaVault",    icon: database }
+      - { id: backup,   name: "VLAN 80 — Sauvegarde", sub: "Restic · MinIO · dépôts immuables",  icon: archive, color: "#8c6d3f" }
+      - { id: logs,     name: "VLAN 90 — Logs",       sub: "SIEM · Prometheus · Grafana",        icon: chart,   color: "#5a7d9a" }
+
+connectors:
+  - { from: internet, to: fw,       label: "WAN",     style: accent,  dashed: true }
+  - { from: fw,       to: dmz,      label: "HTTPS",   style: accent }
+  - { from: fw,       to: core,     label: "FILTRÉ",  style: accent }
+  - { from: dmz,      to: kube,     label: "INGRESS", style: link }
+  - { from: core,     to: forge,    label: "ACL",     style: link }
+  - { from: admin,    to: forge,    label: "SSH",     style: accent }
+  - { from: forge,    to: services, label: "DEPLOY",  style: link }
+  - { from: forge,    to: infra,    label: "API",     style: link }
+  - { from: services, to: stockage, label: "NFS/S3",  style: link }
+  - { from: kube,     to: stockage, label: "PV",      style: neutral }
+  - { from: stockage, to: backup,   label: "RESTIC",  style: neutral }
+  - { from: iot,      to: logs,     label: "SYSLOG",  style: neutral, dashed: true }
+
+footer:
+  - { name: "Points de contrôle",      sub: "Pare-feu · ACL inter-VLAN · bastion · TLS/SSH", icon: shield }
+  - { name: "Bonnes pratiques ANSSI",  sub: "Deny all · moindre privilège · sauvegardes immuables · journalisation", icon: check }
+```
+
+Géométrie : `viewBox = 1152 × 696`, `zone_y = 88`, `zone_h = 400`,
+`comp_h = 60`, `comp_gap = 32`, `zone_gap = 20`, marges 16.
+Largeurs de zones : 260 / 240 / 280 / 280. Composants par zone : 4 / 2 / 3 / 4,
+soit 13 au total — sous le plafond de 16 fixé par le type.
+
+</Disclosure>
+<Disclosure type="note" title="Adapter les couleurs du schéma">
+
+
+Le schéma autonome se trouve dans `public/assets/reseau/vlan-map.svg`.
+Ses variables `--dg-paper`, `--dg-ink` et `--dg-muted` définissent les
+couleurs de fond, de texte et de contraste ; les règles
+`prefers-color-scheme` du SVG suivent le thème du système.
+
+</Disclosure>

@@ -1,0 +1,15 @@
+---
+interface Heading { depth: number; slug: string; text: string; }
+interface Props { headings: Heading[]; }
+const { headings } = Astro.props;
+const visible = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+{visible.length > 0 && (
+  <aside class="doc-toc" aria-label="Sur cette page">
+    <p><span aria-hidden="true">#</span> Sur cette page</p>
+    <nav aria-label="Table des matières">
+      {visible.map((heading) => <a href={`#${heading.slug}`} class:list={{ nested: heading.depth === 3 }}>{heading.text}</a>)}
+    </nav>
+  </aside>
+)}

@@ -1,0 +1,64 @@
+<div class="doc-tabs" data-tabs>
+  <slot />
+</div>
+
+<script>
+  function initTabs() {
+    document.querySelectorAll<HTMLElement>('[data-tabs]:not([data-ready])').forEach((root, rootIndex) => {
+      root.dataset.ready = 'true';
+      const panels = [...root.querySelectorAll<HTMLElement>(':scope > [data-tab-panel]')];
+      if (!panels.length) return;
+      const list = document.createElement('div');
+      list.className = 'doc-tabs__list';
+      list.setAttribute('role', 'tablist');
+      list.setAttribute('aria-label', 'Choix de contenu');
+      const group = `tabs-${rootIndex}-${Math.random().toString(36).slice(2, 7)}`;
+      const select = (index: number, focus = false) => {
+        panels.forEach((panel, panelIndex) => {
+          panel.hidden = panelIndex !== index;
+          const button = list.children[panelIndex] as HTMLButtonElement;
+          button.setAttribute('aria-selected', String(panelIndex === index));
+          button.tabIndex = panelIndex === index ? 0 : -1;
+          if (focus && panelIndex === index) button.focus();
+        });
+        const label = panels[index].dataset.tabLabel;
+        if (label) {
+          document.querySelectorAll<HTMLElement>(`[data-tab-label="${CSS.escape(label)}"]`).forEach((peer) => {
+            const peerRoot = peer.closest<HTMLElement>('[data-tabs]');
+            if (peerRoot && peerRoot !== root) {
+              const peerPanels = [...peerRoot.querySelectorAll<HTMLElement>(':scope > [data-tab-panel]')];
+              const peerIndex = peerPanels.indexOf(peer);
+              const peerButton = peerRoot.querySelectorAll<HTMLButtonElement>('[role="tab"]')[peerIndex];
+              if (peerIndex >= 0 && peerButton) peerButton.click();
+            }
+          });
+        }
+      };
+      panels.forEach((panel, index) => {
+        const button = document.createElement('button');
+        const panelId = `${group}-panel-${index}`;
+        const buttonId = `${group}-tab-${index}`;
+        button.type = 'button';
+        button.id = buttonId;
+        button.textContent = panel.dataset.tabLabel || `Onglet ${index + 1}`;
+        button.setAttribute('role', 'tab');
+        button.setAttribute('aria-controls', panelId);
+        panel.id = panelId;
+        panel.setAttribute('role', 'tabpanel');
+        panel.setAttribute('aria-labelledby', buttonId);
+        button.addEventListener('click', () => select(index));
+        button.addEventListener('keydown', (event) => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === 'Home' ? 0 : event.key === 'End' ? panels.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + panels.length) % panels.length;
+          select(next, true);
+        });
+        list.append(button);
+      });
+      root.prepend(list);
+      select(0);
+    });
+  }
+  initTabs();
+  document.addEventListener('astro:page-load', initTabs);
+</script>

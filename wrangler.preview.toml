@@ -1,11 +1,7 @@
-name = "docu"
+name = "docu-preview"
 main = "./src/worker.ts"
 compatibility_date = "2026-08-14"
-workers_dev = false
-
-[[routes]]
-pattern = "docu.adenyrr.me"
-custom_domain = true
+workers_dev = true
 
 [assets]
 binding = "ASSETS"

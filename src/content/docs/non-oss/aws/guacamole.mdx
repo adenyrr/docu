@@ -1,0 +1,98 @@
+---
+title: "Bastion graphique Guacamole"
+description: "Bastion graphique Guacamole pour accéder aux instances privées AWS."
+last_modified: 2026-08-22
+tags:
+  - aws
+  - cloud
+  - self-hosting
+---
+
+import Admonition from '@components/content/Admonition.astro';
+import Mermaid from '@components/content/Mermaid.astro';
+
+## But recherché
+
+Réalisation d'un bastion graphique sur AWS, accessible via HTTPS et permettant de se connecter en RDC/VNC/SSH à des instances Windows ou Linux sur réseau privé.
+
+### Architecture finale:
+
+<Mermaid code={"graph TB\n    Internet[\"🌐 Internet\"]\n    \n    subgraph AWS[\" \"]\n        subgraph Public[\"<b>Zone Publique</b>\"]\n            Guacamole[\"🖥️ EC2 Guacamole<br/>━━━━━━━━━━<br/>Public IP<br/>HTTPS: 443\"]\n        end\n        \n        subgraph VPC[\"<b>VPC Privée</b>\"]\n            Ubuntu[\"🐧 Ubuntu Graphique<br/>━━━━━━━━━━<br/>VNC: 5900\"]\n            Linux[\"🐧 AWS Linux<br/>━━━━━━━━━━<br/>SSH: 22\"]\n            Windows[\"🪟 Windows Server<br/>━━━━━━━━━━<br/>RDP: 3389\"]\n        end\n    end\n    \n    Internet -->|HTTPS<br/>443| Guacamole\n    Guacamole -->|VNC<br/>5900| Ubuntu\n    Guacamole -->|SSH<br/>22| Linux\n    Guacamole -->|RDP<br/>3389| Windows\n    \n    style Internet fill:#fff,stroke:#333,stroke-width:2px\n    style Guacamole fill:#ff9999,stroke:#c00,stroke-width:2px\n    style Ubuntu fill:#99ccff,stroke:#0066cc\n    style Linux fill:#99ccff,stroke:#0066cc\n    style Windows fill:#99ff99,stroke:#00cc00\n    style Public fill:#ffe6e6,stroke:#ff6666\n    style VPC fill:#e6f2ff,stroke:#6699ff\n    style AWS fill:#f9f9f9,stroke:#ddd"} />
+
+## Concepts et définitions
+
+### Guacamole
+
+**Bastion graphique** (remote desktop gateway) permettant d'accéder via un navigateur web à des serveurs Linux/Windows en VNC/RDP/SSH. Déployé sur EC2 publique, il sert de proxy sécurisé pour accéder aux instances privées du VPC.
+
+- **Protocoles supportés** : VNC, RDP, SSH, ...
+- **Accès** : HTTPS:443 depuis internet
+- **Rôle** : Bastion/Jump host graphique
+
+### AMI (*Amazon Machine Image*)
+
+Modèle préconfigué d'une instance EC2 contenant le système d'exploitation et les applications.
+
+## Mise en place
+
+### Security Groups
+
+Après avoir selectionné son [VPC](/non-oss/aws/vpc), on va créer les Security Groups :
+
+
+#### SG principal : Guacamole Server
+
+| Règle | Type | Protocole | Port | Source | Description |
+|-------|------|-----------|------|--------|-------------|
+| Inbound | HTTPS | TCP | 443 | 0.0.0.0/0 | Accès web Guacamole |
+| Inbound | HTTP | TCP | 80 | 0.0.0.0/0 | Redirection vers HTTPS (optionnel) |
+| Outbound | All traffic | All | All | 0.0.0.0/0 | Accès sortant vers les cibles |
+
+
+
+#### SG cible : Windows (RDP)
+
+| Règle | Type | Protocole | Port | Source | Description |
+|-------|------|-----------|------|--------|-------------|
+| Inbound | RDP | TCP | 3389 | sg-guacamole | RDP depuis Guacamole uniquement |
+| Outbound | All traffic | All | All | 0.0.0.0/0 | Sortant libre |
+
+<Admonition type="tip" title="Source">
+
+
+La source est le Security Group ID du serveur Guacamole, pas une plage IP.
+
+</Admonition>
+#### SG cible : GNU/Linux (VNC)
+
+| Règle | Type | Protocole | Port | Source | Description |
+|-------|------|-----------|------|--------|-------------|
+| Inbound | Custom TCP | TCP | 5900 | sg-guacamole | VNC display :0 depuis Guacamole |
+| Inbound | Custom TCP | TCP | 5901 | sg-guacamole | VNC display :1 (multi-session) |
+| Outbound | All traffic | All | All | 0.0.0.0/0 | Sortant libre |
+
+
+#### SG cible : GNU/Linux (SSH)
+
+| Règle | Type | Protocole | Port | Source | Description |
+|-------|------|-----------|------|--------|-------------|
+| Inbound | SSH | TCP | 22 | sg-guacamole | SSH depuis Guacamole uniquement |
+| Outbound | All traffic | All | All | 0.0.0.0/0 | Sortant libre |
+
+### Récapitulatif des flux
+
+```text
+Internet
+   │ HTTPS:443
+   ▼
+[Guacamole SG]
+   │ TCP:3389  ──────► [SG Windows]
+   │ TCP:5900  ──────► [SG Ubuntu]
+   └ TCP:22    ──────► [SG Amazon Linux]
+```
+
+Les SGs des machines cibles n'autorisent aucun accès direct depuis Internet. Tout transite par Guacamole, qui joue le rôle de bastion managé.
+
+### Création des EC2
+
+On crée alors, au minimum, [2 instances EC2](/non-oss/aws/spin_instance) : le guacamole, et la machine cible.

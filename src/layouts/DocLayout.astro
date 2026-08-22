@@ -1,0 +1,95 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '@adenyrr/astro-ui/Header.astro';
+import Footer from '@adenyrr/astro-ui/Footer.astro';
+import AmbientBackground from '@adenyrr/astro-ui/AmbientBackground.astro';
+import BaseHead from '../components/BaseHead.astro';
+import CheatSheet from '../components/CheatSheet.astro';
+import DocScripts from '../components/DocScripts.astro';
+import DocSidebar from '../components/DocSidebar.astro';
+import SearchDialog from '../components/SearchDialog.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import { flattenNavigation, navigationTrail, routeForSlug, siteChrome } from '../config';
+import { formatDate, type GitDates } from '../lib/git';
+import { normalizeTags, slugifyTag } from '../lib/tags';
+import '@adenyrr/astro-ui/styles.css';
+import '../styles/docs.css';
+
+interface Heading { depth: number; slug: string; text: string; }
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+  headings: Heading[];
+  dates: GitDates;
+}
+
+const { slug, title, description, tags, headings, dates } = Astro.props;
+const isHome = slug === 'index';
+const isCheat = slug.startsWith('cheats/');
+const trail = navigationTrail(slug);
+const normalizedTags = normalizeTags(tags);
+const flat = flattenNavigation().filter((item) => item.slug !== 'tags');
+const currentIndex = flat.findIndex((item) => item.slug === slug);
+const previous = currentIndex > 0 ? flat[currentIndex - 1] : null;
+const next = currentIndex >= 0 && currentIndex < flat.length - 1 ? flat[currentIndex + 1] : null;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <BaseHead title={title} description={description} article={!isHome} />
+    <ClientRouter />
+  </head>
+  <body>
+    <div id="scroll-progress" aria-hidden="true"><div></div></div>
+    <AmbientBackground enabled />
+    <Header config={siteChrome} currentPath={Astro.url.pathname} />
+    <main id="main" class="docs-page">
+      <div class="docs-mobile-toolbar">
+        <button type="button" data-doc-nav-toggle aria-expanded="false" aria-controls="doc-navigation">☰ Navigation</button>
+        <button type="button" data-search-open>⌕ Rechercher</button>
+      </div>
+      <div class:list={['docs-shell', { 'docs-shell--home': isHome }]}>
+        <div id="doc-navigation"><DocSidebar currentSlug={slug} /></div>
+        <article class:list={['doc-panel', { 'doc-panel--home': isHome, 'doc-panel--cheat': isCheat }]}>
+          {!isHome && (
+            <>
+              <nav class="breadcrumbs" aria-label="Fil d’Ariane">
+                <a href="/">docu</a>
+                {trail.map((part) => <><span aria-hidden="true">/</span><span>{part.replace(/^~\//, '')}</span></>)}
+              </nav>
+              <header class="doc-header">
+                <p class="doc-kicker"><span aria-hidden="true">$</span> man {slug.split('/').at(-1)}</p>
+                <h1>{title}</h1>
+                <p>{description}</p>
+                <div class="doc-meta">
+                  <span>Créé le <time datetime={dates.created}>{formatDate(dates.created)}</time></span>
+                  <span>Mis à jour le <time datetime={dates.updated}>{formatDate(dates.updated)}</time></span>
+                </div>
+                <ul class="doc-tags" aria-label="Tags">
+                  {normalizedTags.map((tag) => <li><a href={`/tags/${slugifyTag(tag)}`}>#{tag}</a></li>)}
+                </ul>
+              </header>
+            </>
+          )}
+          <div class="doc-content">
+            {isCheat ? <CheatSheet><slot /></CheatSheet> : <slot />}
+          </div>
+          {!isHome && (
+            <nav class="doc-pagination" aria-label="Pages adjacentes">
+              {previous ? <a rel="prev" href={routeForSlug(previous.slug)}><small>← Précédent</small><span>{previous.label}</span></a> : <span></span>}
+              {next ? <a rel="next" href={routeForSlug(next.slug)}><small>Suivant →</small><span>{next.label}</span></a> : <span></span>}
+            </nav>
+          )}
+        </article>
+        <TableOfContents headings={headings} />
+      </div>
+    </main>
+    <Footer config={siteChrome} />
+    <SearchDialog />
+    <dialog class="lightbox" data-lightbox aria-label="Aperçu de l’image"><button type="button" aria-label="Fermer">×</button><img src="" alt="" /></dialog>
+    <DocScripts />
+  </body>
+</html>

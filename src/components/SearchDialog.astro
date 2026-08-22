@@ -1,0 +1,165 @@
+<dialog class="search-dialog" data-search-dialog aria-labelledby="search-title">
+  <div class="search-dialog__shell">
+    <header class="search-dialog__titlebar">
+      <div class="search-window-title">
+        <span aria-hidden="true">╭─</span>
+        <h2 id="search-title">search.workspace</h2>
+        <span aria-hidden="true">─╮</span>
+      </div>
+      <span class="search-window-mode">MINISEARCH / LOCAL</span>
+      <div class="search-window-actions">
+        <span class="search-window-ready"><i aria-hidden="true"></i> ready</span>
+        <button type="button" data-search-close aria-label="Fermer la recherche">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+        </button>
+      </div>
+    </header>
+    <div class="search-dialog__command">
+      <label class="sr-only" for="doc-search-input">Rechercher un titre, un tag, une commande ou une expression</label>
+      <span class="search-dialog__prompt" aria-hidden="true">adenyrr@docu:~$</span>
+      <input id="doc-search-input" type="search" autocomplete="off" spellcheck="false" placeholder="grep docker, DNS, rm -ri…" />
+      <kbd>ESC</kbd>
+    </div>
+    <div class="search-dialog__meta">
+      <div class="search-dialog__status" data-search-status aria-live="polite">Saisissez au moins deux caractères.</div>
+      <button class="search-share" type="button" data-search-share aria-label="Copier le lien de cette recherche">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1"></path></svg>
+        <span>partager</span>
+      </button>
+    </div>
+    <ol class="search-results" data-search-results></ol>
+    <footer class="search-dialog__help" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> naviguer</span>
+      <span><kbd>↵</kbd> ouvrir</span>
+      <span><kbd>Ctrl</kbd><kbd>K</kbd> rechercher</span>
+    </footer>
+  </div>
+</dialog>
+
+<script>
+  import MiniSearch from 'minisearch';
+
+  type SearchDocument = { id: string; url: string; title: string; description: string; tags: string; text: string };
+  let documents: SearchDocument[] | null = null;
+  let engine: MiniSearch<SearchDocument> | null = null;
+
+  const fold = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+  async function ensureIndex() {
+    if (engine) return engine;
+    documents = await fetch('/search-index.json').then((response) => response.json());
+    engine = new MiniSearch<SearchDocument>({
+      fields: ['title', 'description', 'tags', 'text'],
+      storeFields: ['url', 'title', 'description', 'tags'],
+      processTerm: fold,
+      searchOptions: { prefix: true, fuzzy: 0.18, boost: { title: 4, tags: 2, description: 2 } },
+    });
+    engine.addAll(documents || []);
+    return engine;
+  }
+
+  function escapeHtml(value: string) {
+    return value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character] || character);
+  }
+
+  function initSearch() {
+    const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]');
+    const input = dialog?.querySelector<HTMLInputElement>('input[type="search"]');
+    const results = dialog?.querySelector<HTMLOListElement>('[data-search-results]');
+    const status = dialog?.querySelector<HTMLElement>('[data-search-status]');
+    if (!dialog || !input || !results || !status || dialog.dataset.ready) return;
+    dialog.dataset.ready = 'true';
+
+    const search = async () => {
+      const query = input.value.trim();
+      const url = new URL(window.location.href);
+      query ? url.searchParams.set('q', query) : url.searchParams.delete('q');
+      history.replaceState({}, '', url);
+      if (query.length < 2) {
+        results.replaceChildren();
+        status.textContent = 'Saisissez au moins deux caractères.';
+        return;
+      }
+      const index = await ensureIndex();
+      const found = index.search(query).slice(0, 20);
+      status.textContent = `${found.length} résultat${found.length > 1 ? 's' : ''}.`;
+      results.innerHTML = found.map((result, resultIndex) => {
+        const target = new URL(result.url as string, window.location.origin);
+        target.searchParams.set('q', query);
+        return `<li><a href="${target.pathname}${target.search}"><span class="search-result-index">${String(resultIndex + 1).padStart(2, '0')}</span><span class="search-result-copy"><strong>${escapeHtml(result.title as string)}</strong><span>${escapeHtml(result.description as string)}</span></span><small>${escapeHtml(result.tags as string)}</small></a></li>`;
+      }).join('');
+    };
+
+    const open = async () => {
+      if (!dialog.open) dialog.showModal();
+      const query = new URL(window.location.href).searchParams.get('q') || '';
+      input.value = query;
+      input.focus();
+      await ensureIndex();
+      if (query) await search();
+    };
+    document.querySelectorAll('[data-search-open]').forEach((button) => button.addEventListener('click', open));
+    dialog.querySelector('[data-search-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    input.addEventListener('input', search);
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        results.querySelector<HTMLAnchorElement>('a')?.focus();
+      }
+    });
+    results.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+      const links = [...results.querySelectorAll<HTMLAnchorElement>('a')];
+      const current = links.indexOf(document.activeElement as HTMLAnchorElement);
+      if (current < 0) return;
+      event.preventDefault();
+      if (event.key === 'ArrowUp' && current === 0) input.focus();
+      else links[Math.max(0, Math.min(links.length - 1, current + (event.key === 'ArrowDown' ? 1 : -1)))]?.focus();
+    });
+    dialog.querySelector('[data-search-share]')?.addEventListener('click', async (event) => {
+      await navigator.clipboard.writeText(window.location.href);
+      const label = (event.currentTarget as HTMLButtonElement).querySelector('span');
+      if (!label) return;
+      label.textContent = 'copié';
+      window.setTimeout(() => { label.textContent = 'partager'; }, 1400);
+    });
+    document.addEventListener('keydown', (event) => {
+      const target = event.target as HTMLElement;
+      if ((event.key === '/' || (event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey))) && !/input|textarea|select/i.test(target.tagName)) {
+        event.preventDefault(); open();
+      }
+    });
+  }
+
+  function highlightQuery() {
+    const query = new URL(window.location.href).searchParams.get('q')?.trim();
+    const root = document.querySelector<HTMLElement>('.doc-content');
+    if (!query || query.length < 2 || !root || root.querySelector('mark[data-search-highlight]')) return;
+    const terms = query.split(/\s+/).filter((term) => term.length > 1).slice(0, 6);
+    if (!terms.length) return;
+    const pattern = new RegExp(`(${terms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
+    const detectionPattern = new RegExp(pattern.source, 'i');
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        const parent = node.parentElement;
+        return parent && !parent.closest('pre, code, script, style, mark, button, a') && detectionPattern.test(node.textContent || '') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      },
+    });
+    const nodes: Text[] = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+    for (const node of nodes.slice(0, 80)) {
+      const fragment = document.createDocumentFragment();
+      for (const part of (node.textContent || '').split(pattern)) {
+        if (terms.some((term) => fold(term) === fold(part))) {
+          const mark = document.createElement('mark'); mark.dataset.searchHighlight = ''; mark.textContent = part; fragment.append(mark);
+        } else fragment.append(part);
+      }
+      node.replaceWith(fragment);
+    }
+  }
+
+  initSearch();
+  highlightQuery();
+  document.addEventListener('astro:page-load', () => { initSearch(); highlightQuery(); });
+</script>

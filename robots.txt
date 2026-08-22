@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://docu.adenyrr.me/sitemap.xml

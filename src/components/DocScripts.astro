@@ -1,0 +1,188 @@
+<script>
+  let docsProfileTimer: number | undefined;
+  let docsProfileStarted = Date.now();
+
+  function initProfileClock() {
+    if (docsProfileTimer) window.clearInterval(docsProfileTimer);
+    const clock = document.querySelector<HTMLElement>('#docs-local-time');
+    const uptime = document.querySelector<HTMLElement>('#docs-page-uptime');
+    if (!clock || !uptime) return;
+    docsProfileStarted = Date.now();
+    const formatter = new Intl.DateTimeFormat('fr-BE', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    const update = () => {
+      clock.textContent = formatter.format(new Date());
+      const elapsed = Math.floor((Date.now() - docsProfileStarted) / 1000);
+      uptime.textContent = `${String(Math.floor(elapsed / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`;
+    };
+    update();
+    docsProfileTimer = window.setInterval(update, 1000);
+  }
+
+  function initDocInteractions() {
+    initProfileClock();
+    const mobileToggle = document.querySelector<HTMLButtonElement>('[data-doc-nav-toggle]');
+    const sidebar = document.querySelector<HTMLElement>('.doc-sidebar');
+    if (mobileToggle && sidebar && !mobileToggle.dataset.ready) {
+      mobileToggle.dataset.ready = 'true';
+      mobileToggle.addEventListener('click', () => {
+        const open = sidebar.classList.toggle('is-open');
+        mobileToggle.setAttribute('aria-expanded', String(open));
+      });
+      sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => sidebar.classList.remove('is-open')));
+    }
+
+    const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('.doc-toc a')];
+    const headings = tocLinks.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter(Boolean) as HTMLElement[];
+    if (headings.length) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).at(-1)?.target;
+        if (!visible) return;
+        tocLinks.forEach((link) => link.classList.toggle('active', link.hash === `#${visible.id}`));
+      }, { rootMargin: '-15% 0px -70%' });
+      headings.forEach((heading) => observer.observe(heading));
+    }
+
+    document.querySelectorAll<HTMLElement>('.doc-content h2[id], .doc-content h3[id]').forEach((heading) => {
+      if (heading.querySelector('.heading-anchor')) return;
+      const anchor = document.createElement('a');
+      anchor.className = 'heading-anchor'; anchor.href = `#${heading.id}`; anchor.ariaLabel = `Permalien vers ${heading.textContent}`; anchor.textContent = '#';
+      heading.append(anchor);
+    });
+
+    const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const dialogImage = dialog?.querySelector<HTMLImageElement>('img');
+    document.querySelectorAll<HTMLImageElement>('.doc-content img:not([data-lightbox-ready])').forEach((image) => {
+      image.dataset.lightboxReady = 'true'; image.tabIndex = 0; image.setAttribute('role', 'button'); image.setAttribute('aria-label', `Agrandir l’image : ${image.alt || 'illustration'}`);
+      const open = () => { if (!dialog || !dialogImage) return; dialogImage.src = image.currentSrc || image.src; dialogImage.alt = image.alt; dialog.showModal(); };
+      image.addEventListener('click', open);
+      image.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+    });
+    if (dialog && !dialog.dataset.ready) {
+      dialog.dataset.ready = 'true';
+      dialog.querySelector('button')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    }
+
+    document.querySelectorAll<HTMLElement>('.expressive-code:not([data-line-select-ready])').forEach((block, index) => {
+      block.dataset.lineSelectReady = 'true';
+      const pre = block.querySelector<HTMLPreElement>('pre');
+      const code = pre?.querySelector<HTMLElement>('code');
+      const lines = [...(code?.querySelectorAll<HTMLElement>('.ec-line') || [])];
+      if (!pre || !code || !lines.length) return;
+
+      pre.tabIndex = 0;
+      pre.setAttribute('role', 'region');
+      pre.setAttribute('aria-label', `Bloc de code ${index + 1}`);
+      block.querySelector('.copy')?.remove();
+
+      const language = pre.dataset.language || 'text';
+      const extensions: Record<string, string> = { bash: 'sh', shell: 'sh', sh: 'sh', powershell: 'ps1', javascript: 'js', typescript: 'ts', plaintext: 'txt', text: 'txt', console: 'log' };
+      const extension = extensions[language.toLowerCase()] || language.toLowerCase();
+      const instructionId = `code-selection-help-${index}`;
+      const help = document.createElement('p');
+      help.id = instructionId;
+      help.className = 'sr-only';
+      help.textContent = 'Cliquez sur une ligne pour la sélectionner. Utilisez Maj plus clic ou Maj plus flèche pour sélectionner une plage. Échap efface la sélection.';
+
+      const terminalBar = document.createElement('div');
+      terminalBar.className = 'code-terminal-bar';
+      terminalBar.innerHTML = `<span class="code-terminal-file" aria-hidden="true">⌜ ~/ snippet.${extension} ↵</span><span class="code-terminal-meta">${language.toUpperCase()} / ${String(lines.length).padStart(2, '0')}</span>`;
+      const actions = document.createElement('div');
+      actions.className = 'code-terminal-actions';
+      const status = document.createElement('span');
+      status.className = 'code-terminal-status';
+      status.setAttribute('aria-live', 'polite');
+      status.innerHTML = '<i aria-hidden="true"></i><span>READY</span>';
+      const copyButton = document.createElement('button');
+      copyButton.type = 'button';
+      copyButton.className = 'code-copy-button';
+      copyButton.title = 'Copier tout le bloc';
+      copyButton.setAttribute('aria-label', 'Copier tout le bloc de code');
+      copyButton.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="11" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg>';
+      actions.append(status, copyButton);
+      terminalBar.append(actions);
+      block.prepend(help);
+      block.prepend(terminalBar);
+
+      const selected = new Set<number>();
+      let anchor: number | null = null;
+      const statusText = status.querySelector('span');
+      const updateSelection = () => {
+        lines.forEach((line, lineIndex) => {
+          const active = selected.has(lineIndex);
+          line.classList.toggle('is-selected', active);
+          line.setAttribute('aria-selected', String(active));
+        });
+        const count = selected.size;
+        if (statusText) statusText.textContent = count ? `${String(count).padStart(2, '0')} SELECTED` : 'READY';
+        copyButton.title = count ? `Copier ${count} ligne${count > 1 ? 's' : ''}` : 'Copier tout le bloc';
+        copyButton.setAttribute('aria-label', copyButton.title);
+      };
+      const selectRange = (from: number, to: number) => {
+        selected.clear();
+        for (let lineIndex = Math.min(from, to); lineIndex <= Math.max(from, to); lineIndex += 1) selected.add(lineIndex);
+        updateSelection();
+      };
+      const toggleLine = (lineIndex: number, range = false) => {
+        if (range && anchor !== null) selectRange(anchor, lineIndex);
+        else {
+          selected.has(lineIndex) ? selected.delete(lineIndex) : selected.add(lineIndex);
+          anchor = lineIndex;
+          updateSelection();
+        }
+      };
+
+      code.setAttribute('role', 'listbox');
+      code.setAttribute('aria-multiselectable', 'true');
+      code.setAttribute('aria-label', `Lignes sélectionnables du bloc de code ${index + 1}`);
+      code.setAttribute('aria-describedby', instructionId);
+      lines.forEach((line, lineIndex) => {
+        line.tabIndex = lineIndex === 0 ? 0 : -1;
+        line.setAttribute('role', 'option');
+        line.setAttribute('aria-label', `Ligne ${lineIndex + 1} : ${line.textContent || ''}`);
+        line.setAttribute('aria-selected', 'false');
+        line.addEventListener('click', (event) => toggleLine(lineIndex, event.shiftKey));
+        line.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleLine(lineIndex, event.shiftKey);
+            return;
+          }
+          if (event.key === 'Escape') {
+            selected.clear(); anchor = null; updateSelection();
+            return;
+          }
+          if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+          event.preventDefault();
+          const targetIndex = Math.max(0, Math.min(lines.length - 1, lineIndex + (event.key === 'ArrowDown' ? 1 : -1)));
+          lines.forEach((item, itemIndex) => item.tabIndex = itemIndex === targetIndex ? 0 : -1);
+          lines[targetIndex].focus();
+          if (event.shiftKey) {
+            if (anchor === null) anchor = lineIndex;
+            selectRange(anchor, targetIndex);
+          }
+        });
+      });
+
+      const copyText = async (value: string) => {
+        try { await navigator.clipboard.writeText(value); }
+        catch {
+          const textarea = document.createElement('textarea');
+          textarea.value = value; textarea.style.position = 'fixed'; textarea.style.opacity = '0';
+          document.body.append(textarea); textarea.select();
+          const legacyDocument = document as unknown as { execCommand(command: string): boolean };
+          legacyDocument.execCommand('copy'); textarea.remove();
+        }
+      };
+      copyButton.addEventListener('click', async () => {
+        const indexes = selected.size ? [...selected].sort((a, b) => a - b) : lines.map((_, lineIndex) => lineIndex);
+        await copyText(indexes.map((lineIndex) => lines[lineIndex].textContent || '').join('\n'));
+        if (statusText) statusText.textContent = 'COPIED';
+        copyButton.classList.add('is-copied');
+        window.setTimeout(() => { copyButton.classList.remove('is-copied'); updateSelection(); }, 1400);
+      });
+    });
+  }
+  initDocInteractions();
+  document.addEventListener('astro:page-load', initDocInteractions);
+</script>

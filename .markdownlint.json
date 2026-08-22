@@ -3,10 +3,12 @@
   "MD001": {
     "front_matter_title": ""
   },
+  "MD004": false,
   "MD007": false,
   "MD009": false,
   "MD012": false,
   "MD013": false,
+  "MD018": false,
   "MD022": false,
   "MD024": {
     "siblings_only": true
@@ -18,8 +20,10 @@
   "MD031": false,
   "MD033": false,
   "MD034": false,
+  "MD040": false,
   "MD041": false,
   "MD046": false,
   "MD047": false,
+  "MD048": false,
   "MD060": false
 }

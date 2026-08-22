@@ -1,0 +1,56 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+}
+
+const {
+  title,
+  description = 'Documentation francophone sur Linux, le réseau, le cloud et le self-hosting.',
+  image = '/assets/favicon.png',
+  article = false,
+} = Astro.props;
+const siteTitle = title ? `${title} — Adenyrr Docu` : 'Adenyrr Docu';
+const pathname = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, '');
+const canonical = new URL(pathname, 'https://docu.adenyrr.me');
+const socialImage = new URL(image, 'https://docu.adenyrr.me');
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<title>{siteTitle}</title>
+<meta name="description" content={description} />
+<meta name="author" content="adenyrr" />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content="Adenyrr Docu" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<script is:inline>
+  (function () {
+    try {
+      document.documentElement.dataset.readingMode = localStorage.getItem('reading-mode') === 'comfortable' ? 'comfortable' : 'default';
+    } catch (_) {
+      document.documentElement.dataset.readingMode = 'default';
+    }
+    function applyTheme() {
+      var stored = null;
+      try { stored = localStorage.getItem('theme'); } catch (_) {}
+      var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.documentElement.classList.toggle('dark', dark);
+    }
+    applyTheme();
+    document.addEventListener('astro:after-swap', applyTheme);
+  })();
+</script>

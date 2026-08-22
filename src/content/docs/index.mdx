@@ -1,0 +1,120 @@
+---
+title: "Bienvenue"
+description: "Documentation sur le self-hosting et ressources utiles en français."
+last_modified: 2026-08-14
+tags:
+  - homelab
+  - self-hosting
+  - opensource
+  - documentation
+---
+
+<section class="docs-home-hero">
+  <div class="docs-home-hero__copy">
+  <p class="docs-eyebrow">00 / README</p>
+  <h1 id="__skip">Documentation d’infrastructure.</h1>
+  <p class="docs-home-hero__lead">Des notes ouvertes sur le self-hosting, le réseau, l’automatisation et les outils qui permettent de reprendre la main sur ses systèmes.</p>
+
+  <div class="docs-home-actions">
+    <a href="https://adenyrr.me/infra">Explorer l’infrastructure</a>
+    <a href="/tags">Parcourir les tags</a>
+  </div>
+  </div>
+
+  <aside class="docs-system-card" aria-label="Résumé système d’adenyrr docu">
+    <header class="docs-tui-titlebar">
+      <span class="docs-tui-title"><b aria-hidden="true">╭─</b> system.profile <b aria-hidden="true">─╮</b></span>
+      <span class="docs-tui-view">tty / 01</span>
+      <span class="docs-tui-online"><i aria-hidden="true"></i> ready</span>
+    </header>
+
+    <p class="docs-tui-command"><span class="docs-tui-prompt">adenyrr@docu:~$</span> fastfetch <span class="docs-tui-flag">--config docu.toml</span><i aria-hidden="true"></i></p>
+
+    <div class="docs-fetch-body">
+      <div class="docs-fetch-orbit" aria-hidden="true">
+        <span class="docs-orbit-axis docs-orbit-axis-x"></span>
+        <span class="docs-orbit-axis docs-orbit-axis-y"></span>
+        <span class="docs-orbit-ring docs-orbit-ring-outer"><i></i></span>
+        <span class="docs-orbit-ring docs-orbit-ring-inner"><i></i></span>
+        <span class="docs-orbit-core"><b>a</b><small>SYS</small></span>
+      </div>
+
+      <div class="docs-fetch-heading">
+        <span class="docs-fetch-mark" aria-hidden="true">a<span>:</span></span>
+        <div><strong>adenyrr<span>@docu</span></strong><small>sovereign systems operator</small></div>
+      </div>
+
+      <dl class="docs-fetch-list">
+        <div><dt><span>01</span>identity</dt><dd><strong>adenyrr</strong> / operator</dd></div>
+        <div><dt><span>02</span>host</dt><dd>docu.adenyrr.me</dd></div>
+        <div><dt><span>03</span>role</dt><dd>docs · infra &amp; cloud</dd></div>
+        <div><dt><span>04</span>cluster</dt><dd>3× Proxmox VE · 1× ARM edge</dd></div>
+        <div><dt><span>05</span>compute</dt><dd>32 cores · x86_64</dd></div>
+        <div><dt><span>06</span>memory</dt><dd>80 GiB · DDR4</dd></div>
+        <div><dt><span>07</span>storage</dt><dd>3×2 To Ceph · 2×12 To NAS</dd></div>
+        <div><dt><span>08</span>network</dt><dd>11 VLAN · OPNsense · WireGuard · BunkerWeb</dd></div>
+        <div><dt><span>09</span>services</dt><dd>37 workloads · <em>8 exposed</em></dd></div>
+        <div><dt><span>10</span>security</dt><dd>SIEM · CVE · SOAR</dd></div>
+        <div><dt><span>11</span>platform</dt><dd>Proxmox · CEPH · Kubernetes · Podman</dd></div>
+        <div><dt><span>12</span>systems</dt><dd>openSUSE · Debian</dd></div>
+      </dl>
+    </div>
+
+    <footer class="docs-tui-footer">
+      <span class="docs-fetch-palette" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="docs-fetch-state"><i aria-hidden="true"></i> available</span>
+      <span class="docs-tui-clock"><span id="docs-local-time">--:--:--</span> · up <span id="docs-page-uptime">00:00</span></span>
+    </footer>
+  </aside>
+</section>
+
+<div class="docs-home-grid">
+  <section class="docs-home-card">
+  <span class="docs-home-card__number">01 / MISSION</span>
+  <h2>Reprendre la main</h2>
+  <p>Cette documentation regroupe des informations, tutoriels et ressources utiles à propos du self-hosting et de l’informatique en général, en français et le plus possible accessibles à tous.tes.</p>
+  <p>Pouvoir vérifier, adapter et documenter ses outils favorise des systèmes plus pérennes, auditables et robustes.</p>
+  </section>
+
+  <section class="docs-home-card">
+  <span class="docs-home-card__number">02 / OPEN SOURCE</span>
+  <h2>Construire ouvertement</h2>
+  <p>Les principes fondateurs de l’open source sont l’accessibilité du code ou de la méthode, le développement collaboratif et la revue par les pairs.</p>
+  <p>Hormis Windows et quelques pilotes, les solutions présentées ici sont ouvertes et auditables par leur communauté.</p>
+  </section>
+
+  <section class="docs-home-card">
+  <span class="docs-home-card__number">03 / WORKSTATION</span>
+  <h2>Poste de travail</h2>
+  <p>Les contenus et projets sont rédigés depuis une station Linux :</p>
+  <ul>
+    <li><a href="https://get.opensuse.org/tumbleweed/">openSUSE Tumbleweed/Slowroll</a></li>
+    <li><a href="https://hypr.land/">Hyprland</a> et <a href="https://github.com/davatorium/rofi">ROFI</a></li>
+    <li><a href="https://vscodium.com/">VSCodium</a></li>
+  </ul>
+  </section>
+
+  <section class="docs-home-card">
+  <span class="docs-home-card__number">04 / EXPLORE</span>
+  <h2>Points d’entrée</h2>
+  <ul>
+    <li><a href="https://adenyrr.me/infra">Vue d’ensemble du homelab</a></li>
+    <li><a href="/cheats/linux_user">Commandes et aide-mémoires</a></li>
+    <li><a href="/tags">Explorateur par domaine, techno ou usage</a></li>
+    <li><a href="https://adenyrr.me">Portfolio et projets</a></li>
+  </ul>
+  </section>
+
+  <section class="docs-home-card docs-home-card--wide">
+  <span class="docs-home-card__number">05 / RUNTIME</span>
+  <h2>À propos du site</h2>
+  <p>Le contenu est généré par <a href="https://astro.build/">Astro</a>, déployé sur un <a href="https://workers.cloudflare.com/">Cloudflare Worker</a> via CI/CD et reste utilisable sans dépendance JavaScript distante. Le thème suit le système ; le bouton <strong>Aa</strong> active un mode de lecture local et persistant basé sur Inclusive Sans.</p>
+
+  <div class="docs-runtime">
+    <div><small>Generator</small><strong>Astro</strong></div>
+    <div><small>Deploy</small><strong>Cloudflare Worker</strong></div>
+    <div><small>Fonts</small><strong>Self-hosted</strong></div>
+  </div>
+  <p>Made with ❤️ and plenty of ☕.</p>
+  </section>
+</div>

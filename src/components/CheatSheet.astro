@@ -1,0 +1,72 @@
+<section class="cheat-sheet" data-cheat-sheet>
+  <div class="cheat-tools">
+    <label for="cheat-search">Filtrer les commandes de cette fiche</label>
+    <div><span aria-hidden="true">⌕</span><input id="cheat-search" type="search" placeholder="commande, option, usage…" autocomplete="off" /></div>
+    <p data-cheat-count aria-live="polite"></p>
+  </div>
+  <nav class="cheat-categories" aria-label="Catégories de commandes" data-cheat-categories></nav>
+  <div class="cheat-content"><slot /></div>
+</section>
+
+<script>
+  const fold = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function initCheats() {
+    document.querySelectorAll<HTMLElement>('[data-cheat-sheet]:not([data-ready])').forEach((root) => {
+      root.dataset.ready = 'true';
+      const content = root.querySelector<HTMLElement>('.cheat-content');
+      const input = root.querySelector<HTMLInputElement>('input[type="search"]');
+      const count = root.querySelector<HTMLElement>('[data-cheat-count]');
+      const nav = root.querySelector<HTMLElement>('[data-cheat-categories]');
+      if (!content || !input || !count || !nav) return;
+      const headings = [...content.querySelectorAll<HTMLHeadingElement>('h2, h3')];
+      const sections: HTMLElement[] = [];
+      let section: HTMLElement | null = null;
+      let cards: HTMLElement[] = [];
+      for (const heading of headings) {
+        if (heading.tagName === 'H2') {
+          section = document.createElement('section');
+          section.className = 'cheat-section';
+          section.dataset.label = heading.textContent || '';
+          heading.before(section);
+          section.append(heading);
+          sections.push(section);
+          cards = [];
+          const link = document.createElement('a');
+          link.href = `#${heading.id}`; link.textContent = heading.textContent || '';
+          nav.append(link);
+        } else {
+          if (!section) {
+            section = document.createElement('section'); section.className = 'cheat-section'; content.prepend(section); sections.push(section);
+          }
+          const card = document.createElement('article');
+          card.className = 'cheat-card';
+          heading.before(card);
+          card.append(heading);
+          let next = card.nextSibling;
+          while (next && !(next instanceof HTMLHeadingElement)) {
+            const current = next; next = next.nextSibling; card.append(current);
+          }
+          if (/\brm\s+-rf|kill\s+-9|mkfs|dd\s+if=|shutdown|reboot/i.test(card.textContent || '')) card.classList.add('cheat-card--danger');
+          section.append(card);
+          cards.push(card);
+        }
+      }
+      const allCards = [...root.querySelectorAll<HTMLElement>('.cheat-card')];
+      const filter = () => {
+        const query = fold(input.value.trim());
+        let visible = 0;
+        for (const card of allCards) {
+          const match = !query || fold(card.textContent || '').includes(query);
+          card.hidden = !match;
+          if (match) visible += 1;
+        }
+        for (const item of sections) item.hidden = !item.querySelector('.cheat-card:not([hidden])');
+        count.textContent = `${visible} commande${visible > 1 ? 's' : ''} affichée${visible > 1 ? 's' : ''}.`;
+      };
+      input.addEventListener('input', filter);
+      filter();
+    });
+  }
+  initCheats();
+  document.addEventListener('astro:page-load', initCheats);
+</script>

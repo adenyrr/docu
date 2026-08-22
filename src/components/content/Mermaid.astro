@@ -1,0 +1,36 @@
+---
+interface Props { code: string; }
+const { code } = Astro.props;
+---
+
+<figure class="mermaid-figure" data-mermaid>
+  <pre class="mermaid-source"><code>{code}</code></pre>
+  <div class="mermaid-output" aria-label="Diagramme Mermaid"></div>
+  <figcaption>Diagramme — la source textuelle reste disponible si le rendu est désactivé.</figcaption>
+</figure>
+
+<script>
+  async function initMermaid() {
+    const figures = document.querySelectorAll<HTMLElement>('[data-mermaid]:not([data-rendered])');
+    if (!figures.length) return;
+    const { default: mermaid } = await import('mermaid');
+    const dark = document.documentElement.dataset.theme === 'dark';
+    mermaid.initialize({ startOnLoad: false, theme: dark ? 'dark' : 'neutral', securityLevel: 'strict' });
+    for (const [index, figure] of [...figures].entries()) {
+      figure.dataset.rendered = 'true';
+      const source = figure.querySelector('code')?.textContent || '';
+      const output = figure.querySelector<HTMLElement>('.mermaid-output');
+      if (!output) continue;
+      try {
+        const { svg } = await mermaid.render(`mermaid-${Date.now()}-${index}`, source);
+        output.innerHTML = svg;
+        figure.classList.add('is-rendered');
+      } catch (error) {
+        figure.classList.add('has-error');
+        console.error('Mermaid rendering failed', error);
+      }
+    }
+  }
+  initMermaid();
+  document.addEventListener('astro:page-load', initMermaid);
+</script>

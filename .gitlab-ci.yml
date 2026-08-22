@@ -1,208 +1,100 @@
 stages:
-  - update
   - lint
   - test
   - build
   - deploy
 
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  PIP_DISABLE_PIP_VERSION_CHECK: "1"
-  PIP_NO_INPUT: "1"
-
-cache:
-  key: "${CI_JOB_NAME}"
-  paths:
-    - .cache/pip
-
-
-# ── Update stage ──────────────────────────────────────────
-
-renovate:
-  stage: update
-  image: renovate/renovate:latest
-  variables:
-    RENOVATE_TOKEN: "${PERSONAL_TOKEN}"
-    RENOVATE_ENDPOINT: "${CI_API_V4_URL}"
-  script:
-    - renovate --platform gitlab --autodiscover --autodiscover-filter="$CI_PROJECT_PATH"
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"'
-
-
-# ── Lint stage ───────────────────────────────────────────
-
-lint_markdown:
-  stage: lint
-  image: node:24
-  script:
-    - npm i -g markdownlint-cli
-    - markdownlint "docs/**/*.md" --config .markdownlint.json --ignore "venv/**" --ignore "docs/tags.md" --ignore "docs/tags/**"
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-
-validate_frontmatter_dates:
-  stage: lint
-  image: python:3.14
-  variables:
-    GIT_DEPTH: "0"
-  script:
-    - python scripts/validate_dates.py
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-
-
-# ── Test stage ───────────────────────────────────────────
-
-check_links:
-  stage: test
-  image: node:24
-  script:
-    - npm install -g markdown-link-check
-    - find docs -name '*.md' ! -path '*/venv/*' -exec markdown-link-check {} \;
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-  allow_failure: true
-
-scan_python_deps:
-  stage: test
-  image: python:3.14
-  script:
-    - pip install safety
-    - safety check -r requirements.txt --full-report
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-  allow_failure: true
-
-scan_node_deps:
-  stage: test
-  image: node:24
-  script:
-    - npm audit --audit-level=high
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push"'
-      exists:
+default:
+  image: node:22
+  interruptible: true
+  before_script:
+    - npm ci
+  cache:
+    key:
+      files:
         - package-lock.json
-  allow_failure: true
+    paths:
+      - .npm/
 
-accessibility_audit:
-  stage: deploy
+variables:
+  GIT_DEPTH: "0"
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+validate_content:
+  stage: lint
+  script:
+    - npm run validate:content
+    - npm run lint
+    - npm run check
+
+test_browser:
+  stage: test
   image: mcr.microsoft.com/playwright:v1.62.1-noble
-  variables:
-    AXE_MAX_VIOLATIONS: "3"
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
   script:
-    - npm ci --ignore-scripts
-    - npm run audit:a11y -- https://docu.adenyrr.me
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-  needs:
-    - job: deploy_cloudflare
-  allow_failure: true
+    - npm ci
+    - npm test
 
-
-# ── Build stage ──────────────────────────────────────────
-
-optimize_images:
-  stage: build
-  image: python:3.14
+audit_dependencies:
+  stage: test
   script:
-    - pip install pillow
-    - python -c "import os,PIL.Image as I; [I.open(os.path.join(d,f)).save(os.path.join(d,f),optimize=True,quality=85) for d,_,fs in os.walk('docs/assets') for f in fs if f.lower().endswith(('.png','.jpg','.jpeg'))]"
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - npm run audit
 
 build_site:
   stage: build
-  image: python:3.14
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .cache/pip
   script:
-    - python -m pip install --upgrade pip
-    - pip install -r requirements.txt
-    - python scripts/generate_tags_data.py
-    - python scripts/generate_revision_dates.py
-    - python scripts/generate_sitemap.py
-    - zensical build --clean
-    - cp sitemap.xml public/ || echo "sitemap.xml not found in repo root"
-    - cp robots.txt public/ || echo "robots.txt not found in repo root"
+    - npm run build
+    - npm run deploy:dry-run
   artifacts:
     paths:
-      - public
+      - dist/
     expire_in: 1 week
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-
-build_preview:
-  stage: build
-  image: python:3.14
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .cache/pip
-  script:
-    - python -m pip install --upgrade pip
-    - pip install -r requirements.txt
-    - python scripts/generate_tags_data.py
-    - python scripts/generate_revision_dates.py
-    - python scripts/generate_sitemap.py
-    - zensical build --clean
-  artifacts:
-    paths:
-      - public
-    expire_in: 1 day
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-
-
-# ── Deploy stage ─────────────────────────────────────────
-
-deploy_cloudflare:
-  stage: deploy
-  image: node:24
-  script:
-    - npm install --global wrangler@4
-    - wrangler deploy
-    - curl -s -o /dev/null -w '%{http_code}' https://docu.adenyrr.me/
-  environment:
-    name: cloudflare-worker
-    url: https://docu.adenyrr.me
-  needs:
-    - job: build_site
-      artifacts: true
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
 deploy_preview:
   stage: deploy
-  image: node:24
+  needs:
+    - job: build_site
+      artifacts: true
   script:
-    - npm install --global wrangler@4
-    - wrangler deploy --branch "$CI_COMMIT_BRANCH"
+    - test -n "$CLOUDFLARE_API_TOKEN"
+    - test -n "$CLOUDFLARE_ACCOUNT_ID"
+    - npx wrangler deploy --config wrangler.preview.toml --name "docu-preview-$CI_COMMIT_SHORT_SHA"
   environment:
     name: review/$CI_COMMIT_REF_SLUG
-    url: https://docu-preview-$CI_COMMIT_REF_SLUG.adenyrr.me
+    url: https://docu-preview-$CI_COMMIT_SHORT_SHA.$CLOUDFLARE_WORKERS_SUBDOMAIN.workers.dev
     auto_stop_in: 7 days
-  needs:
-    - job: build_preview
-      artifacts: true
+    on_stop: stop_preview
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-lighthouse_audit:
+stop_preview:
   stage: deploy
-  image: node:24
+  needs: []
+  before_script: []
   script:
-    - npm install -g @lhci/cli
-    - lhci autorun --collect.url=https://docu.adenyrr.me --collect.numberOfRuns=1 --upload.target=filesystem --upload.outputDir=lighthouse-report
-  artifacts:
-    paths:
-      - lighthouse-report
-    expire_in: 30 days
+    - test -n "$CLOUDFLARE_API_TOKEN"
+    - test -n "$CLOUDFLARE_ACCOUNT_ID"
+    - npx --yes wrangler@4 delete --config wrangler.preview.toml --name "docu-preview-$CI_COMMIT_SHORT_SHA" --force
+  environment:
+    name: review/$CI_COMMIT_REF_SLUG
+    action: stop
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+
+deploy_cloudflare:
+  stage: deploy
+  resource_group: production
   needs:
-    - job: deploy_cloudflare
-  allow_failure: true
+    - job: build_site
+      artifacts: true
+  script:
+    - test -n "$CLOUDFLARE_API_TOKEN"
+    - test -n "$CLOUDFLARE_ACCOUNT_ID"
+    - npx wrangler deploy
+    - node --input-type=module -e 'const response = await fetch("https://docu.adenyrr.me/"); if (response.status !== 200) process.exit(1)'
+  environment:
+    name: cloudflare-worker
+    url: https://docu.adenyrr.me
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"'

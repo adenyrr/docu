@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import DocLayout from '../../layouts/DocLayout.astro';
+import { CANONICAL_TAGS, labelForSlug, normalizeTags, slugifyTag } from '../../lib/tags';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('docs', ({ data }) => !data.draft);
+  const used = new Set(entries.flatMap((entry) => normalizeTags(entry.data.tags).map(slugifyTag)));
+  return CANONICAL_TAGS.map(slugifyTag).filter((tag) => used.has(tag)).map((tag) => ({ params: { tag } }));
+}
+
+const slug = Astro.params.tag!;
+const label = labelForSlug(slug);
+const entries = (await getCollection('docs', ({ data }) => !data.draft))
+  .filter((entry) => normalizeTags(entry.data.tags).map(slugifyTag).includes(slug));
+const related = new Map<string, number>();
+for (const entry of entries) for (const tag of normalizeTags(entry.data.tags)) {
+  const relatedSlug = slugifyTag(tag);
+  if (relatedSlug !== slug) related.set(relatedSlug, (related.get(relatedSlug) || 0) + 1);
+}
+const relatedTags = [...related.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8);
+const now = new Date().toISOString();
+---
+
+<DocLayout slug={`tags/${slug}`} title={`#${label}`} description={`${entries.length} page${entries.length > 1 ? 's' : ''} associée${entries.length > 1 ? 's' : ''} au tag ${label}.`} tags={[label]} headings={[]} dates={{ created: now, updated: now }}>
+  <div class="tag-page-list">
+    {entries.map((entry) => <article><h2><a href={entry.id === 'index' ? '/' : `/${entry.id}`}>{entry.data.title}</a></h2><p>{entry.data.description}</p></article>)}
+  </div>
+  {relatedTags.length > 0 && <section class="related-tags"><h2>Tags associés</h2><ul>{relatedTags.map(([tag, count]) => <li><a href={`/tags/${tag}`}>#{labelForSlug(tag)} <small>{count}</small></a></li>)}</ul></section>}
+</DocLayout>

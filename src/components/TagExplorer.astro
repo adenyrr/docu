@@ -1,0 +1,103 @@
+---
+interface TagItem { slug: string; label: string; count: number; }
+interface Facet { id: string; label: string; hint: string; tags: TagItem[]; }
+interface PageItem { title: string; url: string; description: string; tags: string[]; }
+interface Props { facets: Facet[]; pages: PageItem[]; }
+const { facets, pages } = Astro.props;
+const payload = JSON.stringify({ facets, pages }).replace(/</g, '\\u003c');
+---
+
+<section class="tag-explorer" data-tag-explorer>
+  <div class="tag-explorer__toolbar">
+    <label for="tag-query">Rechercher dans les pages taguées</label>
+    <input id="tag-query" type="search" placeholder="titre, extrait, tag…" autocomplete="off" />
+    <fieldset>
+      <legend>Combinaison</legend>
+      <label><input type="radio" name="tag-mode" value="and" checked /> Tous les tags</label>
+      <label><input type="radio" name="tag-mode" value="or" /> Au moins un</label>
+    </fieldset>
+    <button type="button" data-tags-reset>Réinitialiser</button>
+  </div>
+  <div class="tag-facets">
+    {facets.map((facet) => (
+      <fieldset class="tag-facet">
+        <legend>{facet.label} <small>{facet.hint}</small></legend>
+        <div>
+          {facet.tags.map((tag) => <button type="button" data-tag={tag.slug} aria-pressed="false"><span>{tag.label}</span><small>{tag.count}</small></button>)}
+        </div>
+      </fieldset>
+    ))}
+  </div>
+  <p class="tag-results-status" data-tag-status aria-live="polite">{pages.length} pages affichées.</p>
+  <div class="tag-results" data-tag-results>
+    {pages.map((page) => (
+      <article data-page-tags={page.tags.join(' ')}>
+        <h2><a href={page.url}>{page.title}</a></h2>
+        <p>{page.description}</p>
+        <ul>{page.tags.map((tag) => <li>#{tag}</li>)}</ul>
+      </article>
+    ))}
+  </div>
+  <noscript><p>Les pages restent toutes accessibles ci-dessus. Activez JavaScript uniquement pour combiner les filtres.</p></noscript>
+  <script is:inline type="application/json" data-tag-data set:html={payload}></script>
+</section>
+
+<script>
+  type PageData = { title: string; url: string; description: string; tags: string[] };
+  const fold = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  function initTagExplorer() {
+    const root = document.querySelector<HTMLElement>('[data-tag-explorer]');
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = 'true';
+    const data = JSON.parse(root.querySelector('[data-tag-data]')?.textContent || '{}') as { pages: PageData[] };
+    const query = root.querySelector<HTMLInputElement>('#tag-query');
+    const status = root.querySelector<HTMLElement>('[data-tag-status]');
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-page-tags]')];
+    const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-tag]')];
+    const selected = new Set<string>();
+    const initial = new URL(window.location.href);
+    initial.searchParams.get('tags')?.split(',').filter(Boolean).forEach((tag) => selected.add(tag));
+    const initialMode = initial.searchParams.get('mode') === 'or' ? 'or' : 'and';
+    const modeInput = root.querySelector<HTMLInputElement>(`input[name="tag-mode"][value="${initialMode}"]`);
+    if (modeInput) modeInput.checked = true;
+    if (query) query.value = initial.searchParams.get('q') || '';
+
+    const matches = (page: PageData, tags: Set<string>, mode: string, needle: string) => {
+      const tagMatch = !tags.size || (mode === 'or' ? [...tags].some((tag) => page.tags.includes(tag)) : [...tags].every((tag) => page.tags.includes(tag)));
+      return tagMatch && (!needle || fold(`${page.title} ${page.description} ${page.tags.join(' ')}`).includes(needle));
+    };
+    const update = () => {
+      const mode = root.querySelector<HTMLInputElement>('input[name="tag-mode"]:checked')?.value || 'and';
+      const needle = fold(query?.value.trim() || '');
+      const visible = data.pages.map((page) => matches(page, selected, mode, needle));
+      cards.forEach((card, index) => card.hidden = !visible[index]);
+      buttons.forEach((button) => {
+        const slug = button.dataset.tag || '';
+        button.setAttribute('aria-pressed', String(selected.has(slug)));
+        const projected = data.pages.filter((page) => matches(page, new Set(selected.has(slug) ? [...selected].filter((tag) => tag !== slug) : [...selected, slug]), mode, needle)).length;
+        const counter = button.querySelector('small'); if (counter) counter.textContent = String(projected);
+        button.classList.toggle('is-impossible', projected === 0 && !selected.has(slug));
+      });
+      const count = visible.filter(Boolean).length;
+      if (status) status.textContent = `${count} page${count > 1 ? 's' : ''} affichée${count > 1 ? 's' : ''}.`;
+      const url = new URL(window.location.href);
+      selected.size ? url.searchParams.set('tags', [...selected].sort().join(',')) : url.searchParams.delete('tags');
+      mode === 'or' ? url.searchParams.set('mode', 'or') : url.searchParams.delete('mode');
+      query?.value.trim() ? url.searchParams.set('q', query.value.trim()) : url.searchParams.delete('q');
+      history.replaceState({}, '', url);
+    };
+    buttons.forEach((button) => button.addEventListener('click', () => { const tag = button.dataset.tag || ''; selected.has(tag) ? selected.delete(tag) : selected.add(tag); update(); }));
+    root.querySelectorAll('input[name="tag-mode"]').forEach((input) => input.addEventListener('change', update));
+    query?.addEventListener('input', update);
+    root.querySelector('[data-tags-reset]')?.addEventListener('click', () => {
+      selected.clear();
+      if (query) query.value = '';
+      const andInput = root.querySelector<HTMLInputElement>('input[name="tag-mode"][value="and"]');
+      if (andInput) andInput.checked = true;
+      update();
+    });
+    update();
+  }
+  initTagExplorer();
+  document.addEventListener('astro:page-load', initTagExplorer);
+</script>

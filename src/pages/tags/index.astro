@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import TagExplorer from '../../components/TagExplorer.astro';
+import DocLayout from '../../layouts/DocLayout.astro';
+import { normalizeTags, slugifyTag, TAG_FACETS } from '../../lib/tags';
+
+const entries = await getCollection('docs', ({ data }) => !data.draft);
+const pages = entries.map((entry) => ({
+  title: entry.data.title,
+  description: entry.data.description,
+  url: entry.id === 'index' ? '/' : `/${entry.id}`,
+  tags: normalizeTags(entry.data.tags).map(slugifyTag),
+})).sort((a, b) => a.title.localeCompare(b.title, 'fr'));
+const counts = new Map<string, number>();
+for (const page of pages) for (const tag of page.tags) counts.set(tag, (counts.get(tag) || 0) + 1);
+const facets = TAG_FACETS.map((facet) => ({
+  ...facet,
+  tags: facet.tags.map((label) => ({ slug: slugifyTag(label), label, count: counts.get(slugifyTag(label)) || 0 })).filter((tag) => tag.count > 0),
+})).filter((facet) => facet.tags.length);
+const now = new Date().toISOString();
+---
+
+<DocLayout slug="tags" title="Tags" description="Explorez la documentation par domaine, technologie ou usage." tags={[]} headings={[]} dates={{ created: now, updated: now }}>
+  <p class="tags-intro">{pages.length} pages, {facets.reduce((total, facet) => total + facet.tags.length, 0)} tags. Les filtres sont combinables et l’URL reste partageable.</p>
+  <TagExplorer facets={facets} pages={pages} />
+</DocLayout>

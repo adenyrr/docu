@@ -1,0 +1,29 @@
+---
+import type { DocNavGroup } from '../config';
+import { routeForSlug } from '../config';
+
+interface Props { group: DocNavGroup; currentSlug: string; depth?: number; }
+const { group, currentSlug, depth = 0 } = Astro.props;
+const containsCurrent = group.items.some((child) => {
+  if ('slug' in child) return child.slug === currentSlug;
+  if ('url' in child) return false;
+  return child.items.some((nested) => 'slug' in nested && nested.slug === currentSlug);
+});
+---
+
+<details class="doc-nav-group" open={depth === 0 || containsCurrent}>
+  <summary>{group.label}</summary>
+  <ul>
+    {group.items.map((child) => (
+      <li>
+        {'slug' in child ? (
+          <a href={routeForSlug(child.slug)} aria-current={child.slug === currentSlug ? 'page' : undefined}>{child.label}</a>
+        ) : 'url' in child ? (
+          <a href={child.url}>{child.label}</a>
+        ) : (
+          <Astro.self group={child} currentSlug={currentSlug} depth={depth + 1} />
+        )}
+      </li>
+    ))}
+  </ul>
+</details>

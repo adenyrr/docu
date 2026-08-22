@@ -1,0 +1,18 @@
+---
+interface Props {
+  type?: string;
+  title?: string;
+}
+
+const { type = 'note', title } = Astro.props;
+const labels: Record<string, string> = {
+  note: 'Note', info: 'Information', tip: 'Conseil', warning: 'Attention',
+  danger: 'Danger', question: 'Question', quote: 'Citation', example: 'Exemple',
+  success: 'Succès', failure: 'Échec', bug: 'Anomalie', abstract: 'Résumé',
+};
+---
+
+<div class:list={['admonition', `admonition--${type}`]} role="note" aria-label={title || labels[type] || type}>
+  <p class="admonition__title"><span aria-hidden="true">◆</span>{title || labels[type] || type}</p>
+  <div class="admonition__body"><slot /></div>
+</div>

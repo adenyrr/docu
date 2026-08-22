@@ -1,0 +1,13 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+const now = new Date().toISOString();
+---
+
+<DocLayout slug="404" title="Page introuvable" description="La commande demandée ne correspond à aucune page publiée." tags={[]} headings={[]} dates={{ created: now, updated: now }}>
+  <section class="not-found">
+    <pre><code>adenyrr@docu:~$ open {Astro.url.pathname}
+error: route not found (exit 404)</code></pre>
+    <p>La page a peut-être été déplacée. Utilisez la recherche ou revenez à l’index.</p>
+    <div><a href="/">Retour à l’accueil</a><button type="button" data-search-open>Rechercher</button></div>
+  </section>
+</DocLayout>

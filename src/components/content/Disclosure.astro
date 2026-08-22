@@ -1,0 +1,12 @@
+---
+interface Props {
+  type?: string;
+  title?: string;
+}
+const { type = 'note', title = 'Détails' } = Astro.props;
+---
+
+<details class:list={['disclosure', `admonition--${type}`]}>
+  <summary><span aria-hidden="true">◆</span>{title}</summary>
+  <div class="disclosure__body"><slot /></div>
+</details>
