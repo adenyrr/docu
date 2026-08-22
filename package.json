@@ -16,7 +16,7 @@
     "deploy:dry-run": "wrangler deploy --dry-run"
   },
   "dependencies": {
-    "@adenyrr/astro-ui": "file:../astro-ui",
+    "@adenyrr/astro-ui": "https://github.com/adenyrr/astro-sovereign-tty/archive/refs/tags/v1.0.0.tar.gz",
     "@astrojs/mdx": "^7.0.7",
     "@astrojs/sitemap": "^3.1.0",
     "@fontsource-variable/inclusive-sans": "^5.2.8",
