@@ -121,6 +121,10 @@ test('home, chrome et navigation partagent le même axe', async ({ page }) => {
       header: metrics('.header-shell'),
       panel: metrics('.doc-panel--home'),
       footer: metrics('.footer-shell'),
+      heroCopy: metrics('.docs-home-hero__copy'),
+      systemCard: metrics('.docs-system-card'),
+      missionCard: metrics('.docs-home-card:nth-child(1)'),
+      openSourceCard: metrics('.docs-home-card:nth-child(2)'),
       sidebarScrollable: sidebar.scrollHeight > sidebar.clientHeight,
       scrollbarWidth: style.scrollbarWidth,
       scrollbarColor: style.scrollbarColor,
@@ -128,6 +132,8 @@ test('home, chrome et navigation partagent le même axe', async ({ page }) => {
   });
   expect(home.panel.center).toBe(home.header.center);
   expect(home.panel.center).toBe(home.footer.center);
+  expect(home.missionCard).toEqual(home.heroCopy);
+  expect(home.openSourceCard).toEqual(home.systemCard);
   expect(home.sidebarScrollable).toBeTruthy();
   expect(home.scrollbarWidth).toBe('thin');
   expect(home.scrollbarColor).not.toBe('auto');
