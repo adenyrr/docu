@@ -1,13 +1,17 @@
 ---
 import { docsNavigation } from '../config';
 import DocNavGroup from './DocNavGroup.astro';
+import { X } from '@lucide/astro';
 interface Props { currentSlug: string; }
 const { currentSlug } = Astro.props;
 ---
 
 <aside class="doc-sidebar" aria-label="Navigation de la documentation">
   <div class="doc-sidebar__top">
-    <span><b>adenyrr@docu</b>:~$ tree</span>
+    <div class="doc-sidebar__heading">
+      <span><b>adenyrr@docu</b>:~$ tree</span>
+      <button type="button" class="doc-sidebar__close" data-doc-nav-close aria-label="Fermer la navigation"><X size={18} /></button>
+    </div>
     <button class="doc-search-trigger" type="button" data-search-open aria-label="Rechercher dans la documentation"><span aria-hidden="true">⌕</span> Rechercher <kbd>/</kbd></button>
   </div>
   <nav aria-label="Pages de documentation">{docsNavigation.map((group) => <DocNavGroup group={group} currentSlug={currentSlug} />)}</nav>

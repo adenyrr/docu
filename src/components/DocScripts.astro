@@ -1,6 +1,7 @@
 <script>
   let docsProfileTimer: number | undefined;
   let docsProfileStarted = Date.now();
+  let docsNavigationController: AbortController | undefined;
 
   function initProfileClock() {
     if (docsProfileTimer) window.clearInterval(docsProfileTimer);
@@ -22,13 +23,37 @@
     initProfileClock();
     const mobileToggle = document.querySelector<HTMLButtonElement>('[data-doc-nav-toggle]');
     const sidebar = document.querySelector<HTMLElement>('.doc-sidebar');
-    if (mobileToggle && sidebar && !mobileToggle.dataset.ready) {
-      mobileToggle.dataset.ready = 'true';
-      mobileToggle.addEventListener('click', () => {
-        const open = sidebar.classList.toggle('is-open');
+    docsNavigationController?.abort();
+    if (mobileToggle && sidebar) {
+      const controller = new AbortController();
+      docsNavigationController = controller;
+      const { signal } = controller;
+      const closeButtons = document.querySelectorAll<HTMLButtonElement>('[data-doc-nav-close]');
+      const sidebarClose = sidebar.querySelector<HTMLButtonElement>('[data-doc-nav-close]');
+      const siteMenu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+      const setOpen = (open: boolean, restoreFocus = false) => {
+        sidebar.classList.toggle('is-open', open);
         mobileToggle.setAttribute('aria-expanded', String(open));
-      });
-      sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => sidebar.classList.remove('is-open')));
+        document.body.classList.toggle('doc-navigation-open', open);
+        if (open) sidebarClose?.focus();
+        else if (restoreFocus) mobileToggle.focus();
+      };
+
+      mobileToggle.addEventListener('click', () => {
+        const open = !sidebar.classList.contains('is-open');
+        if (open) siteMenu?.removeAttribute('open');
+        setOpen(open);
+      }, { signal });
+      closeButtons.forEach((button) => button.addEventListener('click', () => setOpen(false, true), { signal }));
+      sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setOpen(false), { signal }));
+      sidebar.querySelector('[data-search-open]')?.addEventListener('click', () => setOpen(false), { signal });
+      siteMenu?.addEventListener('toggle', () => {
+        if (siteMenu.open) setOpen(false);
+      }, { signal });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && sidebar.classList.contains('is-open')) setOpen(false, true);
+      }, { signal });
+      setOpen(false);
     }
 
     const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('.doc-toc a')];

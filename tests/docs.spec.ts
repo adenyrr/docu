@@ -103,9 +103,44 @@ test('thèmes, mode lecture, clavier et mobile restent accessibles', async ({ pa
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('[data-doc-nav-toggle]').click();
   await expect(page.locator('.doc-sidebar')).toHaveClass(/is-open/);
+  await expect(page.locator('[data-doc-nav-toggle]')).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('.doc-navigation-backdrop')).toBeVisible();
+  await expect(page.locator('.doc-sidebar')).toHaveCSS('background-color', 'rgb(18, 24, 32)');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.doc-sidebar')).not.toHaveClass(/is-open/);
+  await expect(page.locator('[data-doc-nav-toggle]')).toHaveAttribute('aria-expanded', 'false');
+
+  await page.locator('.mobile-menu summary').click();
+  await expect(page.locator('.mobile-panel')).toBeVisible();
+  await expect(page.locator('.mobile-panel')).toHaveCSS('background-color', 'rgb(18, 24, 32)');
+  await page.locator('.mobile-menu summary').click();
+  await expect(page.locator('.mobile-menu')).not.toHaveAttribute('open', '');
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   expect(overflow).toBeFalsy();
 });
+
+for (const theme of ['light', 'dark'] as const) {
+  test(`les deux menus mobiles restent opaques en thème ${theme}`, async ({ browser }) => {
+    const context = await browser.newContext({ colorScheme: theme, viewport: { width: 390, height: 844 } });
+    await context.addInitScript((value) => localStorage.setItem('theme', value), theme);
+    const page = await context.newPage();
+    const expectedSurface = theme === 'light' ? 'rgb(253, 250, 244)' : 'rgb(18, 24, 32)';
+    await page.goto('/');
+
+    await page.locator('.mobile-menu summary').click();
+    await expect(page.locator('.mobile-panel')).toBeVisible();
+    await expect(page.locator('.mobile-panel')).toHaveCSS('background-color', expectedSurface);
+    await page.locator('.mobile-menu summary').click();
+    await expect(page.locator('.mobile-menu')).not.toHaveAttribute('open', '');
+
+    await page.locator('[data-doc-nav-toggle]').click();
+    await expect(page.locator('.doc-sidebar')).toBeVisible();
+    await expect(page.locator('.doc-sidebar')).toHaveCSS('background-color', expectedSurface);
+    await page.locator('.doc-sidebar__close').click();
+    await expect(page.locator('.doc-sidebar')).not.toBeVisible();
+    await context.close();
+  });
+}
 
 test('home, chrome et navigation partagent le même axe', async ({ page }) => {
   await page.setViewportSize({ width: 1642, height: 995 });

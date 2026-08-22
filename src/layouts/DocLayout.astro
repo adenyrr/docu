@@ -52,7 +52,10 @@ const next = currentIndex >= 0 && currentIndex < flat.length - 1 ? flat[currentI
         <button type="button" data-search-open>⌕ Rechercher</button>
       </div>
       <div class:list={['docs-shell', { 'docs-shell--home': isHome }]}>
-        <div id="doc-navigation"><DocSidebar currentSlug={slug} /></div>
+        <div id="doc-navigation">
+          <DocSidebar currentSlug={slug} />
+          <button type="button" class="doc-navigation-backdrop" data-doc-nav-close aria-label="Fermer la navigation"></button>
+        </div>
         <article class:list={['doc-panel', { 'doc-panel--home': isHome, 'doc-panel--cheat': isCheat }]}>
           {!isHome && (
             <>
